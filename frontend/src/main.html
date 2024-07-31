@@ -1,0 +1,35 @@
+<!-- index.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Product Comparison</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul id="product-menu">
+                <li><a href="#" onclick="showComparison('product1')">Product 1</a></li>
+                <li><a href="#" onclick="showComparison('product2')">Product 2</a></li>
+                <li><a href="#" onclick="showComparison('product3')">Product 3</a></li>
+            </ul>
+        </nav>
+        <div id="auth-links">
+            <a href="login.html">Login</a> / <a href="signup.html">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="bank-search">
+            <input type="text" id="bank-name" placeholder="Enter bank name">
+            <button onclick="searchBank()">Search</button>
+        </section>
+        <section id="results"></section>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
