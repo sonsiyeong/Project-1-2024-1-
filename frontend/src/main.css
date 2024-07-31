@@ -1,0 +1,34 @@
+/* styles.css */
+body {
+    font-family: ;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: ;
+    background-color: ;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: ;
+}
+
+#auth-links a {
+    margin-left: ;
+}
+
+#bank-search {
+    margin: ;
+}
+
+#results {
+    margin-top: ;
+}
