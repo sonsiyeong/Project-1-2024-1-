@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
@@ -6,7 +6,7 @@ const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   const handleSignUp = () => {
-    navigate("/signup");
+    // navigate("/signup");
   };
 
   const handleCloseError = () => {
