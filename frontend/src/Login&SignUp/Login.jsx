@@ -1,25 +1,25 @@
 import React, { useState } from "react";
-import "./Login.css"; // 별도의 CSS 파일을 사용합니다
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    // 예시를 위한 하드코딩된 유효성 검사 (실제에서는 서버와의 통신 필요)
+    //백엔드에서 API 제공 시 수정할 부분;
     if (id === "testuser" && password === "password123") {
       alert("로그인 성공");
-      // 로그인 성공 후의 동작을 여기에 추가
     } else {
       setShowError(true);
     }
   };
 
   const handleSignUp = () => {
-    alert("회원가입 페이지로 이동"); // 라우터가 없으므로 임시로 alert 사용
+    navigate("/signup");
   };
 
   const handleCloseError = () => {
@@ -63,12 +63,15 @@ const Login = () => {
         </button>
       </div>
       {showError && (
-        <div className="popup">
-          <div className="popup-content">
-            <p>회원 정보가 일치하지 않습니다.</p>
-            <button onClick={handleCloseError}>확인</button>
+        <>
+          <div className="dimmed"></div>
+          <div className="popup">
+            <div className="popup-content">
+              <p>회원 정보가 일치하지 않습니다.</p>
+              <button onClick={handleCloseError}>확인</button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
