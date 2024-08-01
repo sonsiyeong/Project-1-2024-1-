@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./SignUp.css"; // 별도의 CSS 파일을 사용합니다';
 
 const SignUp = () => {
