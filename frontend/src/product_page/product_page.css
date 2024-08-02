@@ -1,0 +1,95 @@
+.App-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.logo-container {
+  text-align: center;
+}
+
+.App-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: none;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 2px solid green;
+}
+.App-nav button {
+  background-color: #186915;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.App-nav ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+.App-nav li {
+  margin: 0 130px;
+  cursor: pointer;
+  font-size: 30px;
+}
+.App-nav li.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #186915;
+}
+
+.search-container search-input {
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.search-container button {
+  background-color: #186915;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.App-main {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.bank-section {
+  border: 1px solid green;
+  padding: 20px;
+}
+.bank-section img {
+  width: 210px;
+  height: 35px;
+}
+
+.product-card {
+  margin: 10px 0;
+  //display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-card button {
+  background-color: #549052;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.underline {
+  text-decoration: underline;
+}
