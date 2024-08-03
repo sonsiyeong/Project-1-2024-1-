@@ -1,3 +1,9 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+body {
+  font-family: "Pretendard", sans-serif;
+}
+
 .App-header {
   display: flex;
   justify-content: center;
@@ -15,17 +21,31 @@
   padding: 20px;
   background-color: none;
   border-top: 1px solid #d9d9d9;
-  border-bottom: 2px solid green;
+  border-bottom: 3px solid green;
+  margin-bottom: 50px;
 }
-.App-nav button {
+.login-button {
+  text-decoration: none;
   background-color: #186915;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
+  padding: 5px 20px;
+  font-size: 22px;
+  border-radius: 20px;
+  //margin-left: 10px;
 }
+
+.login-button a {
+  text-decoration: none;
+  background-color: #186915;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  font-size: 22px;
+  border-radius: 20px;
+  //margin-left: 10px;
+}
+
 .App-nav ul {
   display: flex;
   list-style-type: none;
@@ -36,39 +56,55 @@
   cursor: pointer;
   font-size: 30px;
 }
-.App-nav li.active {
-  font-weight: bold;
-  text-decoration: underline;
-  color: #186915;
+.App-nav li a {
+  text-decoration: none;
+  color: black;
+  padding: 5px;
 }
 
-.search-container search-input {
+.App-nav li.active a {
+  font-weight: bold;
+  color: #186915;
+  border-bottom: 2px solid #186915;
+}
+
+.App-nav > .login-button {
+  margin-right: auto; /* 로그인 버튼을 왼쪽으로 이동 */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-input {
   border: none;
   border-bottom: 1px solid black;
   padding: 5px;
-  margin-right: 10px;
+  margin-right: 5px;
+  font-size: 1em;
 }
 
-.search-container button {
-  background-color: #186915;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+.search-icon {
   cursor: pointer;
-  margin-left: 10px;
+  font-size: 1.5em;
+  color: #186915;
 }
 
 .App-main {
   display: flex;
   justify-content: space-around;
   padding: 20px;
+  gap: 5px;
 }
 
 .bank-section {
-  border: 1px solid green;
+  border: 2px solid green;
   padding: 20px;
+  border-radius: 15px;
 }
+
 .bank-section img {
   width: 210px;
   height: 35px;
@@ -76,19 +112,44 @@
 
 .product-card {
   margin: 10px 0;
-  //display: flex;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  //justify-content: space-between;
+  text-align: center;
 }
 
+.product-name {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  border-bottom: 1px solid #d6d6d6;
+  width: 125px;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+}
+
+.product-description {
+  font-size: 19px;
+}
 .product-card button {
   background-color: #549052;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 7px 20px;
+  border-radius: 20px;
   cursor: pointer;
   margin-left: 10px;
+}
+
+.separator {
+  width: 100px;
+  height: 1.5px;
+  background-color: #186915;
+  margin: 40px;
+  margin-bottom: 20px;
 }
 .underline {
   text-decoration: underline;
