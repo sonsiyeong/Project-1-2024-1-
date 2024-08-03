@@ -1,13 +1,20 @@
 /* styles.css */
+// index.css
+const indexCSS = `
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #186915;
 }
+`;
 
+// Header.css
+const headerCSS = `
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #f4f4f4;
+    background-color: #4CAF50;
+    padding: 1em;
+    text-align: center;
 }
 
 nav ul {
@@ -18,15 +25,38 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-right: 10px;
+    margin-right: 1em;
+    cursor: pointer;
+    color: white;
+}
+`;
+
+// BankSearch.css
+const bankSearchCSS = `
+.bank-search {
+    text-align: center;
+    margin-top: 2em;
 }
 
-#auth-links a {
-    margin-left: 10px;
+.bank-search input {
+    padding: 0.5em;
+    margin-right: 0.5em;
 }
 
-#bank-search {
-    margin: 20px 0;
+.bank-search button {
+    padding: 0.5em;
+}
+
+.error {
+    color: red;
+    margin-top: 1em;
+}
+`;
+
+// 스타일을 head에 추가
+const style = document.createElement('style');
+style.appendChild(document.createTextNode(indexCSS + headerCSS + bankSearchCSS));
+document.head.appendChild(style);
 }
 
 #results {
