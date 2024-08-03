@@ -19,7 +19,7 @@ const Header = ({ onNavigate }) => {
 };
 
 // BankSearch 컴포넌트
-const banks = ['Bank A', 'Bank B', 'Bank C', 'Bank D', 'Bank E'];
+const banks = ['KB국민은행', 'NH농협은행', '신한은행', '우리은행', '하나은행'];
 
 const BankSearch = () => {
     const [input, setInput] = useState('');
@@ -76,7 +76,7 @@ function App() {
     );
 }
 
-// index.js 내용
+// index.js 추가
 ReactDOM.render(
     <React.StrictMode>
         <App />
