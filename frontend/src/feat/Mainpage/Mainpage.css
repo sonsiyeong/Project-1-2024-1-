@@ -1,18 +1,17 @@
-/* styles.css */
 // index.css
 const indexCSS = `
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #186915;
+    background-color: white;
 }
 `;
 
 // Header.css
 const headerCSS = `
 header {
-    background-color: #4CAF50;
+    background-color: #186915;
     padding: 1em;
     text-align: center;
 }
@@ -57,8 +56,3 @@ const bankSearchCSS = `
 const style = document.createElement('style');
 style.appendChild(document.createTextNode(indexCSS + headerCSS + bankSearchCSS));
 document.head.appendChild(style);
-}
-
-#results {
-    margin-top: 20px;
-}
