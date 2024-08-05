@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DepositPage from "./product_page/DepositPage";
-import SavingPage from "./product_page/SavingPage";
-import LoanPage from "./product_page/LoanPage";
-import CheckCardPage from "./product_page/CheckCardPage";
+import DepositPage from "./ProductPage/DepositPage";
+import SavingPage from "./ProductPage/SavingPage";
+import LoanPage from "./ProductPage/LoanPage";
+import CheckCardPage from "./ProductPage/CheckCardPage";
 import Login from "./feat/Login/Login";
 import SignUp from "./feat/SignUp/SignUp";
 
