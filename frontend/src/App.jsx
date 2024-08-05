@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Login&SignUp/Login";
-import SignUp from "./Login&SignUp/SignUp";
 import DepositPage from "./ProductPage/DepositPage";
 import SavingPage from "./ProductPage/SavingPage";
 import LoanPage from "./ProductPage/LoanPage";
 import CheckCardPage from "./ProductPage/CheckCardPage";
+import Login from "./feat/Login/Login";
+import SignUp from "./feat/SignUp/SignUp";
 
 const App = () => {
   return (

@@ -1,0 +1,150 @@
+.signup-page {
+  text-align: center;
+}
+
+.header {
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header .logo {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+.login-bar {
+  background-color: #336633;
+  width: 100%;
+  padding: 10px 0;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+.signup-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.signup-title {
+  background-color: #fff;
+  color: #5a8a5a;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #336633;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: calc(100% - 12px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.email-input {
+  display: flex;
+  align-items: center;
+}
+
+.email-input input[type="text"] {
+  width: calc(50% - 6px);
+  margin-right: 2px;
+}
+
+.email-input span {
+  margin: 0 2px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+.button {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #336633;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-disabled {
+  width: 100%;
+  padding: 10px 0;
+  background-color: gray;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+  font-size: 16px;
+}
+
+.duplicate-check {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #b3c6b3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Ensure the popup is above the overlay */
+}
+
+.popup-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #336633;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
