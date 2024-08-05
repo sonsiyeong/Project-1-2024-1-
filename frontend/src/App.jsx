@@ -24,3 +24,22 @@ const App = () => {
 };
 
 export default App;
+
+
+// 메인페이지 App 컴포넌트
+function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const handleNavigation = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <div>
+      <Header onNavigate={handleNavigation} />
+      {currentPage === "home" && <BankSearch />}
+      {currentPage === "login" && <Auth />}
+      {/* Add more pages as needed */}
+    </div>
+  );
+}
