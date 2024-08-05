@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import "./SignUp.css"; // 별도의 CSS 파일을 사용합니다';
+import { useNavigate } from "react-router-dom";
+import "./SignUp.css"; // 별도의 CSS 파일을 사용합니다
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -13,6 +14,8 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [formValid, setFormValid] = useState(false);
   const [registrationComplete, setRegistrationComplete] = useState(false);
+
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     if (/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(email)) {
@@ -58,6 +61,11 @@ const SignUp = () => {
     });
 
     setRegistrationComplete(true);
+  };
+
+  const handleConfirmPopup = () => {
+    setRegistrationComplete(false);
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -180,9 +188,7 @@ const SignUp = () => {
             <div className="popup">
               <div className="popup-content">
                 <p>가입이 완료되었습니다. 로그인해 주세요</p>
-                <button onClick={() => setRegistrationComplete(false)}>
-                  확인
-                </button>
+                <button onClick={handleConfirmPopup}>확인</button>
               </div>
             </div>
           </div>
