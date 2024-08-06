@@ -1,5 +1,3 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
-
 body {
   font-family: "Pretendard", sans-serif;
 }
@@ -134,7 +132,8 @@ body {
 .product-description {
   font-size: 19px;
 }
-.product-card button {
+.product-button {
+  text-decoration: none;
   background-color: #549052;
   color: white;
   border: none;

@@ -18,8 +18,8 @@ const BankSection = ({ bank }) => {
   return (
     <div className="bank-section">
       <img src={logoPath} alt={`${bank.name} 로고`} />
-      {bank.products.map((product, index) => (
-        <ProductCard key={index} product={product} />
+      {bank.products.map((product) => (
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );
