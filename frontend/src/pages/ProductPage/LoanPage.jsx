@@ -1,4 +1,4 @@
-import "./product_page.css";
+import "./ProductPage.css";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import BankSection from "./components/BankSection";
