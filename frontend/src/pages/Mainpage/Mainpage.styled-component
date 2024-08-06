@@ -1,0 +1,85 @@
+import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+
+// Global Style
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+  }
+`;
+
+// Header Styles
+const HeaderContainer = styled.header`
+  background-color: #186915;
+  padding: 1em;
+  text-align: center;
+`;
+
+const Nav = styled.nav`
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul li {
+    display: inline;
+    margin-right: 1em;
+    cursor: pointer;
+    color: white;
+  }
+`;
+
+// BankSearch Styles
+const BankSearchContainer = styled.div`
+  text-align: center;
+  margin-top: 2em;
+`;
+
+const Input = styled.input`
+  padding: 0.5em;
+  margin-right: 0.5em;
+`;
+
+const Button = styled.button`
+  padding: 0.5em;
+`;
+
+const Error = styled.div`
+  color: red;
+  margin-top: 1em;
+`;
+
+// Components
+const Header = () => (
+  <HeaderContainer>
+    <Nav>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </Nav>
+  </HeaderContainer>
+);
+
+const BankSearch = () => (
+  <BankSearchContainer>
+    <Input type="text" placeholder="Search for a bank..." />
+    <Button>Search</Button>
+    <Error>Some error message</Error>
+  </BankSearchContainer>
+);
+
+const App = () => (
+  <>
+    <GlobalStyle />
+    <Header />
+    <BankSearch />
+  </>
+);
+
+export default App;
