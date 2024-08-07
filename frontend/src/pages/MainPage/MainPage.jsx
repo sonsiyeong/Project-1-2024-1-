@@ -20,27 +20,30 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <div className="logo">
+          <img src="logo.png" alt="Ewha Logo" />
+          <h1>EWHA INVESTIGATION</h1>
+        </div>
         <nav className="menu">
           <button onClick={() => alert('예금')}>예금</button>
           <button onClick={() => alert('적금')}>적금</button>
           <button onClick={() => alert('대출')}>대출</button>
           <button onClick={() => alert('체크카드')}>체크카드</button>
         </nav>
-        <div className="auth-links">
-          <a href="/login">로그인</a>/<a href="/signup">회원가입</a>
-        </div>
-      </header>
-      <main>
-        <div className="search-section">
+        <div className="auth-section">
           <input
             type="text"
-            placeholder="은행명을 입력하세요"
+            placeholder="은행명 입력"
             value={bankName}
             onChange={handleBankNameChange}
           />
-          <button onClick={handleSearch}>검색</button>
+          <button className="search-button" onClick={handleSearch}>🔍</button>
           {error && <div className="error">없는 은행명이거나 오타가 있습니다</div>}
+          <a className="auth-link" href="/login">LOGIN / SIGN UP</a>
         </div>
+      </header>
+      <main>
+        <img src="campus.jpg" alt="Campus" className="main-image" />
       </main>
     </div>
   );
