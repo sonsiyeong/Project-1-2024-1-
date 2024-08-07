@@ -4,9 +4,16 @@
 }
 
 .App-header {
-  background-color: #186915;
+  background-color: #282c34;
   padding: 20px;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
 }
 
 .menu button {
@@ -20,6 +27,16 @@
 
 .menu button:hover {
   background-color: #21a1f1;
+}
+
+.auth-links a {
+  color: #61dafb;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
 }
 
 .search-section {
@@ -50,16 +67,4 @@
   margin-top: 10px;
 }
 
-footer {
-  margin-top: 20px;
-}
 
-footer a {
-  margin: 0 10px;
-  color: #61dafb;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
