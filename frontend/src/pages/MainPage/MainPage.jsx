@@ -11,7 +11,7 @@ const App = () => {
   };
 
   const handleSearch = () => {
-    const validBanks = ['KB국민은행', 'NH농협은행', '신한은행', '우리은행', '하나은행'']; 
+    const validBanks = ['KB국민은행', 'NH농협은행', '신한은행', '우리은행', '하나은행']; 
     if (!validBanks.includes(bankName)) {
       setError(true);
     }
@@ -26,6 +26,9 @@ const App = () => {
           <button onClick={() => alert('대출')}>대출</button>
           <button onClick={() => alert('체크카드')}>체크카드</button>
         </nav>
+        <div className="auth-links">
+          <a href="/login">로그인</a>/<a href="/signup">회원가입</a>
+        </div>
       </header>
       <main>
         <div className="search-section">
@@ -39,11 +42,9 @@ const App = () => {
           {error && <div className="error">없는 은행명이거나 오타가 있습니다</div>}
         </div>
       </main>
-      <footer>
-        <a href="/login">로그인</a>/<a href="/signup">회원가입</a>
-      </footer>
     </div>
   );
 };
 
 export default App;
+
