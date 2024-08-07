@@ -4,12 +4,28 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 24px;
+  margin: 0;
 }
 
 .menu {
@@ -19,52 +35,56 @@
 .menu button {
   margin: 0 10px;
   padding: 10px 20px;
-  background-color: #61dafb;
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  color: black;
 }
 
 .menu button:hover {
-  background-color: #21a1f1;
+  color: #21a1f1;
 }
 
-.auth-links a {
-  color: #61dafb;
-  text-decoration: none;
-  margin: 0 10px;
+.auth-section {
+  display: flex;
+  align-items: center;
 }
 
-.auth-links a:hover {
-  text-decoration: underline;
-}
-
-.search-section {
-  margin: 20px;
-}
-
-.search-section input {
+.auth-section input {
   padding: 10px;
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.search-section button {
-  padding: 10px 20px;
-  background-color: #61dafb;
+.auth-section .search-button {
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  font-size: 20px;
 }
 
-.search-section button:hover {
-  background-color: #21a1f1;
-}
-
-.error {
+.auth-section .error {
   color: red;
   margin-top: 10px;
 }
+
+.auth-section .auth-link {
+  margin-left: 20px;
+  color: #21a1f1;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.auth-section .auth-link:hover {
+  text-decoration: underline;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+}
+
 
 
