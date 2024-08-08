@@ -1,15 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import DepositPage from "./pages/ProductPage/DepositPage";
 import SavingPage from "./pages/ProductPage/SavingPage";
 import LoanPage from "./pages/ProductPage/LoanPage";
 import CheckCardPage from "./pages/ProductPage/CheckCardPage";
-//import Mainpage from "./pages/Mainpage/Mainpage";
+import { GlobalStyle } from "./pages/ProductPage/styles";
+//import DetailedPage from "./pages/DetailedPage/DetailedPage"; <Route path="/detailedpage" element={<DetailedPage />} />
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<DepositPage />} />
         <Route path="/login" element={<Login />} />
@@ -19,7 +21,7 @@ const App = () => {
         <Route path="/loan" element={<LoanPage />} />
         <Route path="/checkcard" element={<CheckCardPage />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 };
 
