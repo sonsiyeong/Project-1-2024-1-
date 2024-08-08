@@ -86,9 +86,7 @@ const SavingPage = () => {
         </AppNav>
         <AppMain>
           {bankData.map((bank, index) => (
-            <BankSectionContainer key={index}>
-              <BankSection bank={bank} />
-            </BankSectionContainer>
+            <BankSection bank={bank} />
           ))}
         </AppMain>
       </div>

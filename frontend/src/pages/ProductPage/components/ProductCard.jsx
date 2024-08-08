@@ -11,11 +11,11 @@ const ProductCard = ({ product }) => {
     <ProductCardWrapper>
       <ProductName>{product.name}</ProductName>
       <ProductDescription>{product.description}</ProductDescription>
-      <ProductButton to={product.link}>자세히 보기</ProductButton>
+      <ProductButton to="/detailedpage">자세히 보기</ProductButton>
       <Separator />
       <ProductName>{product.name}</ProductName>
       <ProductDescription>{product.description}</ProductDescription>
-      <ProductButton to={product.link}>자세히 보기</ProductButton>
+      <ProductButton to="/detailedpage">자세히 보기</ProductButton>
     </ProductCardWrapper>
   );
 };

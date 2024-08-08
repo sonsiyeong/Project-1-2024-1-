@@ -10,7 +10,6 @@ import {
   AppNavItem,
   LoginButton,
   AppMain,
-  BankSectionContainer,
 } from "./styles";
 import { Link } from "react-router-dom";
 import BankSection from "./components/BankSection";
@@ -86,9 +85,7 @@ const LoanPage = () => {
         </AppNav>
         <AppMain>
           {bankData.map((bank, index) => (
-            <BankSectionContainer key={index}>
-              <BankSection bank={bank} />
-            </BankSectionContainer>
+            <BankSection bank={bank} />
           ))}
         </AppMain>
       </div>

@@ -10,7 +10,6 @@ import {
   AppNavItem,
   LoginButton,
   AppMain,
-  BankSectionContainer,
 } from "./styles";
 import { Link } from "react-router-dom";
 import BankSection from "./components/BankSection";
