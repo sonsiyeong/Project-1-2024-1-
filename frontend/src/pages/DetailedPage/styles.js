@@ -7,6 +7,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Pretendard", sans-serif;
   }
 `;
+
+export const PageContainer = styled.div`
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
 export const AppHeader = styled.header`
   display: flex;
   justify-content: center;
@@ -85,7 +92,7 @@ export const SearchIcon = styled(FaSearch)`
 
 export const BankLogo = styled.img`
    {
-    width: 100px;
+    max-width: 150px;
     height: 20px;
     display: block;
     margin: 0 auto 20px;
@@ -96,9 +103,11 @@ export const DetailContainer = styled.div`
 `;
 
 export const DetailTitle = styled.h2`
-  font-size: 24px;
+  font-size: 30px;
   text-align: center;
   margin-bottom: 20px;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 15px;
 `;
 
 export const DetailSection = styled.section`
@@ -138,17 +147,20 @@ export const CommentButton = styled.button`
   color: white;
   border: none;
   padding: 10px 20px;
+  font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
 `;
 
 export const BackButton = styled(Link)`
-  display: inline-block;
+  display: block;
+  width: 100px;
+  margin: 20px 0 0 auto;
+  text-align: center;
   background-color: #186915;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 4px;
   text-decoration: none;
-  text-align: center;
-  margin-top: 20px;
+  font-size: 16px;
 `;
