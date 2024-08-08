@@ -84,7 +84,7 @@ const CheckCardPage = () => {
           <LoginButton to="/login">LOGIN / SIGN UP</LoginButton>
         </AppNav>
         <AppMain>
-          {bankData.map((bank, index) => (
+          {bankData.map((bank) => (
             <BankSection bank={bank} />
           ))}
         </AppMain>

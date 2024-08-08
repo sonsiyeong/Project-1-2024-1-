@@ -10,7 +10,6 @@ import {
   AppNavItem,
   LoginButton,
   AppMain,
-  BankSectionContainer,
 } from "./styles";
 import { Link } from "react-router-dom";
 import BankSection from "./components/BankSection";
@@ -85,7 +84,7 @@ const SavingPage = () => {
           <LoginButton to="/login">LOGIN / SIGN UP</LoginButton>
         </AppNav>
         <AppMain>
-          {bankData.map((bank, index) => (
+          {bankData.map((bank) => (
             <BankSection bank={bank} />
           ))}
         </AppMain>
