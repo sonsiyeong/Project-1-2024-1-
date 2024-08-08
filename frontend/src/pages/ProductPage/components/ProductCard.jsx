@@ -1,22 +1,22 @@
-import { Link } from "react-router-dom";
+import {
+  ProductCardWrapper,
+  ProductName,
+  ProductDescription,
+  ProductButton,
+  Separator,
+} from "../styles";
 
 const ProductCard = ({ product }) => {
-  const { name } = product;
-
   return (
-    <div className="product-card">
-      <p className="product-name">{name}</p>
-      <p className="product-description">{product.description}</p>
-      <Link to={product.link} className="product-button">
-        자세히 보기
-      </Link>
-      <div className="separator"></div>
-      <p className="product-name">{product.name}</p>
-      <p className="product-description">{product.description}</p>
-      <Link to={product.link} className="product-button">
-        자세히 보기
-      </Link>
-    </div>
+    <ProductCardWrapper>
+      <ProductName>{product.name}</ProductName>
+      <ProductDescription>{product.description}</ProductDescription>
+      <ProductButton to={product.link}>자세히 보기</ProductButton>
+      <Separator />
+      <ProductName>{product.name}</ProductName>
+      <ProductDescription>{product.description}</ProductDescription>
+      <ProductButton to={product.link}>자세히 보기</ProductButton>
+    </ProductCardWrapper>
   );
 };
 

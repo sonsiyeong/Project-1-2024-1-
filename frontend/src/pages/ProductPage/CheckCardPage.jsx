@@ -1,5 +1,17 @@
-import "./ProductPage.css";
-import { FaSearch } from "react-icons/fa";
+import {
+  GlobalStyle,
+  AppHeader,
+  LogoContainer,
+  AppNav,
+  SearchContainer,
+  SearchInput,
+  SearchIcon,
+  AppNavList,
+  AppNavItem,
+  LoginButton,
+  AppMain,
+  BankSectionContainer,
+} from "./styles";
 import { Link } from "react-router-dom";
 import BankSection from "./components/BankSection";
 
@@ -43,45 +55,44 @@ const bankData = [
 
 const CheckCardPage = () => {
   return (
-    <div className="ProductPage">
-      <header className="App-header">
-        <div className="logo-container">
-          <img src="/logo.png" alt="EWHA Logo" className="logo" />
-        </div>
-      </header>
-      <nav className="App-nav">
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="은행 명 입력"
-            className="search-input"
-          />
-          <FaSearch className="search-icon" />
-        </div>
-        <ul>
-          <li>
-            <Link to="/deposit">예금</Link>
-          </li>
-          <li>
-            <Link to="/saving">적금</Link>
-          </li>
-          <li>
-            <Link to="/loan">대출</Link>
-          </li>
-          <li className="active">
-            <Link to="/checkcard">체크카드</Link>
-          </li>
-        </ul>
-        <div className="login-button">
-          <Link to="/login">LOGIN / SIGN UP</Link>
-        </div>
-      </nav>
-      <main className="App-main">
-        {bankData.map((bank, index) => (
-          <BankSection key={index} bank={bank} />
-        ))}
-      </main>
-    </div>
+    <>
+      <GlobalStyle />
+      <div className="ProductPage">
+        <AppHeader>
+          <LogoContainer>
+            <img src="/logo.png" alt="EWHA Logo" className="logo" />
+          </LogoContainer>
+        </AppHeader>
+        <AppNav>
+          <SearchContainer>
+            <SearchInput type="text" placeholder="은행 명 입력" />
+            <SearchIcon />
+          </SearchContainer>
+          <AppNavList>
+            <AppNavItem>
+              <Link to="/deposit">예금</Link>
+            </AppNavItem>
+            <AppNavItem>
+              <Link to="/saving">적금</Link>
+            </AppNavItem>
+            <AppNavItem>
+              <Link to="/loan">대출</Link>
+            </AppNavItem>
+            <AppNavItem className="active">
+              <Link to="/checkcard">체크카드</Link>
+            </AppNavItem>
+          </AppNavList>
+          <LoginButton to="/login">LOGIN / SIGN UP</LoginButton>
+        </AppNav>
+        <AppMain>
+          {bankData.map((bank, index) => (
+            <BankSectionContainer key={index}>
+              <BankSection bank={bank} />
+            </BankSectionContainer>
+          ))}
+        </AppMain>
+      </div>
+    </>
   );
 };
 
