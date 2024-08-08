@@ -68,7 +68,7 @@ export const LoginButtonGroup = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const LoginButton = styled.button`
