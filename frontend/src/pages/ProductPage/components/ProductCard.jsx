@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ProductCardWrapper,
   ProductName,
@@ -10,26 +9,43 @@ import {
   ConfirmButton,
 } from "../styles";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { useState } from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({
+  product,
+  onBookmarkToggle1,
+  onBookmarkToggle2,
+  bookmarked1,
+  bookmarked2,
+}) => {
   const { name } = product;
-  const [bookmarked, setBookmarked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
-  const handleBookmarkClick = () => {
-    if (bookmarked) {
+  const handleBookmarkClick1 = () => {
+    if (bookmarked1) {
       setPopupMessage("MY 스크랩에서 삭제되었습니다.");
     } else {
       setPopupMessage("MY 스크랩에 저장되었습니다.");
     }
-    setBookmarked(!bookmarked);
+    onBookmarkToggle1();
+    setShowPopup(true);
+  };
+
+  const handleBookmarkClick2 = () => {
+    if (bookmarked2) {
+      setPopupMessage("MY 스크랩에서 삭제되었습니다.");
+    } else {
+      setPopupMessage("MY 스크랩에 저장되었습니다.");
+    }
+    onBookmarkToggle2();
     setShowPopup(true);
   };
 
   const handleConfirmClick = () => {
     setShowPopup(false);
   };
+
   return (
     <ProductCardWrapper>
       {showPopup && (
@@ -38,11 +54,9 @@ const ProductCard = ({ product }) => {
           <ConfirmButton onClick={handleConfirmClick}>확인</ConfirmButton>
         </Popup>
       )}
-
       <ProductName>
-        {" "}
-        <BookmarkIcon onClick={handleBookmarkClick}>
-          {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
+        <BookmarkIcon onClick={handleBookmarkClick1}>
+          {bookmarked1 ? <FaBookmark /> : <FaRegBookmark />}
         </BookmarkIcon>
         {name}
       </ProductName>
@@ -50,9 +64,8 @@ const ProductCard = ({ product }) => {
       <ProductButton to={product.link}>자세히 보기</ProductButton>
       <Separator />
       <ProductName>
-        {" "}
-        <BookmarkIcon onClick={handleBookmarkClick}>
-          {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
+        <BookmarkIcon onClick={handleBookmarkClick2}>
+          {bookmarked2 ? <FaBookmark /> : <FaRegBookmark />}
         </BookmarkIcon>
         {name}
       </ProductName>
