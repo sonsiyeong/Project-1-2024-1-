@@ -11,6 +11,12 @@ import {
   LoginButton,
 } from "./styles";
 import { Link } from "react-router-dom";
+import Information from "./components/Information";
+
+const bankData = {
+  name: "KB국민은행",
+  logoKey: "kb",
+};
 
 const DetailedPage = () => {
   return (
@@ -43,6 +49,7 @@ const DetailedPage = () => {
           </AppNavList>
           <LoginButton to="/login">LOGIN / SIGN UP</LoginButton>
         </AppNav>
+        <Information bank={bankData} />
       </div>
     </>
   );
