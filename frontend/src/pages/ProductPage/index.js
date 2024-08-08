@@ -1,0 +1,1 @@
+export { CheckCardPage } from "./CheckCardPage";

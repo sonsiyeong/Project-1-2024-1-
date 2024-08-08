@@ -37,13 +37,13 @@ export const LoginContainer = styled.div`
   background-color: #fff;
 `;
 
-export const Form = styled.form`
+export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const FormGroup = styled.div`
+export const LoginFormGroup = styled.div`
   margin-bottom: 15px;
   text-align: left;
   width: 100%;
