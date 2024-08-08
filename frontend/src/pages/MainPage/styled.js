@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaSearch } from 'react-icons/fa';
 
 const AppContainer = styled.div`
   text-align: center;
@@ -32,7 +31,7 @@ const Logo = styled.div`
   }
 `;
 
-const Menu = styled.div`
+const Menu = styled.nav`
   display: flex;
 
   button {
@@ -88,33 +87,57 @@ const AuthSection = styled.div`
 const MainImage = styled.img`
   width: 100%;
   height: auto;
+  max-height: calc(100vh - 70px); /* 헤더 높이를 뺀 화면 높이 */
+  object-fit: cover;
 `;
 
-const App = () => {
+const MainPage = () => {
+  const [bankName, setBankName] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleBankNameChange = (event) => {
+    setBankName(event.target.value);
+    setError(false);
+  };
+
+  const handleSearch = () => {
+    const validBanks = ['KB국민은행', 'NH농협은행', '신한은행', '우리은행', '하나은행']; 
+    if (!validBanks.includes(bankName)) {
+      setError(true);
+    }
+  };
+
   return (
     <AppContainer>
       <Header>
         <Logo>
-          <img src="/logo.png" alt="Logo" />
-          <h1>My App</h1>
+          <img src="logo.png" alt="Ewha Logo" />
+          <h1>EWHA INVESTIGATION</h1>
         </Logo>
         <Menu>
-          <button>예금</button>
-          <button>적금</button>
-          <button>대출</button>
-          <button>체크카드</button>
+          <button onClick={() => alert('예금')}>예금</button>
+          <button onClick={() => alert('적금')}>적금</button>
+          <button onClick={() => alert('대출')}>대출</button>
+          <button onClick={() => alert('체크카드')}>체크카드</button>
         </Menu>
         <AuthSection>
-          <input type="text" placeholder="은행 명 입력" />
-          <button className="search-button">
-            <FaSearch />
-          </button>
-          <a href="/login" className="auth-link">로그인/회원가입</a>
+          <input
+            type="text"
+            placeholder="은행명 입력"
+            value={bankName}
+            onChange={handleBankNameChange}
+          />
+          <button className="search-button" onClick={handleSearch}>🔍</button>
+          {error && <div className="error">없는 은행명이거나 오타가 있습니다</div>}
+          <a className="auth-link" href="/login">LOGIN / SIGN UP</a>
         </AuthSection>
       </Header>
-      <MainImage src="/main-image.jpg" alt="Main" />
+      <main>
+        <MainImage src="/mnt/data/image.png" alt="Campus" />
+      </main>
     </AppContainer>
   );
-}
+};
 
-export default App;
+export default MainPage;
+
