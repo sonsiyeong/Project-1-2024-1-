@@ -53,6 +53,7 @@ export const Label = styled.label`
   display: block;
   margin-bottom: 5px;
   color: #336633;
+  font-weight: bold;
 `;
 
 export const Input = styled.input`
@@ -67,7 +68,7 @@ export const LoginButtonGroup = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const LoginButton = styled.button`
@@ -102,6 +103,22 @@ export const Popup = styled.div`
   z-index: 1000;
 `;
 
+export const PopupContent = styled.div`
+  p {
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #336633;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+`;
+
 export const Dimmed = styled.div`
   position: fixed;
   top: 0;
@@ -110,12 +127,4 @@ export const Dimmed = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-`;
-
-export const SignUpLink = styled.button`
-  font-size: 14px;
-  color: #336633;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-top: 10px; /* Add margin to create space between login button and sign up link */
 `;

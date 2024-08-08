@@ -13,6 +13,7 @@ import {
   LoginButton,
   Popup,
   Dimmed,
+  PopupContent,
 } from "./styles";
 
 const Login = () => {
@@ -77,10 +78,10 @@ const Login = () => {
         <>
           <Dimmed />
           <Popup>
-            <div className="popup-content">
+            <PopupContent>
               <p>회원 정보가 일치하지 않습니다.</p>
               <button onClick={handleCloseError}>확인</button>
-            </div>
+            </PopupContent>
           </Popup>
         </>
       )}
