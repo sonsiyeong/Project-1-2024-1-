@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// TODO: 스타일드 컴포넌트명 범용화된 이름 아닌 것으로 수정
 export const LoginPage = styled.div`
   text-align: center;
 `;

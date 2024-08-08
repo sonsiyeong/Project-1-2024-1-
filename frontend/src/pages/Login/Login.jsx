@@ -13,7 +13,8 @@ import {
   LoginButton,
   Popup,
   Dimmed,
-} from "./styles";
+} from "./Login.styles";
+// import * as S from "./Login.styles";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -49,21 +50,11 @@ const Login = () => {
         <Form onSubmit={handleLogin}>
           <FormGroup>
             <Label>ID</Label>
-            <Input
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              required
-            />
+            <Input type="text" value={id} onChange={(e) => setId(e.target.value)} required />
           </FormGroup>
           <FormGroup>
             <Label>PASSWORD</Label>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </FormGroup>
           <LoginButtonGroup>
             <LoginButton type="submit">LOGIN</LoginButton>
