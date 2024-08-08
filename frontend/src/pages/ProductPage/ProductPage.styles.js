@@ -84,32 +84,34 @@ export const SearchIcon = styled.div`
   color: #186915;
 `;
 
+export const AppMain = styled.main`
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 5px;
+`;
+
+export const BankSectionContainer = styled.div`
+  border: 2px solid green;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px;
+`;
+
 export const BankLogo = styled.img`
-   {
-    width: 100px;
-    height: 20px;
-    display: block;
-    margin: 0 auto 20px;
-  }
-`;
-export const DetailContainer = styled.div`
-  padding: 5px;
+  width: 210px;
+  height: 35px;
 `;
 
-export const DetailTitle = styled.h2`
-  font-size: 24px;
+export const ProductCardWrapper = styled.div`
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 20px;
 `;
 
-export const DetailSection = styled.section`
-  margin-bottom: 40px;
-`;
-
-export const DetailImage = styled.div`
-  width: 100%;
-  height: 300px;
-  background-color: #d3d3d3;
+export const ProductName = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,26 +134,33 @@ export const CommentInput = styled.textarea`
   border: 1px solid #d9d9d9;
   border-radius: 5px;
   margin-bottom: 10px;
+  padding-bottom: 4px;
 `;
 
-export const CommentButton = styled.button`
-  background-color: #186915;
+export const ProductDescription = styled.p`
+  font-size: 19px;
+`;
+
+export const ProductButton = styled(Link)`
+  text-decoration: none;
+  background-color: #549052;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 7px 20px;
+  border-radius: 20px;
   cursor: pointer;
 `;
 
-export const BackButton = styled(Link)`
-  display: inline-block;
+export const Separator = styled.div`
+  width: 100px;
+  height: 1.5px;
   background-color: #186915;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  margin-top: 20px;
+  margin: 40px;
+  margin-bottom: 20px;
+`;
+
+export const Underline = styled.div`
+  text-decoration: underline;
 `;
 
 export const BankSectionContainer = styled.div`

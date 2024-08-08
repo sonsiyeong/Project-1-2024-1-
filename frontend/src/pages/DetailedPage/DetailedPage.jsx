@@ -1,5 +1,6 @@
 import {
   GlobalStyle,
+  PageContainer,
   AppHeader,
   LogoContainer,
   AppNav,
@@ -49,7 +50,9 @@ const DetailedPage = () => {
           </AppNavList>
           <LoginButton to="/login">LOGIN / SIGN UP</LoginButton>
         </AppNav>
-        <Information bank={bankData} />
+        <PageContainer>
+          <Information bank={bankData} />
+        </PageContainer>
       </div>
     </>
   );
