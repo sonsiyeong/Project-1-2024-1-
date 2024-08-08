@@ -1,58 +1,90 @@
-// index.css
-const indexCSS = `
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-}
-`;
-
-// Header.css
-const headerCSS = `
-header {
-    background-color: #186915;
-    padding: 1em;
-    text-align: center;
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.App-header {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 2px -2px gray;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 1em;
-    cursor: pointer;
-    color: white;
-}
-`;
-
-// BankSearch.css
-const bankSearchCSS = `
-.bank-search {
-    text-align: center;
-    margin-top: 2em;
+.logo {
+  display: flex;
+  align-items: center;
 }
 
-.bank-search input {
-    padding: 0.5em;
-    margin-right: 0.5em;
+.logo img {
+  height: 40px;
+  margin-right: 10px;
 }
 
-.bank-search button {
-    padding: 0.5em;
+.logo h1 {
+  font-size: 24px;
+  margin: 0;
 }
 
-.error {
-    color: red;
-    margin-top: 1em;
+.menu {
+  display: flex;
 }
-`;
 
-// 스타일을 head에 추가
-const style = document.createElement('style');
-style.appendChild(document.createTextNode(indexCSS + headerCSS + bankSearchCSS));
-document.head.appendChild(style);
+.menu button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: black;
+}
+
+.menu button:hover {
+  color: #21a1f1;
+}
+
+.auth-section {
+  display: flex;
+  align-items: center;
+}
+
+.auth-section input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.auth-section .search-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.auth-section .error {
+  color: red;
+  margin-top: 10px;
+}
+
+.auth-section .auth-link {
+  margin-left: 20px;
+  color: #21a1f1;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.auth-section .auth-link:hover {
+  text-decoration: underline;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+}
+
+
+
