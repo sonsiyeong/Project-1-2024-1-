@@ -1,6 +1,23 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./SignUp.css"; // 별도의 CSS 파일을 사용합니다
+import {
+  SignUpPage,
+  Header,
+  SignUpBar,
+  SignUpContainer,
+  SignUpTitle,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  EmailInput,
+  Error,
+  Button,
+  DuplicateCheckButton,
+  PopupOverlay,
+  Popup,
+  PopupContent,
+} from "./styles";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -14,6 +31,7 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [formValid, setFormValid] = useState(false);
   const [registrationComplete, setRegistrationComplete] = useState(false);
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,8 +46,10 @@ const SignUp = () => {
   const validateUsername = (username) => {
     if (/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(username)) {
       setUsernameError("사용할 수 없는 아이디입니다.");
+      setIsUsernameValid(false);
     } else {
       setUsernameError("");
+      setIsUsernameValid(true);
     }
   };
 
@@ -97,27 +117,27 @@ const SignUp = () => {
   ]);
 
   return (
-    <div className="signup-page">
-      <header className="header">
+    <SignUpPage>
+      <Header>
         <img src="/logo.png" alt="EWHA Logo" className="logo" />
-        <div className="login-bar">LOGIN</div>
-      </header>
-      <div className="signup-container">
-        <div className="signup-title">회원가입</div>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>이름</label>
-            <input
+      </Header>
+      <SignUpBar>SIGN UP</SignUpBar>
+      <SignUpContainer>
+        <SignUpTitle>회원가입</SignUpTitle>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label>이름</Label>
+            <Input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
-          </div>
-          <div className="form-group">
-            <label>이메일 주소</label>
-            <div className="email-input">
-              <input
+          </FormGroup>
+          <FormGroup>
+            <Label>이메일 주소</Label>
+            <EmailInput>
+              <Input
                 type="text"
                 value={email}
                 onChange={(e) => {
@@ -127,13 +147,13 @@ const SignUp = () => {
                 required
               />
               <span>@</span>
-              <input type="text" required />
-            </div>
-            {emailError && <span className="error">{emailError}</span>}
-          </div>
-          <div className="form-group">
-            <label>아이디</label>
-            <input
+              <Input type="text" required />
+            </EmailInput>
+            {emailError && <Error>{emailError}</Error>}
+          </FormGroup>
+          <FormGroup>
+            <Label>아이디</Label>
+            <Input
               type="text"
               value={username}
               onChange={(e) => {
@@ -142,14 +162,14 @@ const SignUp = () => {
               }}
               required
             />
-            {usernameError && <span className="error">{usernameError}</span>}
-            <button type="button" className="duplicate-check">
+            {usernameError && <Error>{usernameError}</Error>}
+            <DuplicateCheckButton type="button" disabled={!isUsernameValid}>
               중복 확인
-            </button>
-          </div>
-          <div className="form-group">
-            <label>비밀번호</label>
-            <input
+            </DuplicateCheckButton>
+          </FormGroup>
+          <FormGroup>
+            <Label>비밀번호</Label>
+            <Input
               type="password"
               value={password}
               onChange={(e) => {
@@ -158,11 +178,11 @@ const SignUp = () => {
               }}
               required
             />
-            {passwordError && <span className="error">{passwordError}</span>}
-          </div>
-          <div className="form-group">
-            <label>비밀번호 확인</label>
-            <input
+            {passwordError && <Error>{passwordError}</Error>}
+          </FormGroup>
+          <FormGroup>
+            <Label>비밀번호 확인</Label>
+            <Input
               type="password"
               value={confirmPassword}
               onChange={(e) => {
@@ -171,30 +191,24 @@ const SignUp = () => {
               }}
               required
             />
-            {confirmPasswordError && (
-              <span className="error">{confirmPasswordError}</span>
-            )}
-          </div>
-          <button
-            type="submit"
-            disabled={!formValid}
-            className={formValid ? "button" : "button-disabled"}
-          >
+            {confirmPasswordError && <Error>{confirmPasswordError}</Error>}
+          </FormGroup>
+          <Button type="submit" disabled={!formValid}>
             가입
-          </button>
-        </form>
+          </Button>
+        </Form>
         {registrationComplete && (
-          <div className="popup-overlay">
-            <div className="popup">
-              <div className="popup-content">
+          <PopupOverlay>
+            <Popup>
+              <PopupContent>
                 <p>가입이 완료되었습니다. 로그인해 주세요</p>
                 <button onClick={handleConfirmPopup}>확인</button>
-              </div>
-            </div>
-          </div>
+              </PopupContent>
+            </Popup>
+          </PopupOverlay>
         )}
-      </div>
-    </div>
+      </SignUpContainer>
+    </SignUpPage>
   );
 };
 
