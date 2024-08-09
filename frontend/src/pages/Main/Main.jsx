@@ -1,4 +1,4 @@
-import { Header } from './components/header/index.js';
+import { Header } from './components';
 import * as S from './main.style.js';
 
 export const Main = () => {
