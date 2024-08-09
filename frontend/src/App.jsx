@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MainPage from './pages/MainPage/MainPage';
+import MainPage from './pages/Main';
 // import 경로 최적화하기
 // import { Login , SignUp, DepositPage, SavingPage, LoanPage, CheckCardPage } from "./pages";
 import Login from './pages/Login/Login';
