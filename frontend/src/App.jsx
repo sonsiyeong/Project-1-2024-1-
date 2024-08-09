@@ -1,32 +1,31 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Main } from './pages/Main';
-// import 경로 최적화하기
-// import { Login , SignUp, DepositPage, SavingPage, LoanPage, CheckCardPage } from "./pages";
-import Login from './pages/Login/Login';
-import SignUp from './pages/SignUp/SignUp';
-import DepositPage from './pages/ProductPage/DepositPage';
-import SavingPage from './pages/ProductPage/SavingPage';
-import LoanPage from './pages/ProductPage/LoanPage';
-import { CheckCardPage } from './pages/ProductPage';
-// TODO: 글로벌 스타일 전역으로 옮기기
-import { GlobalStyle } from './pages/ProductPage/styles';
-//import DetailedPage from "./pages/DetailedPage/DetailedPage"; <Route path="/detailedpage" element={<DetailedPage />} />
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import MyPage from './pages/MyPage/MyPage'; // MyPage 컴포넌트
+import Main from './pages/Main/Main'; // Main 컴포넌트
+import Login from './pages/Login/Login'; // Login 컴포넌트
+import SignUp from './pages/SignUp/SignUp'; // SignUp 컴포넌트
+import DepositPage from './pages/ProductPage/DepositPage'; // DepositPage 컴포넌트
+import SavingPage from './pages/ProductPage/SavingPage'; // SavingPage 컴포넌트
+import LoanPage from './pages/ProductPage/LoanPage'; // LoanPage 컴포넌트
+import CheckCardPage from './pages/ProductPage/CheckCardPage'; // CheckCardPage 컴포넌트
 
 const App = () => {
   return (
     <Router>
-      <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/deposit" element={<DepositPage />} />
-        <Route path="/saving" element={<SavingPage />} />
-        <Route path="/loan" element={<LoanPage />} />
-        <Route path="/checkcard" element={<CheckCardPage />} />
+        <Route path="/" element={<Navigate to="/mypage" />} /> {/* 기본 경로를 MyPage로 리다이렉트 */}
+        <Route path="/mypage" element={<MyPage />} /> {/* MyPage 페이지 */}
+        <Route path="/main" element={<Main />} /> {/* Main 페이지 */}
+        <Route path="/login" element={<Login />} /> {/* Login 페이지 */}
+        <Route path="/signup" element={<SignUp />} /> {/* SignUp 페이지 */}
+        <Route path="/deposit" element={<DepositPage />} /> {/* DepositPage 페이지 */}
+        <Route path="/saving" element={<SavingPage />} /> {/* SavingPage 페이지 */}
+        <Route path="/loan" element={<LoanPage />} /> {/* LoanPage 페이지 */}
+        <Route path="/checkcard" element={<CheckCardPage />} /> {/* CheckCardPage 페이지 */}
       </Routes>
     </Router>
   );
 };
 
 export default App;
+
