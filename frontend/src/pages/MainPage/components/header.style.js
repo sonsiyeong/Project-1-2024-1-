@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  text-align: center;
-  font-family: Arial, sans-serif;
-`;
-
 export const LogoContainer = styled.div`
   background-color: #ffffff;
   padding: 15px;
@@ -88,19 +83,6 @@ export const LoginButton = styled.a`
   &:hover {
     text-decoration: underline;
   }
-`;
-
-export const MainContent = styled.main`
-  width: 100%;
-  height: auto;
-`;
-
-export const MainImage = styled.img`
-  width: 100%;
-  height: auto;
-  max-height: calc(100vh - 80px);
-  /* Subtract header height from viewport height */
-  object-fit: cover;
 `;
 
 export const ErrorMessage = styled.div`
