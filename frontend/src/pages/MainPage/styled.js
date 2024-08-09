@@ -67,7 +67,7 @@ export const MenuButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 22px;
-  font-family: "Pretendard", sans-serif;
+  font-family: 'Pretendard', sans-serif;
   color: black;
 
   &:hover {
@@ -98,12 +98,40 @@ export const MainContent = styled.main`
 export const MainImage = styled.img`
   width: 100%;
   height: auto;
-  max-height: calc(100vh - 80px); /* Subtract header height from viewport height */
+  max-height: calc(100vh - 80px);
+  /* Subtract header height from viewport height */
   object-fit: cover;
 `;
 
 export const ErrorMessage = styled.div`
   color: red;
-  font-family: "Pretendard", sans-serif;
+  font-family: 'Pretendard', sans-serif;
   margin-top: 11px;
+`;
+
+export const MyPageButton = styled.a`
+  text-decoration: none;
+  background-color: #186915;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const LogoutLink = styled.a`
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
