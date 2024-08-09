@@ -64,6 +64,7 @@ export function Header() {
           // TODO: react Fragment 공부하기
           // https://ko.react.dev/reference/react/Fragment
           <>
+            {/* TODO: react-router-dom의 Link로 수정하기 */}
             <S.MyPageButton href="/mypage">MY PAGE</S.MyPageButton>
             <S.LogoutLink href="/logout">로그아웃</S.LogoutLink>
           </>
