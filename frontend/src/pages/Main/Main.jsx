@@ -1,7 +1,7 @@
 import { Header } from './components/header/index.js';
 import * as S from './main.style.js';
 
-const Main = () => {
+export const Main = () => {
   return (
     <S.Container>
       <Header />
@@ -11,5 +11,3 @@ const Main = () => {
     </S.Container>
   );
 };
-
-export default Main;
