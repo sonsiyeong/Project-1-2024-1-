@@ -1,6 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import {
+  LoginPage,
+  Header,
+  LoginBar,
+  LoginContainer,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  LoginButtonGroup,
+  LoginButton,
+  Popup,
+  Dimmed,
+} from "./Login.styles";
+// import * as S from "./Login.styles";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -27,53 +41,41 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <header className="header">
+    <LoginPage>
+      <Header>
         <img src="/logo.png" alt="EWHA Logo" className="logo" />
-      </header>
-      <div className="login-bar">LOGIN</div>
-      <div className="login-container">
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label>ID</label>
-            <input
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>PASSWORD</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group login-button-group">
-            <button type="submit" className="login-button">
-              LOGIN
-            </button>
-          </div>
-        </form>
+      </Header>
+      <LoginBar>LOGIN</LoginBar>
+      <LoginContainer>
+        <Form onSubmit={handleLogin}>
+          <FormGroup>
+            <Label>ID</Label>
+            <Input type="text" value={id} onChange={(e) => setId(e.target.value)} required />
+          </FormGroup>
+          <FormGroup>
+            <Label>PASSWORD</Label>
+            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </FormGroup>
+          <LoginButtonGroup>
+            <LoginButton type="submit">LOGIN</LoginButton>
+          </LoginButtonGroup>
+        </Form>
         <button onClick={handleSignUp} className="signup-link">
           SIGN UP
         </button>
-      </div>
+      </LoginContainer>
       {showError && (
         <>
-          <div className="dimmed"></div>
-          <div className="popup">
+          <Dimmed />
+          <Popup>
             <div className="popup-content">
               <p>회원 정보가 일치하지 않습니다.</p>
               <button onClick={handleCloseError}>확인</button>
             </div>
-          </div>
+          </Popup>
         </>
       )}
-    </div>
+    </LoginPage>
   );
 };
 

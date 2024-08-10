@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
@@ -8,12 +9,13 @@ import CheckCardPage from "./pages/ProductPage/CheckCardPage";
 import { GlobalStyle } from "./pages/ProductPage/styles";
 import DetailedPage from "./pages/DetailedPage/DetailedPage";
 
+
 const App = () => {
   return (
     <Router>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<DepositPage />} />
+        <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/deposit" element={<DepositPage />} />

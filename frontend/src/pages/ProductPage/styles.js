@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from "styled-components";
-import { Link } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import styled, { createGlobalStyle } from 'styled-components';
+import { Link } from 'react-router-dom';
+// import { FaSearch } from "react-icons/fa";
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -78,7 +78,7 @@ export const SearchInput = styled.input`
   font-size: 1em;
 `;
 
-export const SearchIcon = styled(FaSearch)`
+export const SearchIcon = styled.div`
   cursor: pointer;
   font-size: 1.5em;
   color: #186915;
