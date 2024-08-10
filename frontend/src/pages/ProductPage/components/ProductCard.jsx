@@ -4,7 +4,7 @@ import {
   ProductDescription,
   ProductButton,
   Separator,
-} from "../styles";
+} from "../ProductPage.styles";
 
 const ProductCard = ({ product }) => {
   return (

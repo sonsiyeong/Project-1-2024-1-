@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import { Link } from 'react-router-dom';
-// import { FaSearch } from "react-icons/fa";
+import styled, { createGlobalStyle } from "styled-components";
+import { Link } from "react-router-dom";
+//import { FaSearch } from "react-icons/fa";
 
 export const GlobalStyle = createGlobalStyle`
   body {
