@@ -10,7 +10,6 @@ import {
   AppNavItem,
   LoginButton,
   AppMain,
-  BankSectionContainer,
 } from "./styles";
 import { Link } from "react-router-dom";
 import BankSection from "./components/BankSection";
@@ -75,10 +74,8 @@ export const CheckCardPage = () => {
           <LoginButton to="/login">LOGIN / SIGN UP</LoginButton>
         </AppNav>
         <AppMain>
-          {bankData.map((bank, index) => (
-            <BankSectionContainer key={index}>
-              <BankSection bank={bank} />
-            </BankSectionContainer>
+          {bankData.map((bank) => (
+            <BankSection bank={bank} />
           ))}
         </AppMain>
       </div>
