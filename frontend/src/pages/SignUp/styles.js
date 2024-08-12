@@ -71,20 +71,6 @@ export const Input = styled.input`
   box-sizing: border-box;
 `;
 
-export const EmailInput = styled.div`
-  display: flex;
-  align-items: center;
-
-  span {
-    margin: 0 5px;
-    font-weight: bold;
-  }
-
-  input {
-    width: calc(50% - 10px);
-  }
-`;
-
 export const Error = styled.span`
   color: red;
   font-size: 12px;

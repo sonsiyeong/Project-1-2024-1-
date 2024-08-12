@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// TODO: 스타일드 컴포넌트명 범용화된 이름 아닌 것으로 수정
 export const LoginPage = styled.div`
   text-align: center;
 `;
@@ -38,13 +37,13 @@ export const LoginContainer = styled.div`
   background-color: #fff;
 `;
 
-export const Form = styled.form`
+export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const FormGroup = styled.div`
+export const LoginFormGroup = styled.div`
   margin-bottom: 15px;
   text-align: left;
   width: 100%;
@@ -54,6 +53,7 @@ export const Label = styled.label`
   display: block;
   margin-bottom: 5px;
   color: #336633;
+  font-weight: bold;
 `;
 
 export const Input = styled.input`
@@ -103,6 +103,22 @@ export const Popup = styled.div`
   z-index: 1000;
 `;
 
+export const PopupContent = styled.div`
+  p {
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #336633;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+`;
+
 export const Dimmed = styled.div`
   position: fixed;
   top: 0;
@@ -111,12 +127,4 @@ export const Dimmed = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-`;
-
-export const SignUpLink = styled.button`
-  font-size: 14px;
-  color: #336633;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-top: 10px; /* Add margin to create space between login button and sign up link */
 `;

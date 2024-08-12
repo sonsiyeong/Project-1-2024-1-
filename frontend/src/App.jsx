@@ -1,19 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
+import DepositPage from "./pages/ProductPage/DepositPage";
+import SavingPage from "./pages/ProductPage/SavingPage";
+import LoanPage from "./pages/ProductPage/LoanPage";
+import CheckCardPage from "./pages/ProductPage/CheckCardPage";
+import { GlobalStyle } from "./pages/ProductPage/styles";
+import DetailedPage from "./pages/DetailedPage/DetailedPage";
 import MyPage from './pages/MyPage/MyPage'; // MyPage 컴포넌트
-import Main from './pages/Main/Main'; // Main 컴포넌트
-import Login from './pages/Login/Login'; // Login 컴포넌트
-import SignUp from './pages/SignUp/SignUp'; // SignUp 컴포넌트
-import DepositPage from './pages/ProductPage/DepositPage'; // DepositPage 컴포넌트
-import SavingPage from './pages/ProductPage/SavingPage'; // SavingPage 컴포넌트
-import LoanPage from './pages/ProductPage/LoanPage'; // LoanPage 컴포넌트
-import CheckCardPage from './pages/ProductPage/CheckCardPage'; // CheckCardPage 컴포넌트
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/mypage" />} /> {/* 기본 경로를 MyPage로 리다이렉트 */}
+        <Route path="/" element={<Main />} /> {/* 기본 경로를 MyPage로 리다이렉트 */}
         <Route path="/mypage" element={<MyPage />} /> {/* MyPage 페이지 */}
         <Route path="/main" element={<Main />} /> {/* Main 페이지 */}
         <Route path="/login" element={<Login />} /> {/* Login 페이지 */}
