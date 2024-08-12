@@ -82,3 +82,4 @@ export const CheckCardPage = () => {
     </>
   );
 };
+export default CheckCardPage
