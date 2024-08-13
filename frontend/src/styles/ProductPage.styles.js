@@ -190,32 +190,3 @@ export const ConfirmButton = styled.button`
 export const Underline = styled.div`
   text-decoration: underline;
 `;
-export const BookmarkIcon = styled.div`
-  cursor: pointer;
-  font-size: 17px;
-  color: #186915;
-  align-self: flex-end;
-  margin-right: 10px;
-`;
-export const Popup = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border: 1px solid #d9d9d9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  text-align: center;
-`;
-export const ConfirmButton = styled.button`
-  background-color: #549052;
-  color: white;
-  border: none;
-  padding: 7px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-top: 10px;
-`;
