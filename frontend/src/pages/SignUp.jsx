@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import {
   SignUpPage,
@@ -32,54 +34,30 @@ export const SignUp = () => {
   const [formValid, setFormValid] = useState(false);
   const [registrationComplete, setRegistrationComplete] = useState(false);
   const [isUsernameValid, setIsUsernameValid] = useState(false);
-
   const navigate = useNavigate();
 
-  const validateEmail = (email) => {
-    if (/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(email)) {
-      setEmailError("유효한 이메일 주소가 아닙니다");
-    } else {
-      setEmailError("");
-    }
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    watch,
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(SignUpValidationSchema),
+  });
 
-  const validateUsername = (username) => {
-    if (/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(username)) {
-      setUsernameError("사용할 수 없는 아이디입니다.");
-      setIsUsernameValid(false);
-    } else {
-      setUsernameError("");
+  const watchUsername = watch("username");
+
+  useEffect(() => {
+    if (watchUsername && !errors.username) {
       setIsUsernameValid(true);
-    }
-  };
-
-  const validatePassword = (password) => {
-    if (password.length > 20) {
-      setPasswordError("비밀번호가 너무 깁니다");
     } else {
-      setPasswordError("");
+      setIsUsernameValid(false);
     }
-  };
+  }, [watchUsername, errors.username]);
 
-  const handleConfirmPassword = (confirmPassword) => {
-    if (password !== confirmPassword) {
-      setConfirmPasswordError("비밀번호가 일치하지 않습니다");
-    } else {
-      setConfirmPasswordError("");
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Log the form data to the console
-    console.log({
-      name,
-      email,
-      username,
-      password,
-    });
-
+  const onSubmit = (data) => {
+    console.log(data);
     setRegistrationComplete(true);
   };
 
@@ -88,126 +66,60 @@ export const SignUp = () => {
     navigate("/login");
   };
 
-  useEffect(() => {
-    if (
-      name &&
-      email &&
-      !emailError &&
-      username &&
-      !usernameError &&
-      password &&
-      !passwordError &&
-      confirmPassword &&
-      !confirmPasswordError
-    ) {
-      setFormValid(true);
-    } else {
-      setFormValid(false);
-    }
-  }, [
-    name,
-    email,
-    emailError,
-    username,
-    usernameError,
-    password,
-    passwordError,
-    confirmPassword,
-    confirmPasswordError,
-  ]);
-
   return (
-    <SignUpPage>
-      <Header>
+    <s.SignUpPage>
+      <s.Header>
         <img src="/logo.png" alt="EWHA Logo" className="logo" />
-      </Header>
-      <SignUpBar>SIGN UP</SignUpBar>
-      <SignUpContainer>
-        <SignUpTitle>회원가입</SignUpTitle>
-        <Form onSubmit={handleSubmit}>
-          <FormGroup>
-            <Label>이름</Label>
-            <Input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>이메일 주소</Label>
-            <EmailInput>
-              <Input
-                type="text"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  validateEmail(e.target.value);
-                }}
-                required
-              />
-              <span>@</span>
-              <Input type="text" required />
-            </EmailInput>
-            {emailError && <Error>{emailError}</Error>}
-          </FormGroup>
-          <FormGroup>
-            <Label>아이디</Label>
-            <Input
-              type="text"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-                validateUsername(e.target.value);
-              }}
-              required
-            />
-            {usernameError && <Error>{usernameError}</Error>}
-            <DuplicateCheckButton type="button" disabled={!isUsernameValid}>
+      </s.Header>
+      <s.SignUpBar>SIGN UP</s.SignUpBar>
+      <s.SignUpContainer>
+        <s.SignUpTitle>회원가입</s.SignUpTitle>
+        <s.Form onSubmit={handleSubmit(onSubmit)}>
+          <s.FormGroup>
+            <s.Label>이름</s.Label>
+            <s.Input type="text" {...register("name")} />
+            {errors.name && <s.Error>{errors.name.message}</s.Error>}
+          </s.FormGroup>
+          <s.FormGroup>
+            <s.Label>이메일 주소</s.Label>
+            <s.Input type="email" {...register("email")} />
+            {errors.email && <s.Error>{errors.email.message}</s.Error>}
+          </s.FormGroup>
+          <s.FormGroup>
+            <s.Label>아이디</s.Label>
+            <s.Input type="text" {...register("username")} />
+            {errors.username && <s.Error>{errors.username.message}</s.Error>}
+            <s.DuplicateCheckButton type="button" disabled={!isUsernameValid}>
               중복 확인
-            </DuplicateCheckButton>
-          </FormGroup>
-          <FormGroup>
-            <Label>비밀번호</Label>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                validatePassword(e.target.value);
-              }}
-              required
-            />
-            {passwordError && <Error>{passwordError}</Error>}
-          </FormGroup>
-          <FormGroup>
-            <Label>비밀번호 확인</Label>
-            <Input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-                handleConfirmPassword(e.target.value);
-              }}
-              required
-            />
-            {confirmPasswordError && <Error>{confirmPasswordError}</Error>}
-          </FormGroup>
-          <Button type="submit" disabled={!formValid}>
+            </s.DuplicateCheckButton>
+          </s.FormGroup>
+          <s.FormGroup>
+            <s.Label>비밀번호</s.Label>
+            <s.Input type="password" {...register("password")} />
+            {errors.password && <s.Error>{errors.password.message}</s.Error>}
+          </s.FormGroup>
+          <s.FormGroup>
+            <s.Label>비밀번호 확인</s.Label>
+            <s.Input type="password" {...register("confirmPassword")} />
+            {errors.confirmPassword && (
+              <s.Error>{errors.confirmPassword.message}</s.Error>
+            )}
+          </s.FormGroup>
+          <s.Button type="submit" disabled={!isValid}>
             가입
-          </Button>
-        </Form>
+          </s.Button>
+        </s.Form>
         {registrationComplete && (
-          <PopupOverlay>
-            <Popup>
-              <PopupContent>
-                <p>가입이 완료되었습니다. 로그인해 주세요</p>
+          <s.PopupOverlay>
+            <s.Popup>
+              <s.PopupContent>
+                <p>가입이 완료되었습니다. 로그인해주세요</p>
                 <button onClick={handleConfirmPopup}>확인</button>
-              </PopupContent>
-            </Popup>
-          </PopupOverlay>
+              </s.PopupContent>
+            </s.Popup>
+          </s.PopupOverlay>
         )}
-      </SignUpContainer>
-    </SignUpPage>
+      </s.SignUpContainer>
+    </s.SignUpPage>
   );
 };

@@ -41,8 +41,8 @@ export const Login = () => {
   };
 
   return (
-    <LoginPage>
-      <Header>
+    <s.LoginPage>
+      <s.Header>
         <img src="/logo.png" alt="EWHA Logo" className="logo" />
       </Header>
       <LoginBar>LOGIN</LoginBar>
@@ -73,18 +73,18 @@ export const Login = () => {
         <button onClick={handleSignUp} className="signup-link">
           SIGN UP
         </button>
-      </LoginContainer>
+      </s.LoginContainer>
       {showError && (
         <>
-          <Dimmed />
-          <Popup>
-            <div className="popup-content">
+          <s.Dimmed />
+          <s.Popup>
+            <s.PopupContent>
               <p>회원 정보가 일치하지 않습니다.</p>
               <button onClick={handleCloseError}>확인</button>
-            </div>
-          </Popup>
+            </s.PopupContent>
+          </s.Popup>
         </>
       )}
-    </LoginPage>
+    </s.LoginPage>
   );
 };
