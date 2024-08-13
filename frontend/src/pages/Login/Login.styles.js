@@ -81,7 +81,7 @@ export const LoginButton = styled.button`
   font-size: 16px;
 `;
 
-export const Error = styled.span`
+export const ErrorMessage = styled.span`
   color: red;
   font-size: 12px;
   display: block;
