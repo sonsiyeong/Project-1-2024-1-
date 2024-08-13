@@ -162,61 +162,32 @@ export const Separator = styled.div`
 export const Underline = styled.div`
   text-decoration: underline;
 `;
-
-export const BankSectionContainer = styled.div`
-  border: 2px solid green;
+export const BookmarkIcon = styled.div`
+  cursor: pointer;
+  font-size: 17px;
+  color: #186915;
+  align-self: flex-end;
+  margin-right: 10px;
+`;
+export const Popup = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #d9d9d9;
   padding: 20px;
-  border-radius: 15px;
-  margin: 10px;
-`;
-
-export const BankLogo = styled.img`
-  width: 210px;
-  height: 35px;
-`;
-
-export const ProductCardWrapper = styled.div`
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
   text-align: center;
 `;
-
-export const ProductName = styled.p`
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 20px;
-  border-bottom: 1px solid #d6d6d6;
-  width: 125px;
-  text-align: center;
-  margin-bottom: 10px;
-  padding-bottom: 4px;
-`;
-
-export const ProductDescription = styled.p`
-  font-size: 19px;
-`;
-
-export const ProductButton = styled(Link)`
-  text-decoration: none;
+export const ConfirmButton = styled.button`
   background-color: #549052;
   color: white;
   border: none;
   padding: 7px 20px;
   border-radius: 20px;
   cursor: pointer;
-`;
-
-export const Separator = styled.div`
-  width: 100px;
-  height: 1.5px;
-  background-color: #186915;
-  margin: 40px;
-  margin-bottom: 20px;
-`;
-
-export const Underline = styled.div`
-  text-decoration: underline;
+  margin-top: 10px;
 `;
