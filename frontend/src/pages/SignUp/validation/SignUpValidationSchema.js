@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const SignUpValidationSchema = yup.object().shape({
+const SignUpValidationSchema = yup.object().shape({
   name: yup.string().required("이름은 필수항목입니다."),
   email: yup
     .string()
@@ -22,3 +22,5 @@ export const SignUpValidationSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않아요."),
 });
+
+export default SignUpValidationSchema;

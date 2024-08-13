@@ -48,12 +48,10 @@ export const CheckCardPage = () => {
         <AppMain>
           {bankData.map((bank) => (
             <BankSection bank={bank} />
-          {bankData.map((bank) => (
-            <BankSection bank={bank} />
           ))}
         </AppMain>
       </div>
     </>
   );
 };
-export default CheckCardPage
+export default CheckCardPage;

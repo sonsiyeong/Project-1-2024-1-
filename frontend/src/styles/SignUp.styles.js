@@ -44,13 +44,13 @@ export const SignUpTitle = styled.div`
   font-weight: bold;
 `;
 
-export const Form = styled.form`
+export const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const FormGroup = styled.div`
+export const SignUpFormGroup = styled.div`
   margin-bottom: 15px;
   text-align: left;
   width: 100%;
@@ -71,7 +71,7 @@ export const Input = styled.input`
   box-sizing: border-box;
 `;
 
-export const Error = styled.span`
+export const ErrorMessage = styled.span`
   color: red;
   font-size: 12px;
   display: block;

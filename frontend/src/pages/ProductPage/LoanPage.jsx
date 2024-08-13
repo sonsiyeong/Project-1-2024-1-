@@ -48,8 +48,6 @@ export const LoanPage = () => {
         <AppMain>
           {bankData.map((bank) => (
             <BankSection bank={bank} />
-          {bankData.map((bank) => (
-            <BankSection bank={bank} />
           ))}
         </AppMain>
       </div>
