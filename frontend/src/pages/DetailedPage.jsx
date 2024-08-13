@@ -1,13 +1,13 @@
-import { GlobalStyle, PageContainer } from "./DetailedPage.styles";
-import { Header } from "../../components/index.js";
-import Information from "./components/Information";
+import { GlobalStyle, PageContainer } from "../styles/DetailedPage.styles";
+import { Header } from "../components/index.js";
+import Information from "../components/Information";
 
 const bankData = {
   name: "KB국민은행",
   logoKey: "kb",
 };
 
-const DetailedPage = () => {
+export const DetailedPage = () => {
   return (
     <>
       <GlobalStyle />
@@ -20,5 +20,3 @@ const DetailedPage = () => {
     </>
   );
 };
-
-export default DetailedPage;

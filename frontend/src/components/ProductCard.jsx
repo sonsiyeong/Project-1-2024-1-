@@ -7,7 +7,7 @@ import {
   BookmarkIcon,
   Popup,
   ConfirmButton,
-} from "../ProductPage.styles";
+} from "../styles/ProductPage.styles";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";

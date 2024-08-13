@@ -1,15 +1,19 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Main } from "./pages/Main";
-import Login from "./pages/Login/Login";
-import SignUp from "./pages/SignUp/SignUp";
-import { DepositPage, SavingPage, LoanPage, CheckCardPage } from "./pages";
+import {
+  Login,
+  SignUp,
+  Main,
+  DetailedPage,
+  CheckCardPage,
+  DepositPage,
+  SavingPage,
+  LoanPage,
+} from "./pages";
 // TODO: 글로벌 스타일 전역으로 옮기기
-import { GlobalStyle } from "./pages/ProductPage/ProductPage.styles";
-import DetailedPage from "./pages/DetailedPage/DetailedPage";
+//import { GlobalStyle } from "./styles/ProductPage.styles";
 const App = () => {
   return (
     <Router>
-      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />

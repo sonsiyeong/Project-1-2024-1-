@@ -17,9 +17,9 @@ import {
   PopupOverlay,
   Popup,
   PopupContent,
-} from "./styles";
+} from "../styles/SignUp.styles";
 
-const SignUp = () => {
+export const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -211,5 +211,3 @@ const SignUp = () => {
     </SignUpPage>
   );
 };
-
-export default SignUp;
