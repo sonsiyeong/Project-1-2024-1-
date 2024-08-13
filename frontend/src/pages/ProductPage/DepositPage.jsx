@@ -1,6 +1,6 @@
 import { Header } from "../../components/index.js";
-import { AppMain } from "./ProductPage.styles.js";
-import BankSection from "./components/BankSection";
+import { AppMain } from "../../styles/ProductPage.styles.js";
+import BankSection from "../../components/BankSection";
 
 const bankData = [
   {
@@ -40,7 +40,7 @@ const bankData = [
   },
 ];
 
-const DepositPage = () => {
+export const DepositPage = () => {
   return (
     <>
       <div className="ProductPage">
@@ -54,5 +54,3 @@ const DepositPage = () => {
     </>
   );
 };
-
-export default DepositPage;
