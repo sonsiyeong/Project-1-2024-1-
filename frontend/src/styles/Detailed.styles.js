@@ -1,11 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-export const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: "Pretendard", sans-serif;
-  }
-`;
 
 export const PageContainer = styled.div`
   width: 90%;

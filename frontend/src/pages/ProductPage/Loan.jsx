@@ -1,5 +1,5 @@
 import { Header } from "../../components/index.js";
-import { AppMain } from "../../styles/Product.styles.js";
+import * as S from "../../styles/Product.styles.js";
 import BankSection from "../../components/BankSection.jsx";
 
 const bankData = [
@@ -45,11 +45,11 @@ export const LoanPage = () => {
     <>
       <div className="ProductPage">
         <Header />
-        <AppMain>
+        <S.AppMain>
           {bankData.map((bank) => (
             <BankSection bank={bank} />
           ))}
-        </AppMain>
+        </S.AppMain>
       </div>
     </>
   );

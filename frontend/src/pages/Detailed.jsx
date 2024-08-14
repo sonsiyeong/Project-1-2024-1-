@@ -1,4 +1,4 @@
-import { GlobalStyle, PageContainer } from "../styles/Detailed.styles.js";
+import * as S from "../styles/Detailed.styles.js";
 import { Header } from "../components/index.js";
 import Information from "../components/Information.jsx";
 
@@ -9,14 +9,11 @@ const bankData = {
 
 export const DetailedPage = () => {
   return (
-    <>
-      <GlobalStyle />
-      <div className="ProductPage">
-        <Header />
-        <PageContainer>
-          <Information bank={bankData} />
-        </PageContainer>
-      </div>
-    </>
+    <div className="ProductPage">
+      <Header />
+      <S.PageContainer>
+        <Information bank={bankData} />
+      </S.PageContainer>
+    </div>
   );
 };
