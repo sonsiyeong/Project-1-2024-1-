@@ -43,14 +43,12 @@ const bankData = [
 export const SavingPage = () => {
   return (
     <>
-      <div className="ProductPage">
-        <Header />
-        <S.AppMain>
-          {bankData.map((bank) => (
-            <BankSection bank={bank} />
-          ))}
-        </S.AppMain>
-      </div>
+      <Header />
+      <S.AppMain>
+        {bankData.map((bank) => (
+          <BankSection key={bank.id} bank={bank} />
+        ))}
+      </S.AppMain>
     </>
   );
 };
