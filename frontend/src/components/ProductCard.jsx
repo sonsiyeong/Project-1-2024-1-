@@ -71,7 +71,7 @@ const ProductCard = ({
         {name}
       </ProductName>
       <ProductDescription>{product.description}</ProductDescription>
-      <ProductButton to="detailedpage">자세히 보기</ProductButton>
+      <ProductButton to="/detailedpage">자세히 보기</ProductButton>
     </ProductCardWrapper>
   );
 };

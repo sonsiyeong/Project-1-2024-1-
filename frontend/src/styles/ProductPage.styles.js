@@ -157,10 +157,6 @@ export const Separator = styled.div`
   margin: 40px;
   margin-bottom: 20px;
 `;
-
-export const Underline = styled.div`
-  text-decoration: underline;
-`;
 export const BookmarkIcon = styled.div`
   cursor: pointer;
   font-size: 17px;
@@ -181,6 +177,7 @@ export const Popup = styled.div`
   z-index: 1000;
   text-align: center;
 `;
+
 export const ConfirmButton = styled.button`
   background-color: #549052;
   color: white;
@@ -189,4 +186,7 @@ export const ConfirmButton = styled.button`
   border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
+`;
+export const Underline = styled.div`
+  text-decoration: underline;
 `;
