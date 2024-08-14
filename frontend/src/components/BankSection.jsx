@@ -4,7 +4,7 @@ import nhLogo from "../assets/logos/nh.png";
 import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
-import { BankSectionContainer, BankLogo } from "../styles/Product.styles";
+import * as S from "../styles/Product.styles";
 import { useState } from "react";
 
 const logoMap = {
@@ -15,7 +15,7 @@ const logoMap = {
   hana: hanaLogo,
 };
 
-const BankSection = ({ bank }) => {
+export const BankSection = ({ bank }) => {
   const logoPath = logoMap[bank.logoKey];
   const [bookmarkedProducts, setBookmarkedProducts] = useState({});
 
@@ -30,8 +30,8 @@ const BankSection = ({ bank }) => {
   };
 
   return (
-    <BankSectionContainer>
-      <BankLogo src={logoPath} alt={`${bank.name} 로고`} />
+    <S.BankSectionContainer>
+      <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
       {bank.products.map((product) => (
         <ProductCard
           key={product.id}
@@ -42,7 +42,7 @@ const BankSection = ({ bank }) => {
           onBookmarkToggle2={() => handleBookmarkToggle(product.id, 1)}
         />
       ))}
-    </BankSectionContainer>
+    </S.BankSectionContainer>
   );
 };
 

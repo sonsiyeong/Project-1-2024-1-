@@ -49,18 +49,10 @@ export function Header() {
           {error && <S.ErrorMessage>오류 </S.ErrorMessage>}
         </S.SearchContainer>
         <S.Menu>
-          <S.MenuItem exact to="/deposit">
-            예금
-          </S.MenuItem>
-          <S.MenuItem exact to="/saving">
-            적금
-          </S.MenuItem>
-          <S.MenuItem exact to="/loan">
-            대출
-          </S.MenuItem>
-          <S.MenuItem exact to="/checkcard">
-            체크카드
-          </S.MenuItem>
+          <S.MenuItem to="/deposit">예금</S.MenuItem>
+          <S.MenuItem to="/saving">적금</S.MenuItem>
+          <S.MenuItem to="/loan">대출</S.MenuItem>
+          <S.MenuItem to="/checkcard">체크카드</S.MenuItem>
         </S.Menu>
         {isLogin ? (
           // TODO: react Fragment 공부하기
