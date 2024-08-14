@@ -1,31 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import {
-  LoginPage,
-  Header,
-  LoginBar,
-  LoginContainer,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  LoginButtonGroup,
-  LoginButton,
-  Popup,
-  Dimmed,
-} from "../styles/Login.styles";
-// import * as S from "./Login.styles";
+import * as s from "./Login.styles";
+import LoginValidationSchema from "./validation/LoginValidationSchema";
 
-export const Login = () => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(LoginValidationSchema),
+  });
+
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
     //백엔드에서 API 제공 시 수정할 부분;
-    if (id === "testuser" && password === "password123") {
+    if (data.id === "testuser" && data.password === "password123") {
       alert("로그인 성공");
     } else {
       setShowError(true);
@@ -44,32 +38,26 @@ export const Login = () => {
     <LoginPage>
       <Header>
         <img src="/logo.png" alt="EWHA Logo" className="logo" />
-      </Header>
-      <LoginBar>LOGIN</LoginBar>
-      <LoginContainer>
-        <Form onSubmit={handleLogin}>
-          <FormGroup>
-            <Label>ID</Label>
-            <Input
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              required
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>PASSWORD</Label>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </FormGroup>
-          <LoginButtonGroup>
-            <LoginButton type="submit">LOGIN</LoginButton>
-          </LoginButtonGroup>
-        </Form>
+      </s.Header>
+      <s.LoginBar>LOGIN</s.LoginBar>
+      <s.LoginContainer>
+        <s.LoginForm onSubmit={handleSubmit(onSubmit)}>
+          <s.LoginFormGroup>
+            <s.Label>ID</s.Label>
+            <s.Input type="text" {...register("id")} />
+            {errors.id && <s.ErrorMessage>{errors.id.message}</s.ErrorMessage>}
+          </s.LoginFormGroup>
+          <s.LoginFormGroup>
+            <s.Label>PASSWORD</s.Label>
+            <s.Input type="password" {...register("password")} />
+            {errors.password && (
+              <s.ErrorMessage>{errors.password.message}</s.ErrorMessage>
+            )}
+          </s.LoginFormGroup>
+          <s.LoginButtonGroup>
+            <s.LoginButton type="submit">LOGIN</s.LoginButton>
+          </s.LoginButtonGroup>
+        </s.LoginForm>
         <button onClick={handleSignUp} className="signup-link">
           SIGN UP
         </button>
