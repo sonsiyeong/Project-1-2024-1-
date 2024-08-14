@@ -10,6 +10,7 @@ import {
   LoanPage,
 } from "./pages";
 import { GlobalStyle } from "./styles/GlobalStyles";
+
 const App = () => {
   return (
     <>
