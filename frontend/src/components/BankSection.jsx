@@ -4,7 +4,7 @@ import nhLogo from "../assets/logos/nh.png";
 import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
-import { BankSectionContainer, BankLogo } from "../styles/ProductPage.styles";
+import { BankSectionContainer, BankLogo } from "../styles/Product.styles";
 import { useState } from "react";
 
 const logoMap = {

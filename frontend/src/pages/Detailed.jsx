@@ -1,6 +1,6 @@
-import { GlobalStyle, PageContainer } from "../styles/DetailedPage.styles";
+import { GlobalStyle, PageContainer } from "../styles/Detailed.styles.js";
 import { Header } from "../components/index.js";
-import Information from "../components/Information";
+import Information from "../components/Information.jsx";
 
 const bankData = {
   name: "KB국민은행",

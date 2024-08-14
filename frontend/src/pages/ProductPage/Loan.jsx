@@ -1,5 +1,5 @@
 import { Header } from "../../components/index.js";
-import { AppMain } from "../../styles/ProductPage.styles.js";
+import { AppMain } from "../../styles/Product.styles.js";
 import BankSection from "../../components/BankSection.jsx";
 
 const bankData = [
@@ -40,7 +40,7 @@ const bankData = [
   },
 ];
 
-export const CheckCardPage = () => {
+export const LoanPage = () => {
   return (
     <>
       <div className="ProductPage">
