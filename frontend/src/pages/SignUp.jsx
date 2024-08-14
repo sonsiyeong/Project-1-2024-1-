@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { SignUpValidationSchema } from "./SignUp/validation/SignUpValidationSchema";
+import { SignUpValidationSchema } from "../pages/SignUp/validation/SignUpValidationSchema";
 import * as S from "../styles/SignUp.styles";
 
 export const SignUp = () => {
