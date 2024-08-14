@@ -9,7 +9,7 @@ import {
   CommentInput,
   CommentButton,
   BackButton,
-} from "../styles";
+} from "../styles/DetailedPage.styles";
 import kbLogo from "../assets/logos/kb.png";
 import nhLogo from "../assets/logos/nh.png";
 import shLogo from "../assets/logos/sh.png";

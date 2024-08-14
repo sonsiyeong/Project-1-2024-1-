@@ -1,32 +1,28 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login/Login";
-import SignUp from "./pages/SignUp/SignUp";
-import DepositPage from "./pages/ProductPage/DepositPage";
-import SavingPage from "./pages/ProductPage/SavingPage";
-import LoanPage from "./pages/ProductPage/LoanPage";
-import CheckCardPage from "./pages/ProductPage/CheckCardPage";
-import { GlobalStyle } from "./pages/ProductPage/styles";
-import DetailedPage from "./pages/DetailedPage/DetailedPage";
-import MyPage from "./pages/MyPage/MyPage"; // MyPage 컴포넌트
-import Main from "./pages/Main/Main";
-
+import {
+  Login,
+  SignUp,
+  Main,
+  DetailedPage,
+  CheckCardPage,
+  DepositPage,
+  SavingPage,
+  LoanPage,
+} from "./pages";
+// TODO: 글로벌 스타일 전역으로 옮기기
+//import { GlobalStyle } from "./styles/ProductPage.styles";
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />{" "}
-        {/* 기본 경로를 MyPage로 리다이렉트 */}
-        <Route path="/mypage" element={<MyPage />} /> {/* MyPage 페이지 */}
-        <Route path="/main" element={<Main />} /> {/* Main 페이지 */}
-        <Route path="/login" element={<Login />} /> {/* Login 페이지 */}
-        <Route path="/signup" element={<SignUp />} /> {/* SignUp 페이지 */}
-        <Route path="/deposit" element={<DepositPage />} />{" "}
-        {/* DepositPage 페이지 */}
-        <Route path="/saving" element={<SavingPage />} />{" "}
-        {/* SavingPage 페이지 */}
-        <Route path="/loan" element={<LoanPage />} /> {/* LoanPage 페이지 */}
-        <Route path="/checkcard" element={<CheckCardPage />} />{" "}
-        {/* CheckCardPage 페이지 */}
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/deposit" element={<DepositPage />} />
+        <Route path="/saving" element={<SavingPage />} />
+        <Route path="/loan" element={<LoanPage />} />
+        <Route path="/checkcard" element={<CheckCardPage />} />
+        <Route path="/detailedpage" element={<DetailedPage />} />
       </Routes>
     </Router>
   );

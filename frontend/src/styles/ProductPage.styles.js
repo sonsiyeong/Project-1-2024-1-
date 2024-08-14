@@ -1,17 +1,10 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
 
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Pretendard", sans-serif;
   }
-`;
-
-export const PageContainer = styled.div`
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
 `;
 
 export const AppHeader = styled.header`
@@ -84,40 +77,40 @@ export const SearchInput = styled.input`
   font-size: 1em;
 `;
 
-export const SearchIcon = styled(FaSearch)`
+export const SearchIcon = styled.div`
   cursor: pointer;
   font-size: 1.5em;
   color: #186915;
 `;
 
+export const AppMain = styled.main`
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 5px;
+`;
+
+export const BankSectionContainer = styled.div`
+  border: 2px solid green;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px;
+`;
+
 export const BankLogo = styled.img`
-   {
-    max-width: 150px;
-    height: 20px;
-    display: block;
-    margin: 0 auto 20px;
-  }
-`;
-export const DetailContainer = styled.div`
-  padding: 5px;
+  width: 210px;
+  height: 35px;
 `;
 
-export const DetailTitle = styled.h2`
-  font-size: 30px;
+export const ProductCardWrapper = styled.div`
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #d9d9d9;
-  padding-bottom: 15px;
 `;
 
-export const DetailSection = styled.section`
-  margin-bottom: 40px;
-`;
-
-export const DetailImage = styled.div`
-  width: 100%;
-  height: 300px;
-  background-color: #d3d3d3;
+export const ProductName = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,27 +133,60 @@ export const CommentInput = styled.textarea`
   border: 1px solid #d9d9d9;
   border-radius: 5px;
   margin-bottom: 10px;
+  padding-bottom: 4px;
 `;
 
-export const CommentButton = styled.button`
-  background-color: #186915;
+export const ProductDescription = styled.p`
+  font-size: 19px;
+`;
+
+export const ProductButton = styled(Link)`
+  text-decoration: none;
+  background-color: #549052;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 7px 20px;
+  border-radius: 20px;
   cursor: pointer;
 `;
 
-export const BackButton = styled(Link)`
-  display: block;
+export const Separator = styled.div`
   width: 100px;
-  margin: 20px 0 0 auto;
-  text-align: center;
+  height: 1.5px;
   background-color: #186915;
+  margin: 40px;
+  margin-bottom: 20px;
+`;
+export const BookmarkIcon = styled.div`
+  cursor: pointer;
+  font-size: 17px;
+  color: #186915;
+  align-self: flex-end;
+  margin-right: 10px;
+`;
+export const Popup = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-align: center;
+`;
+
+export const ConfirmButton = styled.button`
+  background-color: #549052;
   color: white;
-  padding: 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 16px;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+`;
+export const Underline = styled.div`
+  text-decoration: underline;
 `;

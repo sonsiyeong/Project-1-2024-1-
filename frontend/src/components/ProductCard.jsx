@@ -7,9 +7,10 @@ import {
   BookmarkIcon,
   Popup,
   ConfirmButton,
-} from "../styles";
+} from "../styles/ProductPage.styles";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
   product,
@@ -61,7 +62,7 @@ const ProductCard = ({
         {name}
       </ProductName>
       <ProductDescription>{product.description}</ProductDescription>
-      <ProductButton to={product.link}>자세히 보기</ProductButton>
+      <ProductButton to="/detailedpage">자세히 보기</ProductButton>
       <Separator />
       <ProductName>
         <BookmarkIcon onClick={handleBookmarkClick2}>
@@ -70,7 +71,7 @@ const ProductCard = ({
         {name}
       </ProductName>
       <ProductDescription>{product.description}</ProductDescription>
-      <ProductButton to={product.link}>자세히 보기</ProductButton>
+      <ProductButton to="/detailedpage">자세히 보기</ProductButton>
     </ProductCardWrapper>
   );
 };

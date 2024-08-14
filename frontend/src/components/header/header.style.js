@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 
 export const LogoContainer = styled.div`
   background-color: #ffffff;
@@ -41,6 +43,12 @@ export const SearchInput = styled.input`
   border-radius: 5px;
 `;
 
+export const SearchIcon = styled(FaSearch)`
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #186915;
+`;
+
 export const SearchButton = styled.button`
   background-color: none;
   color: white;
@@ -50,23 +58,39 @@ export const SearchButton = styled.button`
   font-size: 16px;
 `;
 
-export const Menu = styled.nav`
+export const Menu = styled.ul`
   display: flex;
+  list-style-type: none;
   align-items: center;
 `;
 
 export const MenuButton = styled.button`
+  text-decoration: none;
+  color: black;
   margin: 0 53px;
   padding: 10px 20px;
   background-color: transparent;
   border: none;
   cursor: pointer;
   font-size: 22px;
-  font-family: 'Pretendard', sans-serif;
-  color: black;
+  font-family: "Pretendard", sans-serif;
+`;
 
-  &:hover {
-    color: #21a1f1;
+export const MenuItem = styled(NavLink)`
+  text-decoration: none;
+  color: black;
+  margin: 0 53px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  font-family: "Pretendard", sans-serif;
+
+  &.active {
+    font-weight: bold;
+    color: #186915;
+    border-bottom: 2px solid #186915;
   }
 `;
 
@@ -87,7 +111,7 @@ export const LoginButton = styled.a`
 
 export const ErrorMessage = styled.div`
   color: red;
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   margin-top: 11px;
 `;
 
