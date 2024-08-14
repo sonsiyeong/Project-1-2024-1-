@@ -9,22 +9,24 @@ import {
   SavingPage,
   LoanPage,
 } from "./pages";
-// TODO: 글로벌 스타일 전역으로 옮기기
-//import { GlobalStyle } from "./styles/ProductPage.styles";
+import { GlobalStyle } from "./styles/GlobalStyles";
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/deposit" element={<DepositPage />} />
-        <Route path="/saving" element={<SavingPage />} />
-        <Route path="/loan" element={<LoanPage />} />
-        <Route path="/checkcard" element={<CheckCardPage />} />
-        <Route path="/detailedpage" element={<DetailedPage />} />
-      </Routes>
-    </Router>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/deposit" element={<DepositPage />} />
+          <Route path="/saving" element={<SavingPage />} />
+          <Route path="/loan" element={<LoanPage />} />
+          <Route path="/checkcard" element={<CheckCardPage />} />
+          <Route path="/detailedpage" element={<DetailedPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 
