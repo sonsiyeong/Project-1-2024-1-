@@ -3,12 +3,15 @@ import {
   Login,
   SignUp,
   Main,
+
   Detailed,
   CheckCard,
   Deposit,
   Saving,
   Loan,
   ReviewForm,
+  MyPage,
+
 } from "./pages";
 import { GlobalStyle } from "./styles/GlobalStyles";
 
@@ -27,9 +30,11 @@ const App = () => {
           <Route path="/checkcard" element={<CheckCard />} />
           <Route path="/detailed" element={<Detailed />} />
           <Route path="/reviewform" element={<ReviewForm />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </Router>
     </>
+
   );
 };
 
