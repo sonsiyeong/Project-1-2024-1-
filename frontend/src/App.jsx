@@ -8,6 +8,7 @@ import {
   DepositPage,
   SavingPage,
   LoanPage,
+  MyPage,
 } from "./pages";
 // TODO: 글로벌 스타일 전역으로 옮기기
 //import { GlobalStyle } from "./styles/ProductPage.styles";
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/loan" element={<LoanPage />} />
         <Route path="/checkcard" element={<CheckCardPage />} />
         <Route path="/detailedpage" element={<DetailedPage />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </Router>
   );
