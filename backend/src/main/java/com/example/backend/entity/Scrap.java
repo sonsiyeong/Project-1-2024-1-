@@ -10,7 +10,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-@Table(name = "scraps")
+@Table(name = "SCRAPS")
 @Entity // 해당 클래스가 엔티티임을 선언, 클래스 필드를 바탕으로 DB에 테이블 생성
 @Getter // 각 필드 값을 조회할 수 있는 getter 메서드 자동 생성
 @ToString // 모든 필드를 출력할 수 있는 toString 메서드 자동 생성
@@ -21,6 +21,7 @@ public class Scrap {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="scrap_code")
     private Long scrapCode;
 
     @Column(name = "scrap_time", insertable = false, updatable = false)
