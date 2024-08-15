@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long>, CrudRepository<User, Long> {
 
     @Query(value="select * from USERS where user_code=:user_code", nativeQuery = true)
-    MyPageDto UserByUserCode(Long user_code);
+    User UserByUserCode(Long user_code);
 
     @Override
     ArrayList<User> findAll();

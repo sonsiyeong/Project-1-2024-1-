@@ -20,7 +20,7 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public MyPageDto userByUserCode(Long userCode) {
-        MyPageDto users = userRepository.UserByUserCode(userCode);
+        User users = userRepository.UserByUserCode(userCode);
         return MyPageDto.createMyPageDto(users);
     }
 

@@ -1,5 +1,6 @@
 package com.example.backend.dto;
 
+import com.example.backend.entity.User;
 import lombok.*;
 
 import java.util.List;
@@ -22,11 +23,11 @@ public class MyPageDto {
         this.userId=userId;
     }
 
-    public static MyPageDto createMyPageDto(MyPageDto myPageDto){
+    public static MyPageDto createMyPageDto(User user){
         return new MyPageDto(
-          myPageDto.userName,
-          myPageDto.userEmail,
-          myPageDto.userId
+          user.getUserName(),
+          user.getUserEmail(),
+          user.getUserId()
         );
     }
 }
