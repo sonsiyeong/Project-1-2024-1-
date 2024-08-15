@@ -1,6 +1,6 @@
 import { Header } from "../../components/index.js";
-import { AppMain } from "../../styles/ProductPage.styles.js";
-import BankSection from "../../components/BankSection";
+import * as S from "../../styles/Product.styles.js";
+import BankSection from "../../components/BankSection.jsx";
 
 const bankData = [
   {
@@ -40,17 +40,15 @@ const bankData = [
   },
 ];
 
-export const DepositPage = () => {
+export const LoanPage = () => {
   return (
     <>
-      <div className="ProductPage">
-        <Header />
-        <AppMain>
-          {bankData.map((bank) => (
-            <BankSection bank={bank} />
-          ))}
-        </AppMain>
-      </div>
+      <Header />
+      <S.AppMain>
+        {bankData.map((bank) => (
+          <BankSection key={bank.id} bank={bank} />
+        ))}
+      </S.AppMain>
     </>
   );
 };

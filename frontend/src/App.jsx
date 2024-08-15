@@ -10,10 +10,11 @@ import {
   LoanPage,
   MyPage,
 } from "./pages";
-// TODO: 글로벌 스타일 전역으로 옮기기
-//import { GlobalStyle } from "./styles/ProductPage.styles";
+import { GlobalStyle } from "./styles/GlobalStyles";
+
 const App = () => {
   return (
+
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
