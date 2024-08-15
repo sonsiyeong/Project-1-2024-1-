@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Header } from "../components/index.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
@@ -18,12 +19,37 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    //백엔드에서 API 제공 시 수정할 부분;
-    if (data.userId === "testuser" && data.password === "password123") {
-      alert("로그인 성공");
-    } else {
-      setShowError(true);
-    }
+    fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: data.userId,
+        password: data.password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.message === "SUCCESS") {
+          window.localStorage.setItem("token", result.token);
+          window.localStorage.setItem("role", result.role);
+
+          if (data.userId === "admin" && data.password === "adminpassword") {
+            alert("관리자 로그인 되었습니다");
+          } else {
+            alert("로그인 되었습니다");
+          }
+
+          navigate("/main");
+        } else {
+          alert("로그인 중 오류가 발생했습니다. 나중에 다시 시도하세요.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+        setShowError(true);
+      });
   };
 
   const handleSignUp = () => {
@@ -36,9 +62,7 @@ export const Login = () => {
 
   return (
     <S.LoginPage>
-      <S.Header>
-        <img src="/logo.png" alt="EWHA Logo" className="logo" />
-      </S.Header>
+      <Header />
       <S.LoginBar>LOGIN</S.LoginBar>
       <S.LoginContainer>
         <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
