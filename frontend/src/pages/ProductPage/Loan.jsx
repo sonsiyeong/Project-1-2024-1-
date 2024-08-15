@@ -40,7 +40,7 @@ const bankData = [
   },
 ];
 
-export const LoanPage = () => {
+export const Loan = () => {
   return (
     <>
       <Header />

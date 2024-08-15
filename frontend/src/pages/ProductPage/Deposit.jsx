@@ -40,7 +40,7 @@ const bankData = [
   },
 ];
 
-export const DepositPage = () => {
+export const Deposit = () => {
   return (
     <>
       <Header />

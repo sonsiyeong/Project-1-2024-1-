@@ -40,7 +40,7 @@ const bankData = [
   },
 ];
 
-export const CheckCardPage = () => {
+export const CheckCard = () => {
   return (
     <>
       <Header />

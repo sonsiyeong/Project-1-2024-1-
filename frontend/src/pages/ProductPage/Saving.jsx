@@ -40,7 +40,7 @@ const bankData = [
   },
 ];
 
-export const SavingPage = () => {
+export const Saving = () => {
   return (
     <>
       <Header />
