@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import * as S from "../styles/Login.styles";
-import LoginValidationSchema from "../pages/SignUp/validation/SignUpValidationSchema.js";
+import LoginValidationSchema from "../validations/LoginValidationSchema";
 
 export const Login = () => {
   const {
@@ -78,3 +78,5 @@ export const Login = () => {
     </S.LoginPage>
   );
 };
+
+export default Login;
