@@ -31,7 +31,7 @@ export const Login = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.message === "SUCCESS") {
+        if (result.message === "Success") {
           window.localStorage.setItem("token", result.token);
           window.localStorage.setItem("role", result.role);
 
