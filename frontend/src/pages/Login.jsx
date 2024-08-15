@@ -19,7 +19,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    fetch("/api/login", {
+    fetch("http://15.164.100.170:8080/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,8 +32,8 @@ export const Login = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === "Success") {
-          window.localStorage.setItem("token", result.token);
-          window.localStorage.setItem("role", result.role);
+          window.sessionStorage.setItem("token", result.token);
+          window.sessionStorage.setItem("role", result.role);
 
           if (data.userId === "admin" && data.password === "adminpassword") {
             alert("관리자 로그인 되었습니다");

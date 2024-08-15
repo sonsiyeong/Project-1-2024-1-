@@ -20,7 +20,7 @@ export const SignUp = () => {
   });
 
   const onSubmit = (data) => {
-    fetch("/api/register", {
+    fetch("http://15.164.100.170:8080/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
