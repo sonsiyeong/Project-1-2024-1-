@@ -3,7 +3,6 @@ import {
   Login,
   SignUp,
   Main,
-
   Detailed,
   CheckCard,
   Deposit,
@@ -11,7 +10,6 @@ import {
   Loan,
   ReviewForm,
   MyPage,
-
 } from "./pages";
 import { GlobalStyle } from "./styles/GlobalStyles";
 
@@ -34,7 +32,6 @@ const App = () => {
         </Routes>
       </Router>
     </>
-
   );
 };
 
