@@ -47,7 +47,7 @@ public class SignupService {// 회원가입
         newUser.setUserId(signupDto.getUserId());
         newUser.setPassword(bCryptPasswordEncoder.encode(signupDto.getPassword()));
         newUser.setUserName(signupDto.getUserName());
-        newUser.setEmail(signupDto.getEmail());
+        newUser.setUserEmail(signupDto.getUserEmail());
         newUser.setUserRole("USER"); // 기본적으로 USER 권한 부여
         User savedUser = userRepository.save(newUser);
         return savedUser;

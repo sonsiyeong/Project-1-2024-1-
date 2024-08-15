@@ -28,7 +28,7 @@ public class User {
     private String password;
 
     @Column(name="user_email")
-    private String email;
+    private String userEmail;
 
     @Column(name="user_role")
     private String userRole; // 권한 : USER, ADMIN

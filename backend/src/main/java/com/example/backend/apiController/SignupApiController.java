@@ -43,7 +43,7 @@ public class SignupApiController {
             }
 
             // 이메일 유효성 검사 -> 올바른 이메일 형식인지 확인
-            if(!signupService.isEmailValid(signupDto.getEmail())){
+            if(!signupService.isEmailValid(signupDto.getUserEmail())){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("유효한 이메일 주소가 아닙니다.");
             }
 
