@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   MyPageContainer,
   Sidebar,
@@ -13,32 +13,53 @@ import {
   ScrapItem,
   ScrapItemIcon,
   ScrapItemText,
-} from './MyPage.styled';
-import { useNavigate } from 'react-router-dom';
+} from "../styles/MyPage.styled";
+import { useNavigate } from "react-router-dom";
 
-const MyPage = () => {
+export const MyPage = () => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    navigate('/main'); // Main 페이지로 이동
+    navigate("/main"); // Main 페이지로 이동
   };
 
-  // 스크랩된 상품의 링크 데이터 예시: 상품 상세 페이지 추가 필요 
+  // 스크랩된 상품의 링크 데이터 예시: 상품 상세 페이지 추가 필요
   const scrapItems = [
-    { bank: '은행명1', product: '상품명1', url: 'https://example.com/product1' },
-    { bank: '은행명2', product: '상품명2', url: 'https://example.com/product2' },
-    { bank: '은행명3', product: '상품명3', url: 'https://example.com/product3' },
-    { bank: '은행명4', product: '상품명4', url: 'https://example.com/product4' },
+    {
+      bank: "은행명1",
+      product: "상품명1",
+      url: "https://example.com/product1",
+    },
+    {
+      bank: "은행명2",
+      product: "상품명2",
+      url: "https://example.com/product2",
+    },
+    {
+      bank: "은행명3",
+      product: "상품명3",
+      url: "https://example.com/product3",
+    },
+    {
+      bank: "은행명4",
+      product: "상품명4",
+      url: "https://example.com/product4",
+    },
   ];
 
   const handleItemClick = (url) => {
-    window.open(url, '_blank'); // 상품명 클릭 시 새 탭에서 상품 홈페이지로 이동
+    window.open(url, "_blank"); // 상품명 클릭 시 새 탭에서 상품 홈페이지로 이동
   };
 
   return (
     <MyPageContainer>
       <Sidebar>
-        <img src="logo.png" alt="Ewha Logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }} />
+        <img
+          src="logo.png"
+          alt="Ewha Logo"
+          onClick={handleLogoClick}
+          style={{ cursor: "pointer" }}
+        />
         <SectionTitle>MY PAGE</SectionTitle>
       </Sidebar>
       <Content>
@@ -61,9 +82,15 @@ const MyPage = () => {
         <ScrapSection>
           <ScrapItems>
             {scrapItems.map((item, index) => (
-              <ScrapItem key={index} onClick={() => handleItemClick(item.url)} style={{ cursor: 'pointer' }}>
+              <ScrapItem
+                key={index}
+                onClick={() => handleItemClick(item.url)}
+                style={{ cursor: "pointer" }}
+              >
                 <ScrapItemIcon />
-                <ScrapItemText>{item.bank} {item.product}</ScrapItemText>
+                <ScrapItemText>
+                  {item.bank} {item.product}
+                </ScrapItemText>
               </ScrapItem>
             ))}
           </ScrapItems>
@@ -72,5 +99,3 @@ const MyPage = () => {
     </MyPageContainer>
   );
 };
-
-export default MyPage;
