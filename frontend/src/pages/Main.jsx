@@ -1,5 +1,5 @@
 import { Header } from "../components/index.js";
-import * as S from "../styles/Main.style.js";
+import * as S from "../styles/Main.styles.js";
 
 export const Main = () => {
   return (
