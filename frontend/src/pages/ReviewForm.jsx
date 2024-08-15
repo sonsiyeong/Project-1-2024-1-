@@ -22,12 +22,12 @@ export const ReviewForm = ({ bankName, productName }) => {
     <S.ReviewFormContainer>
       <S.FormHeader>
         <span>리뷰 쓰기</span>
-        <S.CancelButton>취소</S.CancelButton>
+        <S.CancelButton to="/detailed">취소</S.CancelButton>
       </S.FormHeader>
       <S.BankInfo>
         <img src={`${bankName}.png`} alt={`${bankName} 로고`} />
         <div>
-          <p>상품명: {productName}</p>
+          <p>상품명 {productName}</p>
           <p>별점 평가</p>
           <S.StarRating>
             {[...Array(5)].map((_, index) => (

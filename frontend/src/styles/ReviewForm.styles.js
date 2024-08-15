@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const ReviewFormContainer = styled.div`
   border: 1px solid #d9d9d9;
@@ -19,16 +20,19 @@ export const FormHeader = styled.div`
   margin-bottom: 10px;
 `;
 
-export const CancelButton = styled.button`
+export const CancelButton = styled(Link)`
   background-color: transparent;
   border: none;
   color: #186915;
   cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 export const BankInfo = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 20px;
 
   img {
