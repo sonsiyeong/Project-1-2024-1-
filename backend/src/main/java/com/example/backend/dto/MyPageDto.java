@@ -15,7 +15,7 @@ public class MyPageDto {
     private String userName;
     private String userEmail;
     private String userId;
-    private List<ReviewDto> reviewDtoList;
+    private List<ScrapDto> scrapDtoList;
 
     public MyPageDto(String userName, String userEmail, String userId){
         this.userName=userName;

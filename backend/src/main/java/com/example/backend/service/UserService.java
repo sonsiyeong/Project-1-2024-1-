@@ -6,6 +6,7 @@ import com.example.backend.entity.Scrap;
 import com.example.backend.entity.User;
 import com.example.backend.repository.ScrapRepository;
 import com.example.backend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,9 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private ScrapRepository scrapRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
