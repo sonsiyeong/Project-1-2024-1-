@@ -33,7 +33,8 @@ export const DetailTitle = styled.h2`
 `;
 
 export const DetailLinkButton = styled.button`
-  background-color: #f0f0f0;
+  background-color: #aebdad;
+  color: #ffffff;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -60,10 +61,14 @@ export const DetailDescription = styled.p`
 `;
 
 export const CommentSection = styled.div`
-  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 `;
 export const NoCommentMessage = styled.p`
   color: #888;
+  margin-bottom: 40px;
 `;
 
 export const CommentInput = styled.textarea`
@@ -75,24 +80,25 @@ export const CommentInput = styled.textarea`
   margin-bottom: 10px;
 `;
 
-export const CommentButton = styled.button`
-  background-color: #186915;
+export const CommentButton = styled(Link)`
+  background-color: #549052;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 3px 17px;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const BackButton = styled(Link)`
   display: inline-block;
   background-color: #186915;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 5px 20px;
+  border-radius: 20px;
   text-decoration: none;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1px;
 `;
 
 export const Divider = styled.hr`

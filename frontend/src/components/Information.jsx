@@ -6,6 +6,7 @@ import nhLogo from "../assets/logos/nh.png";
 import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
+import { Link } from "react-router-dom";
 
 const logoMap = {
   kb: kbLogo,
@@ -59,11 +60,11 @@ const Information = ({ bank }) => {
       <S.Divider />
       <S.CommentSection>
         <h3>상품 리뷰</h3>
-        <S.NoCommentMessage>작성된 리뷰가 없습니다.</S.NoCommentMessage>
         <S.ButtonContainer>
-          <S.CommentButton>작성</S.CommentButton>
+          <S.CommentButton to="/reviewform">작성</S.CommentButton>
         </S.ButtonContainer>
       </S.CommentSection>
+      <S.NoCommentMessage>작성된 리뷰가 없습니다.</S.NoCommentMessage>
       <S.Divider />
       <S.ButtonContainer>
         <S.BackButton to="/deposit">목록</S.BackButton>

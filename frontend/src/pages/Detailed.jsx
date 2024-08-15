@@ -7,7 +7,7 @@ const bankData = {
   logoKey: "kb",
 };
 
-export const DetailedPage = () => {
+export const Detailed = () => {
   return (
     <div className="ProductPage">
       <Header />

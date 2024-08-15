@@ -52,7 +52,7 @@ const ProductCard = ({
         {name}
       </S.ProductName>
       <S.ProductDescription>{product.description}</S.ProductDescription>
-      <S.ProductButton to="/detailedpage">자세히 보기</S.ProductButton>
+      <S.ProductButton to="/detailed">자세히 보기</S.ProductButton>
       <S.Separator />
       <S.ProductName>
         <S.BookmarkIcon onClick={handleBookmarkClick2}>
@@ -61,7 +61,7 @@ const ProductCard = ({
         {name}
       </S.ProductName>
       <S.ProductDescription>{product.description}</S.ProductDescription>
-      <S.ProductButton to="/detailedpage">자세히 보기</S.ProductButton>
+      <S.ProductButton to="/detaile">자세히 보기</S.ProductButton>
     </S.ProductCardWrapper>
   );
 };
