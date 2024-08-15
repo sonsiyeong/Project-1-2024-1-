@@ -10,7 +10,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { userId, password },
   } = useForm({
     resolver: yupResolver(LoginValidationSchema),
   });
@@ -69,16 +69,12 @@ export const Login = () => {
           <S.LoginFormGroup>
             <S.Label>ID</S.Label>
             <S.Input type="text" {...register("userId")} />
-            {errors.userId && (
-              <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
-            )}
+            {userId && <S.ErrorMessage>{userId.message}</S.ErrorMessage>}
           </S.LoginFormGroup>
           <S.LoginFormGroup>
             <S.Label>PASSWORD</S.Label>
             <S.Input type="password" {...register("password")} />
-            {errors.password && (
-              <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
-            )}
+            {password && <S.ErrorMessage>{password.message}</S.ErrorMessage>}
           </S.LoginFormGroup>
           <S.LoginButtonGroup>
             <S.LoginButton type="submit">LOGIN</S.LoginButton>
