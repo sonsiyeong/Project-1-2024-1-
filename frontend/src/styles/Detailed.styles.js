@@ -75,13 +75,14 @@ export const CommentInput = styled.textarea`
   margin-bottom: 10px;
 `;
 
-export const CommentButton = styled.button`
+export const CommentButton = styled(Link)`
   background-color: #186915;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const BackButton = styled(Link)`
