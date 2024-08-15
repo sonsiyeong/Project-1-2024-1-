@@ -4,7 +4,7 @@ import * as S from "./header.style.js";
 
 export function Header() {
   const [bankName, setBankName] = useState("");
-  const [isLogin, setIsLogin] = useState(""); // Update based on actual login state
+  const [isLogin, setIsLogin] = useState("");
   const [error, setError] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
@@ -71,7 +71,9 @@ export function Header() {
               ))}
             </S.Dropdown>
           )}
-          {error && <S.ErrorMessage>오류: 은행을 선택해 주세요</S.ErrorMessage>}
+          {error && (
+            <S.ErrorMessage> 아래에서 은행을 선택해 주세요</S.ErrorMessage>
+          )}
         </S.SearchContainer>
         <S.Menu>
           <S.MenuItem exact to="/deposit">
