@@ -1,12 +1,12 @@
 import * as S from "../styles/Detailed.styles";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import kbLogo from "../assets/logos/kb.png";
 import nhLogo from "../assets/logos/nh.png";
 import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
-import { Link } from "react-router-dom";
 
 const logoMap = {
   kb: kbLogo,
@@ -16,7 +16,7 @@ const logoMap = {
   hana: hanaLogo,
 };
 
-const Information = ({ bank }) => {
+const Information = ({ bank, reviewData }) => {
   const logoPath = logoMap[bank.logoKey];
   const [bookmarked, setBookmarked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -64,7 +64,15 @@ const Information = ({ bank }) => {
           <S.CommentButton to="/reviewform">작성</S.CommentButton>
         </S.ButtonContainer>
       </S.CommentSection>
-      <S.NoCommentMessage>작성된 리뷰가 없습니다.</S.NoCommentMessage>
+      {reviewData ? (
+        <div>
+          <p>{reviewData.review}</p>
+          <p>평점: {reviewData.rating} / 5</p>
+        </div>
+      ) : (
+        <S.NoCommentMessage>작성된 리뷰가 없습니다.</S.NoCommentMessage>
+      )}
+
       <S.Divider />
       <S.ButtonContainer>
         <S.BackButton to="/deposit">목록</S.BackButton>
