@@ -33,6 +33,7 @@ export const Header = styled.header`
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
+  position: relative; /* 드롭다운이 검색창 바로 아래에 뜨도록 설정 */
 `;
 
 export const SearchInput = styled.input`
@@ -73,6 +74,7 @@ export const MenuButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 22px;
+  font-family: "Pretendard", sans-serif;
 `;
 
 export const MenuItem = styled(NavLink)`
@@ -84,7 +86,7 @@ export const MenuItem = styled(NavLink)`
   border: none;
   cursor: pointer;
   font-size: 22px;
-  white-space: nowrap;
+  font-family: "Pretendard", sans-serif;
 
   &.active {
     font-weight: bold;
@@ -110,6 +112,7 @@ export const LoginButton = styled.a`
 
 export const ErrorMessage = styled.div`
   color: red;
+  font-family: "Pretendard", sans-serif;
   margin-top: 11px;
 `;
 
@@ -137,5 +140,25 @@ export const LogoutLink = styled.a`
 
   &:hover {
     text-decoration: underline;
+  }
+`;
+
+export const Dropdown = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 85%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+`;
+
+export const DropdownItem = styled.div`
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
   }
 `;

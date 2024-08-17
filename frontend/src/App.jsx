@@ -10,6 +10,7 @@ import {
   Loan,
   ReviewForm,
   MyPage,
+  BankPage,
 } from "./pages";
 import { GlobalStyle } from "./styles/GlobalStyles";
 
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/detailed" element={<Detailed />} />
           <Route path="/reviewform" element={<ReviewForm />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/:bankId" element={<BankPage />} />
         </Routes>
       </Router>
     </>
