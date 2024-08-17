@@ -82,7 +82,7 @@ export const ReviewTextArea = styled.textarea`
   box-sizing: border-box;
 `;
 
-export const SubmitButton = styled(Link)`
+export const SubmitButton = styled.button`
   background-color: #186915;
   color: white;
   padding: 10px 20px;
