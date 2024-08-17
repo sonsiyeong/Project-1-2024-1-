@@ -1,7 +1,6 @@
 package com.example.backend.repository;
 
 
-import com.example.backend.dto.MyPageDto;
 import com.example.backend.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,8 +14,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>, CrudRepository<User, Long> {
 
-    @Query(value="select * from USERS where user_code=:user_code", nativeQuery = true)
-    User UserByUserCode(Long user_code);
+    @Query(value="select * from users where user_code=:user_code", nativeQuery = true)
+    List<User> UserByUserCode(Long user_code);
 
     @Override
     ArrayList<User> findAll();
