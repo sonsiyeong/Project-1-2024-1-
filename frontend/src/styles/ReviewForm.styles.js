@@ -86,13 +86,14 @@ export const SubmitButton = styled.button`
   background-color: #186915;
   color: white;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   margin: 0 auto;
   display: block;
   text-align: center;
-  text-decoration: none;
   box-sizing: border-box;
+  border: none;
+  width: 100%;
 `;
 
 export const Popup = styled.div`

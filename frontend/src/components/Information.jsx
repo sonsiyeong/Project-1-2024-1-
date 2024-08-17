@@ -21,6 +21,11 @@ const Information = ({ bank, reviewData }) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+  const [reviews, setReviews] = useState(reviewData ? [reviewData] : []);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [reviewToDelete, setReviewToDelete] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleBookmarkClick = () => {
     if (bookmarked) {
@@ -36,12 +41,43 @@ const Information = ({ bank, reviewData }) => {
     setShowPopup(false);
   };
 
+  const handleDeleteReview = () => {
+    const updatedReviews = reviews.filter(
+      (review) => review !== reviewToDelete
+    );
+    setReviews(updatedReviews);
+    setShowDeletePopup(false);
+  };
+  const confirmDeleteReview = (review) => {
+    setReviewToDelete(review);
+    setShowDeletePopup(true);
+  };
+
+  const handleEditReview = (review) => {
+    navigate("/reviewform", {
+      state: {
+        rating: review.rating,
+        review: review.review,
+        bank,
+      },
+    });
+  };
+
   return (
     <S.DetailContainer>
       {showPopup && (
         <S.Popup>
           <p>{popupMessage}</p>
           <S.ConfirmButton onClick={handleConfirmClick}>확인</S.ConfirmButton>
+        </S.Popup>
+      )}
+      {showDeletePopup && (
+        <S.Popup>
+          <p>작성한 리뷰를 삭제하시겠습니까?</p>
+          <S.DeleteButton onClick={() => setShowDeletePopup(false)}>
+            취소
+          </S.DeleteButton>
+          <S.ConfirmButton onClick={handleDeleteReview}>삭제</S.ConfirmButton>
         </S.Popup>
       )}
       <S.DetailTitleContainer>
@@ -64,15 +100,35 @@ const Information = ({ bank, reviewData }) => {
           <S.CommentButton to="/reviewform">작성</S.CommentButton>
         </S.ButtonContainer>
       </S.CommentSection>
-      {reviewData ? (
-        <div>
-          <p>{reviewData.review}</p>
-          <p>평점: {reviewData.rating} / 5</p>
-        </div>
+      {reviews.length > 0 ? (
+        reviews.map((review, index) => (
+          <div key={index}>
+            <S.ProfileActions>
+              <S.ProfileId>ID</S.ProfileId>
+              <S.ActionLink onClick={() => handleEditReview(review)}>
+                수정
+              </S.ActionLink>
+              <S.ActionLink onClick={() => confirmDeleteReview(review)}>
+                삭제
+              </S.ActionLink>
+            </S.ProfileActions>
+            <S.StarRatingContainer>
+              <S.StarRating>
+                {[...Array(5)].map((_, index) => (
+                  <S.Star key={index} selected={index < review.rating}>
+                    ★
+                  </S.Star>
+                ))}
+              </S.StarRating>
+              <S.ReviewDate>{new Date().toLocaleDateString()}</S.ReviewDate>
+            </S.StarRatingContainer>
+
+            <p>{review.review}</p>
+          </div>
+        ))
       ) : (
         <S.NoCommentMessage>작성된 리뷰가 없습니다.</S.NoCommentMessage>
       )}
-
       <S.Divider />
       <S.ButtonContainer>
         <S.BackButton to="/deposit">목록</S.BackButton>

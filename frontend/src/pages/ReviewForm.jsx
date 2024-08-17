@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "../styles/ReviewForm.styles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Header } from "../components/index.js";
 
 export const ReviewForm = ({ bankName, productName }) => {
-  const [rating, setRating] = useState(0);
-  const [review, setReview] = useState("");
+  const location = useLocation();
+  const existingReview = location.state?.review || "";
+  const existingRating = location.state?.rating || 0;
+
+  const [rating, setRating] = useState(existingRating);
+  const [review, setReview] = useState(existingReview);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
+
+  const handleCancelClick = () => {
+    navigate(-1);
+  };
+
+  useEffect(() => {
+    if (location.state?.review) {
+      setRating(location.state.rating);
+      setReview(location.state.review);
+    }
+  }, [location.state]);
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
@@ -48,7 +63,7 @@ export const ReviewForm = ({ bankName, productName }) => {
         )}
         <S.FormHeader>
           <span>리뷰 쓰기</span>
-          <S.CancelButton to="/detailed">취소</S.CancelButton>
+          <S.CancelButton onClick={handleCancelClick}>취소</S.CancelButton>
         </S.FormHeader>
         <S.BankInfo>
           <img src={`${bankName}.png`} alt={`${bankName} 로고`} />
