@@ -61,7 +61,7 @@ const BankSearchSection = ({ bank }) => {
                     <S.ProductDescription>
                       특징 <span>한 눈</span>에 보기
                     </S.ProductDescription>
-                    <S.BuyButton to="/detailedpage">자세히 보기</S.BuyButton>
+                    <S.BuyButton to="/detailed">자세히 보기</S.BuyButton>
                   </S.ProductItem>
                 ))}
             </S.CategoryColumn>
