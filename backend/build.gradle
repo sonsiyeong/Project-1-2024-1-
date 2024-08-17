@@ -26,7 +26,6 @@ dependencies {
 
 	// mysql
 	implementation 'mysql:mysql-connector-java:8.0.32'
-	implementation 'com.mysql:mysql-connector-j'
 
 	// jwt
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'

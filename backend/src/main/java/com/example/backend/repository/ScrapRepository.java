@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ScrapRepository extends JpaRepository<Scrap, Long>{
-    @Query(value="select * from scraps where user_code=:user_code", nativeQuery = true)
+    @Query(value="select * from SCRAPS where user_code=:user_code", nativeQuery = true)
     List<Scrap> ScrapByUserCode(Long user_code);
 }

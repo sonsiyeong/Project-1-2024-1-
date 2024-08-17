@@ -37,7 +37,7 @@ public class SecurityConfig  {
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(csrf -> csrf.disable())
-                .userDetailsService(customUserDetailsService);
+                .userDetailsService(customUserDetailsService);// CSRF 비활성화
 
         return http.build();
     }

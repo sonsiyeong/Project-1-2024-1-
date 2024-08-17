@@ -21,6 +21,7 @@ public class Scrap {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="scrap_code")
     private Long scrapCode;
 
     @Column(name = "scrap_time", insertable = false, updatable = false)
