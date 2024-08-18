@@ -47,21 +47,6 @@ public class ScrapApiController {
         }
     }
 
-    // 스크랩 수정
-    @PreAuthorize("hasRole('USER')")
-    @PatchMapping("/api/scraps/{scrapCode}")
-    public ResponseEntity<ResponseDto<?>> update(@PathVariable Long scrapCode, @RequestBody ScrapDto dto) {
-        try {
-            // 서비스에 위임
-            ScrapDto updatedDto = scrapService.update(scrapCode, dto);
-            // 결과 응답
-            return ResponseEntity.ok(new ResponseDto<>("스크랩을 성공적으로 수정하였습니다.", updatedDto));
-        } catch (Exception e) {
-            ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);
-        }
-    }
-
     // 스크랩 삭제
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/api/scraps/{scrapCode}")

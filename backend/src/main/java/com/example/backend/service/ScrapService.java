@@ -50,20 +50,6 @@ public class ScrapService {
         return ScrapDto.createScrapDto(saved);
     }
 
-    // 스크랩 수정
-    @Transactional
-    public ScrapDto update(Long scrapCode, ScrapDto scrapDto) {
-        // 스크랩 조회 및 예외 발생
-        Scrap target=scrapRepository.findById(scrapCode)
-                .orElseThrow(() -> new IllegalArgumentException("스크랩 수정 실패! 대상 스크랩이 없습니다."));
-        // 스크랩 수정
-        target.patch(scrapDto);
-        // DB로 갱신
-        Scrap updated=scrapRepository.save(target);
-        // 스크랩 엔티티를 DTO로 변환 및 반환
-        return ScrapDto.createScrapDto(updated);
-    }
-
     // 스크랩 삭제
     @Transactional
     public ScrapDto delete(Long scrapCode) {
