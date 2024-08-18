@@ -57,26 +57,6 @@ export const AppNavItem = styled.li`
   }
 `;
 
-export const SearchContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-`;
-
-export const SearchInput = styled.input`
-  border: none;
-  border-bottom: 1px solid black;
-  padding: 5px;
-  margin-right: 5px;
-  font-size: 1em;
-`;
-
-export const SearchIcon = styled.div`
-  cursor: pointer;
-  font-size: 1.5em;
-  color: #186915;
-`;
-
 export const AppMain = styled.main`
   display: flex;
   justify-content: space-around;
@@ -104,14 +84,17 @@ export const ProductCardWrapper = styled.div`
   text-align: center;
 `;
 
-export const ProductName = styled.p`
+export const ProductName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top : 10px;s
 `;
 
-export const DetailDescription = styled.p`
+export const DetailDescription = styled.div`
   font-size: 18px;
   margin-bottom: 20px;
 `;
@@ -131,7 +114,8 @@ export const CommentInput = styled.textarea`
 `;
 
 export const ProductDescription = styled.p`
-  font-size: 19px;
+  font-size: 18px;
+  margin: 15px;
 `;
 
 export const ProductButton = styled(Link)`
@@ -142,6 +126,7 @@ export const ProductButton = styled(Link)`
   padding: 7px 20px;
   border-radius: 20px;
   cursor: pointer;
+  margin-top: 10px;
 `;
 
 export const Separator = styled.div`
@@ -149,7 +134,7 @@ export const Separator = styled.div`
   height: 1.5px;
   background-color: #186915;
   margin: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 export const BookmarkIcon = styled.div`
   cursor: pointer;
