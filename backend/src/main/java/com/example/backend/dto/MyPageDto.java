@@ -13,20 +13,20 @@ import java.util.List;
 
 public class MyPageDto {
     private String userName;
-    private String userEmail;
+    private String email;
     private String userId;
     private List<ScrapDto> scrapDtoList;
 
-    public MyPageDto(String userName, String userEmail, String userId){
+    public MyPageDto(String userName, String email, String userId){
         this.userName=userName;
-        this.userEmail=userEmail;
+        this.email=email;
         this.userId=userId;
     }
 
     public static MyPageDto createMyPageDto(User user){
         return new MyPageDto(
           user.getUserName(),
-          user.getUserEmail(),
+          user.getEmail(),
           user.getUserId()
         );
     }
