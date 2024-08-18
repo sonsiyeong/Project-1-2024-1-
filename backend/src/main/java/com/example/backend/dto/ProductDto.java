@@ -1,6 +1,7 @@
 package com.example.backend.dto;
 
 import com.example.backend.entity.Product;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -26,6 +27,7 @@ public class ProductDto {
     private String productBenefit;
     private String productUrl;
     private String productDescription;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDate productLastUpdate;
     private String productFeat1;
     private String productFeat2;

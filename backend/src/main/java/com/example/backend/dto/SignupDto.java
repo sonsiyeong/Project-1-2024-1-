@@ -9,5 +9,5 @@ public class SignupDto {
     private String password;
     private String passwordConfirm;
     private String userName;
-    private String userEmail;
+    private String email;
 }

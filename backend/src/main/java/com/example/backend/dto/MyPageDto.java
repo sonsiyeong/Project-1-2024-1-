@@ -19,7 +19,7 @@ public class MyPageDto {
 
     public MyPageDto(String userName, String email, String userId){
         this.userName=userName;
-        this.email=email;
+        this.email= email;
         this.userId=userId;
     }
 

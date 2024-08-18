@@ -21,6 +21,12 @@ public class ProductService {
     @Autowired
     private ReviewRepository reviewRepository;
 
+
+    public ProductDto productByCode(Long productCode){
+        Product products = productRepository.findByProductCode(productCode);
+        return ProductDto.createProductDto(products);
+    }
+
     // 상품 코드로 상품 반환
     public ProductDetailDto productsByCode(Long productCode) {
         Product products = productRepository.findByProductCode(productCode);

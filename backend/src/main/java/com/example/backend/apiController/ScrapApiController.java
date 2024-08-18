@@ -39,8 +39,9 @@ public class ScrapApiController {
         try {
             // 서비스에 위임
             ScrapDto savedDto = scrapService.save(userCode, dto);
+            ScrapDto responseDto=scrapService.scrapByScrapCode(savedDto.getScrapCode());
             // 결과 응답
-            return ResponseEntity.ok(new ResponseDto<>("스크랩을 성공적으로 저장하였습니다.", savedDto));
+            return ResponseEntity.ok(new ResponseDto<>("스크랩을 성공적으로 저장하였습니다.", responseDto));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);

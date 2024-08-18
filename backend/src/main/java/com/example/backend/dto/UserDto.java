@@ -17,7 +17,7 @@ public class UserDto {
     private String userId;
     private String userName;
     private String userPw;
-    private String userEmail;
+    private String email;
 
     public static UserDto createUserDto(User user){
         return new UserDto(
@@ -25,7 +25,7 @@ public class UserDto {
                 user.getUserId(),
                 user.getUserName(),
                 user.getPassword(),
-                user.getUserEmail()
+                user.getEmail()
         );
     }
 }

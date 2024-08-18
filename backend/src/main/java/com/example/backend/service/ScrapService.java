@@ -25,6 +25,12 @@ public class ScrapService {
     @Autowired
     private UserRepository userRepository;
 
+
+    public ScrapDto scrapByScrapCode(Long scrapCode){
+        Scrap scrap=scrapRepository.ScrapByScrapCode(scrapCode);
+        return ScrapDto.createScrapDto(scrap);
+    }
+
     // 사용자 코드에 대한 스크랩 리스트
     public List<ScrapDto> scrapsByUserCode(Long userCode){
         List<Scrap> scraps=scrapRepository.ScrapByUserCode(userCode);
