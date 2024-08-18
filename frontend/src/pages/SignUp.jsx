@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Header } from "../components/index.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import SignUpValidationSchema from "../validations/SignUpValidationSchema";
@@ -7,32 +8,44 @@ import * as S from "../styles/SignUp.styles";
 
 export const SignUp = () => {
   const [registrationComplete, setRegistrationComplete] = useState(false);
-  const [isUsernameValid, setIsUsernameValid] = useState(false);
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    watch,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(SignUpValidationSchema),
   });
 
-  const watchUsername = watch("username");
-
-  useEffect(() => {
-    if (watchUsername && !errors.username) {
-      setIsUsernameValid(true);
-    } else {
-      setIsUsernameValid(false);
-    }
-  }, [watchUsername, errors.username]);
-
   const onSubmit = (data) => {
-    console.log(data);
-    setRegistrationComplete(true);
+    fetch("http://15.164.100.170:8080/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: data.userId,
+        userName: data.userName,
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.message === "Success") {
+          alert("회원가입이 완료되었습니다. 로그인해주세요");
+          navigate("/login");
+        } else {
+          alert("회원가입 양식이 틀립니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during registration:", error);
+        alert("회원가입 중 오류가 발생했습니다. 나중에 다시 시도하세요.");
+      });
   };
 
   const handleConfirmPopup = () => {
@@ -42,18 +55,16 @@ export const SignUp = () => {
 
   return (
     <S.SignUpPage>
-      <S.Header>
-        <img src="/logo.png" alt="EWHA Logo" className="logo" />
-      </S.Header>
+      <Header />
       <S.SignUpBar>SIGN UP</S.SignUpBar>
       <S.SignUpContainer>
         <S.SignUpTitle>회원가입</S.SignUpTitle>
         <S.SignUpForm onSubmit={handleSubmit(onSubmit)}>
           <S.SignUpFormGroup>
             <S.Label>이름</S.Label>
-            <S.Input type="text" {...register("name")} />
-            {errors.name && (
-              <S.ErrorMessage>{errors.name.message}</S.ErrorMessage>
+            <S.Input type="text" {...register("userName")} />
+            {errors.userName && (
+              <S.ErrorMessage>{errors.userName.message}</S.ErrorMessage>
             )}
           </S.SignUpFormGroup>
           <S.SignUpFormGroup>
@@ -65,13 +76,10 @@ export const SignUp = () => {
           </S.SignUpFormGroup>
           <S.SignUpFormGroup>
             <S.Label>아이디</S.Label>
-            <S.Input type="text" {...register("username")} />
-            {errors.username && (
-              <S.ErrorMessage>{errors.username.message}</S.ErrorMessage>
+            <S.Input type="text" {...register("userId")} />
+            {errors.userId && (
+              <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
             )}
-            <S.DuplicateCheckButton type="button" disabled={!isUsernameValid}>
-              중복 확인
-            </S.DuplicateCheckButton>
           </S.SignUpFormGroup>
           <S.SignUpFormGroup>
             <S.Label>비밀번호</S.Label>
@@ -105,3 +113,5 @@ export const SignUp = () => {
     </S.SignUpPage>
   );
 };
+
+export default SignUp;
