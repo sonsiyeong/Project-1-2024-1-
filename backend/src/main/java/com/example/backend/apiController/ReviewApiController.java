@@ -37,8 +37,9 @@ public class ReviewApiController {
         try {
             // 서비스에 위임
             ReviewDto createdDto = reviewService.create(productCode, dto);
+            ReviewDto responseDto = reviewService.reviewByReviewCode(createdDto.getReviewCode());
             // 결과 응답
-            return ResponseEntity.ok(new ResponseDto<>("리뷰를 성공적으로 생성하였습니다.", createdDto));
+            return ResponseEntity.ok(new ResponseDto<>("리뷰를 성공적으로 생성하였습니다.", responseDto));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);

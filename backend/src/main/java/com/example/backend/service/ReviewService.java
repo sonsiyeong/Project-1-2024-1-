@@ -40,6 +40,11 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    public ReviewDto reviewByReviewCode(Long reviewCode){
+        Review review=reviewRepository.ReviewByReviewCode(reviewCode);
+        return ReviewDto.createReviewDto(review);
+    }
+
     // 리뷰 생성
     @Transactional
     public ReviewDto create(Long productCode, ReviewDto reviewDto) {

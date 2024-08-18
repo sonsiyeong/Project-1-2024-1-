@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Table(name = "PRODUCTS")
 @Entity // 해당 클래스가 엔티티임을 선언, 클래스 필드를 바탕으로 DB에 테이블 생성
@@ -58,7 +58,7 @@ public class Product {
     private String productDescription;
 
     @Column(name = "product_last_update", insertable = false, updatable = false) //MySQL이 자동으로 현재 시각 등록
-    private LocalDateTime productLastUpdate;
+    private LocalDate productLastUpdate;
 
     @Column(name="product_feat1")
     private String productFeat1;

@@ -18,7 +18,7 @@ public class AdminConfig {
                 admin.setUserId("admin");
                 admin.setPassword(new BCryptPasswordEncoder().encode("adminpassword"));
                 admin.setUserName("Admin");
-                admin.setUserEmail("admin@example.com");
+                admin.setEmail("admin@example.com");
                 admin.setUserRole("ADMIN");
                 userRepository.save(admin);
             }

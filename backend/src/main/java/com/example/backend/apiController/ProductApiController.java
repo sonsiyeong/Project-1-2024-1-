@@ -54,7 +54,8 @@ public class ProductApiController {
     public ResponseEntity<ResponseDto<?>> create(@RequestBody ProductDto productDto){
         try {
             ProductDto dtos = productService.create(productDto);
-            return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 등록하였습니다.", dtos));
+            ProductDto responseDto=productService.productByCode(dtos.getProductCode());
+            return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 등록하였습니다.", responseDto));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);
