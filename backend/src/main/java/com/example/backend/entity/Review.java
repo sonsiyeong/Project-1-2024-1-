@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Table(name = "REVIEWS")
 @Entity // 해당 클래스가 엔티티임을 선언, 클래스 필드를 바탕으로 DB에 테이블 생성
@@ -29,7 +28,6 @@ public class Review {
     private String reviewContent;
 
     @Column(name="review_write_date_time", insertable = false, updatable = false) // 현재 시각이 자동으로 기록되도록 함
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate reviewWriteDateTime;
 
     @Column(name="review_star_rating")
