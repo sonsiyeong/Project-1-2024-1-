@@ -4,7 +4,7 @@ import com.example.backend.entity.Product;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor // 모든 필드를 매개변수로 갖는 생성자 자동 생성
@@ -27,14 +27,14 @@ public class ProductDetailDto { // 상품 상세 페이지(모든 정보)
     private String productBenefit;
     private String productUrl;
     private String productDescription;
-    private LocalDateTime productLastUpdate;
+    private LocalDate productLastUpdate;
     private List<ReviewDto> reviewDtoList;
 
     public ProductDetailDto(Long productCode, String productName, String productType,
                       BigDecimal productInterestRate, BigDecimal productInterestTopRate,
                       String productBank, String productAmount, String productAge,
                       String productTerm, String productBenefit, String productUrl,
-                      String productDescription, LocalDateTime productLastUpdate) {
+                      String productDescription, LocalDate productLastUpdate) {
         this.productCode = productCode;
         this.productName = productName;
         this.productType = productType;
