@@ -7,17 +7,29 @@ export const ReviewFormContainer = styled.div`
   padding: 20px;
   background-color: #fff;
   width: 50%;
-  margin: 0 auto;
+  margin: 50px auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 export const FormHeader = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 20px;
+
+  span {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    flex: 1;
+  }
+
+  a {
+    position: absolute;
+    right: 0;
+    font-weight: normal;
+  }
 `;
 
 export const CancelButton = styled(Link)`
@@ -67,14 +79,42 @@ export const ReviewTextArea = styled.textarea`
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 20px;
+  box-sizing: border-box;
 `;
 
 export const SubmitButton = styled.button`
   background-color: #186915;
   color: white;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
   border: none;
   width: 100%;
+`;
+
+export const Popup = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-align: center;
+`;
+export const ConfirmButton = styled.button`
+  background-color: #549052;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
 `;
