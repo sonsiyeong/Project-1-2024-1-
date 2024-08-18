@@ -3,6 +3,7 @@ package com.example.backend.dto;
 import com.example.backend.entity.Review;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor // 모든 필드를 매개변수로 갖는 생성자 자동 생성
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 public class ProductReviewDto {
     private Long reviewCode;
     private String reviewContent;
-    private LocalDateTime reviewWriteDateTime;
+    private LocalDate reviewWriteDateTime;
     private int reviewStarRating;
     private Long userCode;
 
