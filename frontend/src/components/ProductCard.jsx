@@ -51,7 +51,9 @@ const ProductCard = ({
         </S.BookmarkIcon>
         {name}
       </S.ProductName>
-      <S.ProductDescription>{product.description}</S.ProductDescription>
+      <S.ProductDescription>• {product.description1}</S.ProductDescription>
+      <S.ProductDescription>• {product.description2}</S.ProductDescription>
+      <S.ProductDescription>• {product.description3}</S.ProductDescription>
       <S.ProductButton to="/detailed">자세히 보기</S.ProductButton>
       <S.Separator />
       <S.ProductName>
@@ -60,7 +62,9 @@ const ProductCard = ({
         </S.BookmarkIcon>
         {name}
       </S.ProductName>
-      <S.ProductDescription>{product.description}</S.ProductDescription>
+      <S.ProductDescription>• {product.description1}</S.ProductDescription>
+      <S.ProductDescription>• {product.description2}</S.ProductDescription>
+      <S.ProductDescription>• {product.description3}</S.ProductDescription>
       <S.ProductButton to="/detailed">자세히 보기</S.ProductButton>
     </S.ProductCardWrapper>
   );
