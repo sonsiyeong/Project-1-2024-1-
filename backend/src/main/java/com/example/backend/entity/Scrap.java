@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Table(name = "SCRAPS")
 @Entity // 해당 클래스가 엔티티임을 선언, 클래스 필드를 바탕으로 DB에 테이블 생성
@@ -25,10 +25,7 @@ public class Scrap {
     private Long scrapCode;
 
     @Column(name = "scrap_time", insertable = false, updatable = false)
-    private LocalDateTime scrapTime;
-
-    @Column(name="scrap_memo")
-    private String scrapMemo;
+    private LocalDate scrapTime;
 
     @ManyToOne
     @JoinColumn(name="product_code")
@@ -52,21 +49,8 @@ public class Scrap {
         return new Scrap(
                 scrapDto.getScrapCode(),
                 scrapDto.getScrapTime(),
-                scrapDto.getScrapMemo(),
                 product,
                 user
         );
     }
-
-    public void patch(ScrapDto scrapDto) {
-        // 예외 발생
-        if (this.scrapCode != scrapDto.getScrapCode())
-            throw new IllegalArgumentException("스크랩 수정 실패! 잘못된 스크랩 code가 입력됐습니다.");
-        // 객체 갱신
-        if (scrapDto.getScrapMemo() != null) { // 수정할 본문 데이터가 있다면
-            this.scrapMemo = scrapDto.getScrapMemo(); // 내용 반영
-            this.scrapTime = scrapDto.getScrapTime();
-        }
-    }
-
 }
