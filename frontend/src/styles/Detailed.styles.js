@@ -39,6 +39,7 @@ export const DetailLinkButton = styled.button`
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 5px;
+  margin-top: 10px;
 `;
 
 export const DetailSection = styled.section`
@@ -55,7 +56,7 @@ export const DetailImage = styled.div`
   margin-bottom: 20px;
 `;
 
-export const DetailDescription = styled.p`
+export const DetailDescription = styled.div`
   font-size: 18px;
   margin-bottom: 20px;
 `;
@@ -88,6 +89,7 @@ export const CommentButton = styled(Link)`
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
+  margin-bottom: 10px;
 `;
 
 export const BackButton = styled(Link)`
@@ -114,6 +116,7 @@ export const BookmarkIcon = styled.div`
   color: #186915;
   align-self: flex-end;
   margin-right: 10px;
+  margin-bottom: 10px;
 `;
 
 export const Popup = styled.div`
@@ -134,13 +137,84 @@ export const ConfirmButton = styled.button`
   background-color: #549052;
   color: white;
   border: none;
-  padding: 7px 20px;
+  padding: 7px 15px;
   border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
 `;
+
+export const DeleteButton = styled.button`
+  background-color: #898989;
+  color: white;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
+`;
+
+export const StarRating = styled.div`
+  display: flex;
+  margin-top: 5px;
+`;
+
+export const ProfileId = styled.div`
+  margin-bottom: 0px;
+  font-size: 15px;
+  margin-left: 5px;
+`;
+
+export const Star = styled.span`
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: ${(props) => (props.selected ? "#186915" : "#ccc")};
+`;
+
+export const ProfileActions = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ActionLink = styled.button`
+  background: none;
+  border: none;
+  color: #333333;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+
+  &:first-of-type {
+    margin-left: 30px;
+  }
+
+  &::after {
+    content: "/";
+    margin-left: 5px;
+    text-decoration: none;
+  }
+
+  &:last-of-type::after {
+    content: "";
+    margin-left: 0;
+  }
+`;
+
+export const StarRatingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+`;
+
+export const ReviewDate = styled.span`
+  margin-top: 7px;
+  margin-left: 10px;
+  font-size: 14px;
+  color: #888;
 `;

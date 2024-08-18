@@ -84,6 +84,7 @@ export const MenuItem = styled(NavLink)`
   border: none;
   cursor: pointer;
   font-size: 22px;
+  white-space: nowrap;
 
   &.active {
     font-weight: bold;
