@@ -1,13 +1,11 @@
-import { Header } from "../components/index.js";
-import * as S from "../styles/Main.style.js";
+import { Header } from "../components";
+import * as S from "../styles/Main.styles";
 
 export const Main = () => {
   return (
     <S.Container>
       <Header />
-      <S.MainContent>
-        <S.MainImage src="Campus.jpg.jpeg" alt="Campus" />
-      </S.MainContent>
+      <S.MainContent />
     </S.Container>
   );
 };

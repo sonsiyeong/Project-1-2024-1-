@@ -1,16 +1,6 @@
-import {
-  ProductCardWrapper,
-  ProductName,
-  ProductDescription,
-  ProductButton,
-  Separator,
-  BookmarkIcon,
-  Popup,
-  ConfirmButton,
-} from "../styles/ProductPage.styles";
+import * as S from "../styles/Product.styles";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const ProductCard = ({
   product,
@@ -48,31 +38,35 @@ const ProductCard = ({
   };
 
   return (
-    <ProductCardWrapper>
+    <S.ProductCardWrapper>
       {showPopup && (
-        <Popup>
+        <S.Popup>
           <p>{popupMessage}</p>
-          <ConfirmButton onClick={handleConfirmClick}>확인</ConfirmButton>
-        </Popup>
+          <S.ConfirmButton onClick={handleConfirmClick}>확인</S.ConfirmButton>
+        </S.Popup>
       )}
-      <ProductName>
-        <BookmarkIcon onClick={handleBookmarkClick1}>
+      <S.ProductName>
+        <S.BookmarkIcon onClick={handleBookmarkClick1}>
           {bookmarked1 ? <FaBookmark /> : <FaRegBookmark />}
-        </BookmarkIcon>
+        </S.BookmarkIcon>
         {name}
-      </ProductName>
-      <ProductDescription>{product.description}</ProductDescription>
-      <ProductButton to="/detailedpage">자세히 보기</ProductButton>
-      <Separator />
-      <ProductName>
-        <BookmarkIcon onClick={handleBookmarkClick2}>
+      </S.ProductName>
+      <S.ProductDescription>• {product.description1}</S.ProductDescription>
+      <S.ProductDescription>• {product.description2}</S.ProductDescription>
+      <S.ProductDescription>• {product.description3}</S.ProductDescription>
+      <S.ProductButton to="/detailed">자세히 보기</S.ProductButton>
+      <S.Separator />
+      <S.ProductName>
+        <S.BookmarkIcon onClick={handleBookmarkClick2}>
           {bookmarked2 ? <FaBookmark /> : <FaRegBookmark />}
-        </BookmarkIcon>
+        </S.BookmarkIcon>
         {name}
-      </ProductName>
-      <ProductDescription>{product.description}</ProductDescription>
-      <ProductButton to="/detailedpage">자세히 보기</ProductButton>
-    </ProductCardWrapper>
+      </S.ProductName>
+      <S.ProductDescription>• {product.description1}</S.ProductDescription>
+      <S.ProductDescription>• {product.description2}</S.ProductDescription>
+      <S.ProductDescription>• {product.description3}</S.ProductDescription>
+      <S.ProductButton to="/detailed">자세히 보기</S.ProductButton>
+    </S.ProductCardWrapper>
   );
 };
 

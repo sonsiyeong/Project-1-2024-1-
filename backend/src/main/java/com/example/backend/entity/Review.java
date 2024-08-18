@@ -1,6 +1,7 @@
 package com.example.backend.entity;
 
 import com.example.backend.dto.ReviewDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,9 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-@Table(name = "reviews")
+@Table(name = "REVIEWS")
 @Entity // 해당 클래스가 엔티티임을 선언, 클래스 필드를 바탕으로 DB에 테이블 생성
 @Getter // 각 필드 값을 조회할 수 있는 getter 메서드 자동 생성
 @ToString // 모든 필드를 출력할 수 있는 toString 메서드 자동 생성
@@ -20,13 +21,14 @@ import java.time.LocalDateTime;
 public class Review {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY) // DB에 등록될 때 자동으로 1씩 증가
+    @Column(name="review_code")
     private Long reviewCode;
 
     @Column(name="review_content")
     private String reviewContent;
 
     @Column(name="review_write_date_time", insertable = false, updatable = false) // 현재 시각이 자동으로 기록되도록 함
-    private LocalDateTime reviewWriteDateTime;
+    private LocalDate reviewWriteDateTime;
 
     @Column(name="review_star_rating")
     private int reviewStarRating;

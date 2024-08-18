@@ -74,7 +74,6 @@ export const MenuButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 22px;
-  font-family: "Pretendard", sans-serif;
 `;
 
 export const MenuItem = styled(NavLink)`
@@ -86,7 +85,7 @@ export const MenuItem = styled(NavLink)`
   border: none;
   cursor: pointer;
   font-size: 22px;
-  font-family: "Pretendard", sans-serif;
+  white-space: nowrap;
 
   &.active {
     font-weight: bold;
@@ -112,7 +111,6 @@ export const LoginButton = styled.a`
 
 export const ErrorMessage = styled.div`
   color: red;
-  font-family: "Pretendard", sans-serif;
   margin-top: 11px;
 `;
 

@@ -3,28 +3,35 @@ import {
   Login,
   SignUp,
   Main,
-  DetailedPage,
-  CheckCardPage,
-  DepositPage,
-  SavingPage,
-  LoanPage,
+  Detailed,
+  CheckCard,
+  Deposit,
+  Saving,
+  Loan,
+  ReviewForm,
+  MyPage,
 } from "./pages";
-// TODO: 글로벌 스타일 전역으로 옮기기
-//import { GlobalStyle } from "./styles/ProductPage.styles";
+import { GlobalStyle } from "./styles/GlobalStyles";
+
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/deposit" element={<DepositPage />} />
-        <Route path="/saving" element={<SavingPage />} />
-        <Route path="/loan" element={<LoanPage />} />
-        <Route path="/checkcard" element={<CheckCardPage />} />
-        <Route path="/detailedpage" element={<DetailedPage />} />
-      </Routes>
-    </Router>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/deposit" element={<Deposit />} />
+          <Route path="/saving" element={<Saving />} />
+          <Route path="/loan" element={<Loan />} />
+          <Route path="/checkcard" element={<CheckCard />} />
+          <Route path="/detailed" element={<Detailed />} />
+          <Route path="/reviewform" element={<ReviewForm />} />
+          <Route path="/mypage" element={<MyPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 

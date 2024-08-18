@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ProductApiController {
@@ -39,7 +40,7 @@ public class ProductApiController {
     @GetMapping("/api/products/productType/{productType}")
     public ResponseEntity<ResponseDto<?>> getProductByType(@PathVariable String productType) {
         try {
-            List<ProductTypeDto> dtos = productService.productByType(productType);
+            Map<String, List<ProductTypeDto>> dtos = productService.productByType(productType);
             return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 조회하였습니다.", dtos));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
@@ -53,7 +54,8 @@ public class ProductApiController {
     public ResponseEntity<ResponseDto<?>> create(@RequestBody ProductDto productDto){
         try {
             ProductDto dtos = productService.create(productDto);
-            return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 등록하였습니다.", dtos));
+            ProductDto responseDto=productService.productByCode(dtos.getProductCode());
+            return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 등록하였습니다.", responseDto));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);

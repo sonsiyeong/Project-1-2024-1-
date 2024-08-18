@@ -3,7 +3,7 @@ package com.example.backend.dto;
 import com.example.backend.entity.Scrap;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @AllArgsConstructor // 모든 필드를 매개변수로 갖는 생성자 자동 생성
 @NoArgsConstructor // 매개변수가 아예 없는 기본 생성자 자동 생성
@@ -14,8 +14,7 @@ import java.time.LocalDateTime;
 public class ScrapDto {
 
     private Long scrapCode;
-    private LocalDateTime scrapTime;
-    private String scrapMemo;
+    private LocalDate scrapTime;
     private Long productCode;
     private Long userCode;
 
@@ -23,7 +22,6 @@ public class ScrapDto {
         return new ScrapDto(
                 scrap.getScrapCode(),
                 scrap.getScrapTime(),
-                scrap.getScrapMemo(),
                 scrap.getProduct().getProductCode(),
                 scrap.getUser().getUserCode()
         );

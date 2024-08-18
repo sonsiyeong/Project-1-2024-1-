@@ -7,6 +7,8 @@ import * as S from "../styles/Login.styles";
 import LoginValidationSchema from "../validations/LoginValidationSchema";
 
 export const Login = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -34,7 +36,8 @@ export const Login = () => {
         if (result.message === "Success") {
           window.sessionStorage.setItem("token", result.token);
           window.sessionStorage.setItem("role", result.role);
-
+          setIsLogin(true);
+          
           if (data.userId === "admin" && data.password === "adminpassword") {
             alert("관리자 로그인 되었습니다");
           } else {
@@ -63,6 +66,15 @@ export const Login = () => {
   return (
     <S.LoginPage>
       <Header />
+      <img src="/logo.png" alt="EWHA Logo" className="logo" />
+      {isLogin ? (
+        <>
+          <S.MyPageButton href="/mypage">MY PAGE</S.MyPageButton>
+          <S.LogoutLink href="/logout">로그아웃</S.LogoutLink>
+        </>
+      ) : (
+        <S.LoginButton href="/login">LOGIN / SIGN UP</S.LoginButton>
+      )}
       <S.LoginBar>LOGIN</S.LoginBar>
       <S.LoginContainer>
         <S.LoginForm onSubmit={handleSubmit(onSubmit)}>

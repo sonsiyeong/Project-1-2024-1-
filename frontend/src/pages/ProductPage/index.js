@@ -1,4 +1,4 @@
-export { CheckCardPage } from "./CheckCardPage";
-export { DepositPage } from "./DepositPage";
-export { SavingPage } from "./SavingPage";
-export { LoanPage } from "./LoanPage";
+export { CheckCard } from "./CheckCard";
+export { Deposit } from "./Deposit";
+export { Saving } from "./Saving";
+export { Loan } from "./Loan";

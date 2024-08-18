@@ -25,6 +25,12 @@ public class ScrapService {
     @Autowired
     private UserRepository userRepository;
 
+
+    public ScrapDto scrapByScrapCode(Long scrapCode){
+        Scrap scrap=scrapRepository.ScrapByScrapCode(scrapCode);
+        return ScrapDto.createScrapDto(scrap);
+    }
+
     // 사용자 코드에 대한 스크랩 리스트
     public List<ScrapDto> scrapsByUserCode(Long userCode){
         List<Scrap> scraps=scrapRepository.ScrapByUserCode(userCode);
@@ -48,20 +54,6 @@ public class ScrapService {
         Scrap saved=scrapRepository.save(scrap);
         // DTO로 변환해 반환
         return ScrapDto.createScrapDto(saved);
-    }
-
-    // 스크랩 수정
-    @Transactional
-    public ScrapDto update(Long scrapCode, ScrapDto scrapDto) {
-        // 스크랩 조회 및 예외 발생
-        Scrap target=scrapRepository.findById(scrapCode)
-                .orElseThrow(() -> new IllegalArgumentException("스크랩 수정 실패! 대상 스크랩이 없습니다."));
-        // 스크랩 수정
-        target.patch(scrapDto);
-        // DB로 갱신
-        Scrap updated=scrapRepository.save(target);
-        // 스크랩 엔티티를 DTO로 변환 및 반환
-        return ScrapDto.createScrapDto(updated);
     }
 
     // 스크랩 삭제
