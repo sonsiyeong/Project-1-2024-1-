@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,12 +27,13 @@ public class ProductService {
         return ProductDetailDto.createProductDto(products);
     }
 
-    // 상품 타입으로 상품 리스트 반환
-    public List<ProductTypeDto> productByType(String productType){
+    public Map<String, List<ProductTypeDto>> productByType(String productType){
         List<Product> products = productRepository.findByProductType(productType);
         return products.stream()
-                .map(ProductTypeDto::createProductDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.groupingBy(
+                        Product::getProductBank,
+                        Collectors.mapping(ProductTypeDto::createProductDto, Collectors.toList())
+                ));
     }
 
     // 상품 생성
