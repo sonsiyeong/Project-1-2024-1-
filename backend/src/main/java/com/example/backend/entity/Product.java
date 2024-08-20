@@ -2,17 +2,17 @@ package com.example.backend.entity;
 
 import com.example.backend.dto.ProductDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @Table(name = "PRODUCTS")
 @Entity // 해당 클래스가 엔티티임을 선언, 클래스 필드를 바탕으로 DB에 테이블 생성
 @Getter // 각 필드 값을 조회할 수 있는 getter 메서드 자동 생성
+@Setter // 각 필드 값을 설정할 수 있는 setter 메서드 자동 생성
 @ToString // 모든 필드를 출력할 수 있는 toString 메서드 자동 생성
 @AllArgsConstructor // 모든 필드를 매개변수로 갖는 생성자 자동 생성
 @NoArgsConstructor // 매개변수가 아예 없는 기본 생성자 자동 생성
@@ -94,66 +94,33 @@ public class Product {
         );
     }
 
+    // 갱신 메서드
+    private <T> void updateFieldIfNotNull(Supplier<T> getter, Consumer<T> setter, ProductDto productDto) {
+        T value = getter.get();
+        if (value != null) {
+            setter.accept(value);
+            this.productLastUpdate = productDto.getProductLastUpdate();
+        }
+    }
+
     public void patch(ProductDto productDto) {
         // 예외 발생
         if (this.productCode != productDto.getProductCode())
             throw new IllegalArgumentException("상품 수정 실패! 잘못된 상품 code가 입력됐습니다.");
         // 객체 갱신
-        if (productDto.getProductName() != null) { // 수정할 name이 있다면
-            this.productName = productDto.getProductName();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductType() != null) { // 수정할 type이 있다면
-            this.productType = productDto.getProductType();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductInterestRate() != null) {// 수정할 interest rate이 있다면
-            this.productInterestRate = productDto.getProductInterestRate();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductInterestTopRate() != null) { // 수정할 interest top rate이 있다면
-            this.productInterestTopRate = productDto.getProductInterestTopRate();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductBank() != null) { // 수정할 bank가 있다면
-            this.productBank = productDto.getProductBank();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductAge() != null){ // 수정할 age가 있다면
-            this.productAge =productDto.getProductAge();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductAmount() != null){ // 수정할 amount가 있다면
-            this.productAmount =productDto.getProductAmount();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductUrl() != null){ // 수정할 url이 있다면
-            this.productUrl =productDto.getProductUrl();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductTerm() != null){ // 수정할 term이 있다면
-            this.productTerm =productDto.getProductTerm();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductBenefit() != null){ // 수정할 benefit이 있다면
-            this.productBenefit =productDto.getProductBenefit();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductDescription() != null){ // 수정할 description이 있다면
-            this.productDescription = productDto.getProductDescription();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductFeat1() != null){ // 수정할 feat1이 있다면
-            this.productFeat1 = productDto.getProductFeat1();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductFeat2() != null){ // 수정할 feat2가 있다면
-            this.productFeat2 = productDto.getProductFeat2();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
-        if (productDto.getProductFeat3() != null){ // 수정할 feat3이 있다면
-            this.productFeat3 = productDto.getProductFeat3();
-            this.productLastUpdate = productDto.getProductLastUpdate();
-        }
+        updateFieldIfNotNull(productDto::getProductName, this::setProductName, productDto);
+        updateFieldIfNotNull(productDto::getProductType, this::setProductType, productDto);
+        updateFieldIfNotNull(productDto::getProductInterestRate, this::setProductInterestRate, productDto);
+        updateFieldIfNotNull(productDto::getProductInterestTopRate, this::setProductInterestTopRate, productDto);
+        updateFieldIfNotNull(productDto::getProductBank, this::setProductBank, productDto);
+        updateFieldIfNotNull(productDto::getProductAge, this::setProductAge, productDto);
+        updateFieldIfNotNull(productDto::getProductAmount, this::setProductAmount, productDto);
+        updateFieldIfNotNull(productDto::getProductUrl, this::setProductUrl, productDto);
+        updateFieldIfNotNull(productDto::getProductTerm, this::setProductTerm, productDto);
+        updateFieldIfNotNull(productDto::getProductBenefit, this::setProductBenefit, productDto);
+        updateFieldIfNotNull(productDto::getProductDescription, this::setProductDescription, productDto);
+        updateFieldIfNotNull(productDto::getProductFeat1, this::setProductFeat1, productDto);
+        updateFieldIfNotNull(productDto::getProductFeat2, this::setProductFeat2, productDto);
+        updateFieldIfNotNull(productDto::getProductFeat3, this::setProductFeat3, productDto);
     }
 }
