@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.ProductCategoryDto;
 import com.example.backend.dto.ProductDetailDto;
 import com.example.backend.dto.ProductDto;
 import com.example.backend.dto.ProductTypeDto;
@@ -34,6 +35,7 @@ public class ProductService {
         return ProductDetailDto.createProductDto(products);
     }
 
+    // 상품 종류로 상품 반환
     public Map<String, List<ProductTypeDto>> productByType(String productType){
         List<Product> products = productRepository.findByProductType(productType);
         return products.stream()
@@ -87,11 +89,22 @@ public class ProductService {
         return ProductDto.createProductDto(target);
     }
 
-    // 은행명으로 상품 검색
-    public List<ProductTypeDto> searchProductByBank(String productBank){
+    // 은행 명으로 검색
+    public Map<String, List<ProductCategoryDto>> searchProductByBank(String productBank){
         List<Product> products = productRepository.findByProductBank(productBank);
+
         return products.stream()
-                .map(ProductTypeDto::createProductDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.groupingBy(
+                        Product::getProductBank, // 은행으로 그룹화
+                        Collectors.mapping(product->{
+                            // 각 Product를 ProductCategoryDto로 변환
+                            List<String> feats = Arrays.asList(
+                                    product.getProductFeat1(),
+                                    product.getProductFeat2(),
+                                    product.getProductFeat3()
+                            );
+                            return new ProductCategoryDto(product.getProductName(), feats);
+                        }, Collectors.toList())
+                ));
     }
 }
