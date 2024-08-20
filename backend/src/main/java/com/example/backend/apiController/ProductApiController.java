@@ -54,7 +54,7 @@ public class ProductApiController {
     public ResponseEntity<ResponseDto<?>> create(@RequestBody ProductDto productDto){
         try {
             ProductDto dtos = productService.create(productDto);
-            ProductDto responseDto=productService.productByCode(dtos.getProductCode());
+            ProductDto responseDto=productService.productByCode(dtos.getProductCode()); // productLastUpdate 응답받기
             return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 등록하였습니다.", responseDto));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
@@ -68,6 +68,7 @@ public class ProductApiController {
     public ResponseEntity<ResponseDto<?>> update(@PathVariable Long productCode, @RequestBody ProductDto productDto){
         try{
             ProductDto dtos=productService.update(productCode, productDto);
+            ProductDto responseDto=productService.productByCode(dtos.getProductCode()); // productLastUpdate 응답받기
             return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 수정하였습니다.", dtos));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
