@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,7 +39,14 @@ public class ProductService {
         return products.stream()
                 .collect(Collectors.groupingBy(
                         Product::getProductBank,
-                        Collectors.mapping(ProductTypeDto::createProductDto, Collectors.toList())
+                        Collectors.mapping(product -> {
+                            List<String> feats= Arrays.asList(
+                                    product.getProductFeat1(),
+                                    product.getProductFeat2(),
+                                    product.getProductFeat3()
+                            );
+                            return new ProductTypeDto(product.getProductName(), feats);
+                        }, Collectors.toList())
                 ));
     }
 

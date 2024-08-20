@@ -3,6 +3,9 @@ package com.example.backend.dto;
 import com.example.backend.entity.Product;
 import lombok.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 @AllArgsConstructor // 모든 필드를 매개변수로 갖는 생성자 자동 생성
 @NoArgsConstructor // 매개변수가 아예 없는 기본 생성자 자동 생성
 @Getter // 각 필드 값을 조회할 수 있는 getter 메서드 자동 생성
@@ -12,16 +15,17 @@ import lombok.*;
 public class ProductTypeDto { // 상품 비교 페이지
 
     private String productName;
-    private String productFeat1;
-    private String productFeat2;
-    private String productFeat3;
+    private List<String> productFeat;
 
     public static ProductTypeDto createProductDto(Product product){
-        return new ProductTypeDto(
-                product.getProductName(),
+        List<String> feats= Arrays.asList(
                 product.getProductFeat1(),
                 product.getProductFeat2(),
                 product.getProductFeat3()
+        );
+        return new ProductTypeDto(
+                product.getProductName(),
+                feats
         );
     }
 }
