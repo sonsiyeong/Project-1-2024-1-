@@ -128,3 +128,31 @@ export const Dimmed = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 `;
+
+// MyPageButton과 LogoutLink 스타일 추가
+export const MyPageButton = styled.a`
+  text-decoration: none;
+  background-color: #186915;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const LogoutLink = styled.a`
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
