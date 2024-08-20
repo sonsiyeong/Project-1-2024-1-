@@ -119,33 +119,6 @@ export const PopupContent = styled.div`
   }
 `;
 
-export const MyPageButton = styled.a`
-  text-decoration: none;
-  background-color: #186915;
-  color: white;
-  border: none;
-  padding: 5px 15px;
-  font-size: 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-right: 10px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const LogoutLink = styled.a`
-  text-decoration: none;
-  color: black;
-  font-size: 15px;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 export const Dimmed = styled.div`
   position: fixed;
   top: 0;

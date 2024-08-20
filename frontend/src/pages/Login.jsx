@@ -7,7 +7,6 @@ import * as S from "../styles/Login.styles";
 import LoginValidationSchema from "../validations/LoginValidationSchema";
 
 export const Login = () => {
-  const [isLogin, setIsLogin] = useState(false);
 
   const {
     register,
@@ -21,7 +20,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    fetch("http://15.164.100.170:8080/api/login", {
+    fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,11 +32,10 @@ export const Login = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.message === "Success") {
-          window.sessionStorage.setItem("token", result.token);
-          window.sessionStorage.setItem("role", result.role);
-          setIsLogin(true);
-          
+        if (result.message === "SUCCESS") {
+          window.localStorage.setItem("token", result.token);
+          window.localStorage.setItem("role", result.role);
+
           if (data.userId === "admin" && data.password === "adminpassword") {
             alert("관리자 로그인 되었습니다");
           } else {
@@ -63,30 +61,27 @@ export const Login = () => {
     setShowError(false);
   };
 
+  let errors = {};
+  
   return (
     <S.LoginPage>
       <Header />
-      <img src="/logo.png" alt="EWHA Logo" className="logo" />
-      {isLogin ? (
-        <>
-          <S.MyPageButton href="/mypage">MY PAGE</S.MyPageButton>
-          <S.LogoutLink href="/logout">로그아웃</S.LogoutLink>
-        </>
-      ) : (
-        <S.LoginButton href="/login">LOGIN / SIGN UP</S.LoginButton>
-      )}
       <S.LoginBar>LOGIN</S.LoginBar>
       <S.LoginContainer>
         <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
           <S.LoginFormGroup>
             <S.Label>ID</S.Label>
             <S.Input type="text" {...register("userId")} />
-            {userId && <S.ErrorMessage>{userId.message}</S.ErrorMessage>}
+            {errors.userId && (
+              <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
+            )}
           </S.LoginFormGroup>
           <S.LoginFormGroup>
             <S.Label>PASSWORD</S.Label>
             <S.Input type="password" {...register("password")} />
-            {password && <S.ErrorMessage>{password.message}</S.ErrorMessage>}
+            {errors.password && (
+              <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+            )}
           </S.LoginFormGroup>
           <S.LoginButtonGroup>
             <S.LoginButton type="submit">LOGIN</S.LoginButton>
@@ -110,5 +105,4 @@ export const Login = () => {
     </S.LoginPage>
   );
 };
-
 export default Login;
