@@ -12,7 +12,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { userId, password },
+    formState: { errors }, // 수정된 부분: errors를 가져옵니다.
   } = useForm({
     resolver: yupResolver(LoginValidationSchema),
   });
@@ -21,7 +21,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    fetch("http://15.164.100.170:8080/api/login", {
+    fetch("http://43.202.58.11:8080/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const Login = () => {
           window.sessionStorage.setItem("token", result.token);
           window.sessionStorage.setItem("role", result.role);
           setIsLogin(true);
-          
+
           if (data.userId === "admin" && data.password === "adminpassword") {
             alert("관리자 로그인 되었습니다");
           } else {
@@ -81,12 +81,16 @@ export const Login = () => {
           <S.LoginFormGroup>
             <S.Label>ID</S.Label>
             <S.Input type="text" {...register("userId")} />
-            {userId && <S.ErrorMessage>{userId.message}</S.ErrorMessage>}
+            {errors.userId && (
+              <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
+            )}{" "}
           </S.LoginFormGroup>
           <S.LoginFormGroup>
             <S.Label>PASSWORD</S.Label>
             <S.Input type="password" {...register("password")} />
-            {password && <S.ErrorMessage>{password.message}</S.ErrorMessage>}
+            {errors.password && (
+              <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+            )}{" "}
           </S.LoginFormGroup>
           <S.LoginButtonGroup>
             <S.LoginButton type="submit">LOGIN</S.LoginButton>
