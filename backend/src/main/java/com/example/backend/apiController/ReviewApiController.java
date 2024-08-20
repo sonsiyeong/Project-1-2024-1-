@@ -37,7 +37,7 @@ public class ReviewApiController {
         try {
             // 서비스에 위임
             ReviewDto createdDto = reviewService.create(productCode, dto);
-            ReviewDto responseDto = reviewService.reviewByReviewCode(createdDto.getReviewCode());
+            ReviewDto responseDto = reviewService.reviewByReviewCode(createdDto.getReviewCode()); // 리뷰 생성 시간 응담
             // 결과 응답
             return ResponseEntity.ok(new ResponseDto<>("리뷰를 성공적으로 생성하였습니다.", responseDto));
         } catch (Exception e) {
@@ -53,6 +53,7 @@ public class ReviewApiController {
         try {
             // 서비스에 위임
             ReviewDto updatedDto = reviewService.update(reviewCode, dto);
+            ReviewDto responseDto = reviewService.reviewByReviewCode(updatedDto.getReviewCode()); // 리뷰 수정 시간 응답
             // 결과 응답
             return ResponseEntity.ok(new ResponseDto<>("리뷰를 성공적으로 수정하였습니다.", updatedDto));
         } catch (Exception e) {
