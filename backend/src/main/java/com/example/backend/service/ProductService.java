@@ -95,9 +95,8 @@ public class ProductService {
 
         return products.stream()
                 .collect(Collectors.groupingBy(
-                        Product::getProductBank, // 은행으로 그룹화
+                        Product::getProductType, // 은행으로 그룹화
                         Collectors.mapping(product->{
-                            // 각 Product를 ProductCategoryDto로 변환
                             List<String> feats = Arrays.asList(
                                     product.getProductFeat1(),
                                     product.getProductFeat2(),
