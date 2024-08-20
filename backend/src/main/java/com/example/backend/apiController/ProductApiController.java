@@ -1,9 +1,6 @@
 package com.example.backend.apiController;
 
-import com.example.backend.dto.ProductDetailDto;
-import com.example.backend.dto.ProductDto;
-import com.example.backend.dto.ProductTypeDto;
-import com.example.backend.dto.ResponseDto;
+import com.example.backend.dto.*;
 import com.example.backend.service.ReviewService;
 import com.example.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,12 +88,13 @@ public class ProductApiController {
 
     // 은행명으로 상품 검색
     @GetMapping("/api/products/searchByBank")
-    public ResponseEntity<ResponseDto<List<ProductTypeDto>>> searchProductsByBank(@RequestParam String productBank) {
+    public ResponseEntity<ResponseDto<Map<String, List<ProductCategoryDto>>>> searchProductsByBank(@RequestParam String productBank) {
         try {
-            List<ProductTypeDto> dtos = productService.searchProductByBank(productBank);
+            // ProductCategoryDto를 반환하도록 변경된 로직 적용
+            Map<String, List<ProductCategoryDto>> dtos = productService.searchProductByBank(productBank);
             return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 조회하였습니다.", dtos));
         } catch (Exception e) {
-            ResponseDto<List<ProductTypeDto>> responseDto = new ResponseDto<>(e.getMessage(), null);
+            ResponseDto<Map<String, List<ProductCategoryDto>>> responseDto = new ResponseDto<>(e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);
         }
     }
