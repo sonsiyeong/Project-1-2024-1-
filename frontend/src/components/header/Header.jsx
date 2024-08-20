@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./header.style.js";
 
 export function Header() {
   const [bankName, setBankName] = useState("");
-  const [isLogin, setIsLogin] = useState("");
+  const [isLogin, setIsLogin] = useState(false); // 초기값을 false로 설정
   const [error, setError] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
@@ -16,6 +16,14 @@ export function Header() {
     { name: "우리은행", path: "/woori-bank" },
     { name: "하나은행", path: "/hana-bank" },
   ];
+
+  useEffect(() => {
+    // 로컬 스토리지에서 토큰이 있으면 로그인 상태로 설정
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      setIsLogin(true);
+    }
+  }, []);
 
   const handleBankNameChange = (event) => {
     setBankName(event.target.value);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Header } from "../components/index.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate, Link } from "react-router-dom"; // Link 추가
+import { useNavigate, Link } from "react-router-dom";
 import * as S from "../styles/Login.styles";
 import LoginValidationSchema from "../validations/LoginValidationSchema";
 
@@ -10,12 +10,12 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }, // errors 객체 추가
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(LoginValidationSchema),
   });
 
-  const [isLogin, setIsLogin] = useState(false); // 로그인 상태 추가
+  const [isLogin, setIsLogin] = useState(false);
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
@@ -64,37 +64,28 @@ export const Login = () => {
 
   return (
     <S.LoginPage>
-      <Header />
+      <Header isLogin={isLogin} /> {/* isLogin 상태를 Header에 전달 */}
       <S.LoginBar>LOGIN</S.LoginBar>
       <S.LoginContainer>
-        {isLogin ? ( // 로그인 상태에 따라 다른 UI를 렌더링
-          <>
-            <S.MyPageButton as={Link} to="/mypage">
-              MY PAGE
-            </S.MyPageButton>
-            <S.LogoutLink href="/logout">로그아웃</S.LogoutLink>
-          </>
-        ) : (
-          <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
-            <S.LoginFormGroup>
-              <S.Label>ID</S.Label>
-              <S.Input type="text" {...register("userId")} />
-              {errors.userId && (
-                <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
-              )}
-            </S.LoginFormGroup>
-            <S.LoginFormGroup>
-              <S.Label>PASSWORD</S.Label>
-              <S.Input type="password" {...register("password")} />
-              {errors.password && (
-                <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
-              )}
-            </S.LoginFormGroup>
-            <S.LoginButtonGroup>
-              <S.LoginButton type="submit">LOGIN</S.LoginButton>
-            </S.LoginButtonGroup>
-          </S.LoginForm>
-        )}
+        <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
+          <S.LoginFormGroup>
+            <S.Label>ID</S.Label>
+            <S.Input type="text" {...register("userId")} />
+            {errors.userId && (
+              <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
+            )}
+          </S.LoginFormGroup>
+          <S.LoginFormGroup>
+            <S.Label>PASSWORD</S.Label>
+            <S.Input type="password" {...register("password")} />
+            {errors.password && (
+              <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+            )}
+          </S.LoginFormGroup>
+          <S.LoginButtonGroup>
+            <S.LoginButton type="submit">LOGIN</S.LoginButton>
+          </S.LoginButtonGroup>
+        </S.LoginForm>
         <button onClick={handleSignUp} className="signup-link">
           SIGN UP
         </button>
