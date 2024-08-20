@@ -20,7 +20,7 @@ export const SignUp = () => {
   });
 
   const onSubmit = (data) => {
-    fetch("http://15.164.100.170:8080/api/register", {
+    fetch("http://43.202.58.11:8080/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,16 +30,24 @@ export const SignUp = () => {
         userName: data.userName,
         email: data.email,
         password: data.password,
-        confirmPassword: data.confirmPassword,
+        passwordConfirm: data.passwordConfirm,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.headers.get("content-type")?.includes("application/json")) {
+          return res.json();
+        } else {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+      })
       .then((result) => {
         if (result.message === "Success") {
           alert("회원가입이 완료되었습니다. 로그인해주세요");
           navigate("/login");
         } else {
-          alert("회원가입 양식이 틀립니다.");
+          alert(result.message || "회원가입 양식이 틀립니다.");
         }
       })
       .catch((error) => {
@@ -90,9 +98,9 @@ export const SignUp = () => {
           </S.SignUpFormGroup>
           <S.SignUpFormGroup>
             <S.Label>비밀번호 확인</S.Label>
-            <S.Input type="password" {...register("confirmPassword")} />
-            {errors.confirmPassword && (
-              <S.ErrorMessage>{errors.confirmPassword.message}</S.ErrorMessage>
+            <S.Input type="password" {...register("passwordConfirm")} />{" "}
+            {errors.passwordConfirm && (
+              <S.ErrorMessage>{errors.passwordConfirm.message}</S.ErrorMessage>
             )}
           </S.SignUpFormGroup>
           <S.Button type="submit" disabled={!isValid}>
