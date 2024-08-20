@@ -21,7 +21,7 @@ const SignUpValidationSchema = yup.object().shape({
     .required("비밀번호는 필수항목입니다.")
     .min(8, "8자 이상의 비밀번호를 입력해 주세요")
     .max(20, "20자 이하의 비밀번호를 입력해 주세요"),
-  confirmPassword: yup
+  passwordConfirm: yup
     .string()
     .required("비밀번호 확인은 필수항목입니다.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않아요."),

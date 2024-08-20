@@ -39,7 +39,7 @@ public class ScrapApiController {
         try {
             // 서비스에 위임
             ScrapDto savedDto = scrapService.save(userCode, dto);
-            ScrapDto responseDto=scrapService.scrapByScrapCode(savedDto.getScrapCode());
+            ScrapDto responseDto=scrapService.scrapByScrapCode(savedDto.getScrapCode()); // 스크랩 저장 시간 응답
             // 결과 응답
             return ResponseEntity.ok(new ResponseDto<>("스크랩을 성공적으로 저장하였습니다.", responseDto));
         } catch (Exception e) {
