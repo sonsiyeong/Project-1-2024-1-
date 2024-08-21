@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "../components/index.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as S from "../styles/Login.styles";
 import LoginValidationSchema from "../validations/LoginValidationSchema";
 
@@ -10,8 +10,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-
-    formState: { errors }, // 수정된 부분: errors를 가져옵니다.
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(LoginValidationSchema),
   });
@@ -20,8 +19,15 @@ export const Login = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  // 세션 스토리지에서 로그인 상태 확인
+  useEffect(() => {
+    const token = window.sessionStorage.getItem("token");
+    if (token) {
+      setIsLogin(true);
+    }
+  }, []);
 
+  const onSubmit = (data) => {
     fetch("http://43.202.58.11:8080/api/login", {
       method: "POST",
       headers: {
@@ -34,22 +40,20 @@ export const Login = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-
         if (result.message === "Success") {
           window.sessionStorage.setItem("token", result.token);
           window.sessionStorage.setItem("role", result.role);
-          setIsLogin(true);
+          setIsLogin(true);  // 로그인 상태로 설정
 
           if (data.userId === "admin" && data.password === "adminpassword") {
-            alert("관리자 로그인 되었습니다");
+            alert("관리자로 로그인 되었습니다");
           } else {
             alert("로그인 되었습니다");
           }
 
-          setIsLogin(true); // 로그인 상태로 변경
-          navigate("/main");
+          navigate("/"); // 홈 페이지로 이동
         } else {
-          alert("로그인 중 오류가 발생했습니다. 나중에 다시 시도하세요.");
+          alert("아이디와 비밀번호가 일치하지 않습니다.");
         }
       })
       .catch((error) => {
@@ -77,16 +81,14 @@ export const Login = () => {
             <S.Input type="text" {...register("userId")} />
             {errors.userId && (
               <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
-
-            )}{" "}
+            )}
           </S.LoginFormGroup>
           <S.LoginFormGroup>
             <S.Label>PASSWORD</S.Label>
             <S.Input type="password" {...register("password")} />
             {errors.password && (
               <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
-
-            )}{" "}
+            )}
           </S.LoginFormGroup>
           <S.LoginButtonGroup>
             <S.LoginButton type="submit">LOGIN</S.LoginButton>
