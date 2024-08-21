@@ -21,7 +21,6 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-
     fetch("http://43.202.58.11:8080/api/login", {
       method: "POST",
       headers: {
@@ -34,7 +33,6 @@ export const Login = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-
         if (result.message === "Success") {
           window.sessionStorage.setItem("token", result.token);
           window.sessionStorage.setItem("role", result.role);
@@ -47,7 +45,7 @@ export const Login = () => {
           }
 
           setIsLogin(true); // 로그인 상태로 변경
-          navigate("/main");
+          navigate("/");
         } else {
           alert("로그인 중 오류가 발생했습니다. 나중에 다시 시도하세요.");
         }
@@ -68,7 +66,7 @@ export const Login = () => {
 
   return (
     <S.LoginPage>
-      <Header isLogin={isLogin} /> {/* isLogin 상태를 Header에 전달 */}
+      <Header isLogin={isLogin} />
       <S.LoginBar>LOGIN</S.LoginBar>
       <S.LoginContainer>
         <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
@@ -77,7 +75,6 @@ export const Login = () => {
             <S.Input type="text" {...register("userId")} />
             {errors.userId && (
               <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
-
             )}{" "}
           </S.LoginFormGroup>
           <S.LoginFormGroup>
@@ -85,7 +82,6 @@ export const Login = () => {
             <S.Input type="password" {...register("password")} />
             {errors.password && (
               <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
-
             )}{" "}
           </S.LoginFormGroup>
           <S.LoginButtonGroup>
