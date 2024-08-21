@@ -1,15 +1,30 @@
 import React, { useState } from "react";
 import * as S from "../styles/BankSearchSection.styles.js";
+import kbLogo from "../assets/logos/kb.png";
+import nhLogo from "../assets/logos/nh.png";
+import shLogo from "../assets/logos/sh.png";
+import wooriLogo from "../assets/logos/woori.png";
+import hanaLogo from "../assets/logos/hana.png";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+
+const logoMap = {
+  kb: kbLogo,
+  nh: nhLogo,
+  sh: shLogo,
+  woori: wooriLogo,
+  hana: hanaLogo,
+};
 
 const BankSearchSection = ({ bank }) => {
   const [bookmarkedItems, setBookmarkedItems] = useState({});
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+  const logoPath = logoMap[bank.logokey];
 
-  const handleBookmarkToggle = (productId) => {
+  const handleBookmarkToggle = (category, productName) => {
+    const key = `${category}-${productName}`;
     setBookmarkedItems((prevBookmarks) => {
-      const isBookmarked = prevBookmarks[productId];
+      const isBookmarked = prevBookmarks[key];
       setPopupMessage(
         isBookmarked
           ? "MY 스크랩에서 삭제되었습니다."
@@ -17,7 +32,7 @@ const BankSearchSection = ({ bank }) => {
       );
       return {
         ...prevBookmarks,
-        [productId]: !isBookmarked,
+        [key]: !isBookmarked,
       };
     });
     setShowPopup(true);
@@ -27,6 +42,8 @@ const BankSearchSection = ({ bank }) => {
     setShowPopup(false);
   };
 
+  const { data } = bank.products;
+
   return (
     <S.BankSectionContainer>
       {showPopup && (
@@ -35,35 +52,41 @@ const BankSearchSection = ({ bank }) => {
           <S.ConfirmButton onClick={handleConfirmClick}>확인</S.ConfirmButton>
         </S.Popup>
       )}
-      <S.BankLogo src={bank.logo} alt={bank.name} />
+      <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
       <S.ProductCategory>
-        {["예금", "적금", "대출", "체크카드"].map((category, index) => (
+        {Object.keys(data).map((category, index) => (
           <div key={index}>
             <S.CategoryTitle>{category}</S.CategoryTitle>
             <S.CategoryColumn>
-              {bank.products
-                .filter((product) => product.category === category)
-                .map((product) => (
-                  <S.ProductItem key={product.id}>
+              {data[category].map((product, idx) => (
+                <React.Fragment key={idx}>
+                  <S.ProductItem>
                     <S.ProductName>
                       <S.BookmarkIcon
-                        onClick={() => handleBookmarkToggle(product.id)}
+                        onClick={() =>
+                          handleBookmarkToggle(category, product.productName)
+                        }
                       >
-                        {bookmarkedItems[product.id] ? (
+                        {bookmarkedItems[
+                          `${category}-${product.productName}`
+                        ] ? (
                           <FaBookmark />
                         ) : (
                           <FaRegBookmark />
                         )}
                       </S.BookmarkIcon>
-                      {product.name}
+                      {product.productName}
                     </S.ProductName>
-                    <S.ProductImage />
                     <S.ProductDescription>
-                      특징 <span>한 눈</span>에 보기
+                      {product.productFeat.map((feat, i) => (
+                        <li key={i}>{feat}</li>
+                      ))}
                     </S.ProductDescription>
                     <S.BuyButton to="/detailed">자세히 보기</S.BuyButton>
                   </S.ProductItem>
-                ))}
+                  {idx < data[category].length - 1 && <S.ProductSeparator />}
+                </React.Fragment>
+              ))}
             </S.CategoryColumn>
           </div>
         ))}
