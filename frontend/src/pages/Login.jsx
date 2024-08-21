@@ -19,6 +19,7 @@ export const Login = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
+
   // 세션 스토리지에서 로그인 상태 확인
   useEffect(() => {
     const token = window.sessionStorage.getItem("token");
@@ -52,6 +53,7 @@ export const Login = () => {
           }
 
           navigate("/"); // 홈 페이지로 이동
+
         } else {
           alert("아이디와 비밀번호가 일치하지 않습니다.");
         }
@@ -72,7 +74,7 @@ export const Login = () => {
 
   return (
     <S.LoginPage>
-      <Header isLogin={isLogin} /> {/* isLogin 상태를 Header에 전달 */}
+      <Header isLogin={isLogin} />
       <S.LoginBar>LOGIN</S.LoginBar>
       <S.LoginContainer>
         <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
@@ -82,6 +84,7 @@ export const Login = () => {
             {errors.userId && (
               <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
             )}
+
           </S.LoginFormGroup>
           <S.LoginFormGroup>
             <S.Label>PASSWORD</S.Label>
@@ -89,6 +92,8 @@ export const Login = () => {
             {errors.password && (
               <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
             )}
+
+
           </S.LoginFormGroup>
           <S.LoginButtonGroup>
             <S.LoginButton type="submit">LOGIN</S.LoginButton>

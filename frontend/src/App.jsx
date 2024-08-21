@@ -11,6 +11,8 @@ import {
   ReviewForm,
   MyPage,
   BankPage,
+  Admin,
+  ProductManagement,
 } from "./pages";
 import { GlobalStyle } from "./styles/GlobalStyles";
 
@@ -31,10 +33,13 @@ const App = () => {
           <Route path="/reviewform" element={<ReviewForm />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/:bankId" element={<BankPage />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/productmanagement" element={<ProductManagement />} />
         </Routes>
       </Router>
     </>
   );
 };
 
+// 파일의 마지막에 export 문을 위치시킴
 export default App;

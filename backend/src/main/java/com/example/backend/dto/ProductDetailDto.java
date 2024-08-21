@@ -16,6 +16,7 @@ import java.util.List;
 public class ProductDetailDto { // 상품 상세 페이지(모든 정보)
 
     private Long productCode;
+    private String bankImageUrl;
     private String productName;
     private String productType;
     private BigDecimal productInterestRate;
@@ -30,12 +31,13 @@ public class ProductDetailDto { // 상품 상세 페이지(모든 정보)
     private LocalDate productLastUpdate;
     private List<ReviewDto> reviewDtoList;
 
-    public ProductDetailDto(Long productCode, String productName, String productType,
+    public ProductDetailDto(Long productCode, String bankImageUrl, String productName, String productType,
                       BigDecimal productInterestRate, BigDecimal productInterestTopRate,
                       String productBank, String productAmount, String productAge,
                       String productTerm, String productBenefit, String productUrl,
                       String productDescription, LocalDate productLastUpdate) {
         this.productCode = productCode;
+        this.bankImageUrl = bankImageUrl;
         this.productName = productName;
         this.productType = productType;
         this.productInterestRate = productInterestRate;
@@ -51,8 +53,10 @@ public class ProductDetailDto { // 상품 상세 페이지(모든 정보)
     }
 
     public static ProductDetailDto createProductDto(Product product){
+        String bankImageUrl = determineBankImageUrl(product.getProductBank());
         return new ProductDetailDto(
                 product.getProductCode(),
+                bankImageUrl,
                 product.getProductName(),
                 product.getProductType(),
                 product.getProductInterestRate(),
@@ -67,4 +71,23 @@ public class ProductDetailDto { // 상품 상세 페이지(모든 정보)
                 product.getProductLastUpdate()
         );
     }
+
+    // 은행 이름 기반으로 S3 URL 생성
+    private static String determineBankImageUrl(String productBank) {
+        switch (productBank) {
+            case "국민은행":
+                return "https://ecc-summer-web2.s3.ap-northeast-2.amazonaws.com/kookmin.jpg";
+            case "신한은행":
+                return "https://ecc-summer-web2.s3.ap-northeast-2.amazonaws.com/shinhan.jpg";
+            case "하나은행":
+                return "https://ecc-summer-web2.s3.ap-northeast-2.amazonaws.com/hana.jpg";
+            case "농협은행":
+                return "https://ecc-summer-web2.s3.ap-northeast-2.amazonaws.com/nonghyup.jpg";
+            case "우리은행":
+                return "https://ecc-summer-web2.s3.ap-northeast-2.amazonaws.com/woori.jpg";
+            default:
+                return "https://ecc-summer-web2.s3.ap-northeast-2.amazonaws.com/default.jpg"; // 기본 로고 또는 오류 처리용 URL
+        }
+    }
+
 }

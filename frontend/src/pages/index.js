@@ -5,5 +5,7 @@ export { Detailed } from "./Detailed";
 export { ReviewForm } from "./ReviewForm";
 export { default as BankPage } from "./BankPage";
 export { MyPage } from "./MyPage";
+export { Admin } from "./Admin";
+export { ProductManagement } from "./ProductManagement";
 
 export * from "./ProductPage";
