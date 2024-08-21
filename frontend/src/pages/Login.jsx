@@ -39,7 +39,7 @@ export const Login = () => {
           setIsLogin(true);
 
           if (data.userId === "admin" && data.password === "adminpassword") {
-            alert("관리자 로그인 되었습니다");
+            alert("관리자로 로그인 되었습니다");
           } else {
             alert("로그인 되었습니다");
           }
@@ -47,7 +47,7 @@ export const Login = () => {
           setIsLogin(true); // 로그인 상태로 변경
           navigate("/");
         } else {
-          alert("로그인 중 오류가 발생했습니다. 나중에 다시 시도하세요.");
+          alert("아이디와 비밀번호가 일치하지 않습니다.");
         }
       })
       .catch((error) => {
