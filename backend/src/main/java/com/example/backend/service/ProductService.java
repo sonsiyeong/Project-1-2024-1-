@@ -47,7 +47,7 @@ public class ProductService {
                                     product.getProductFeat2(),
                                     product.getProductFeat3()
                             );
-                            return new ProductTypeDto(product.getProductName(), feats);
+                            return new ProductTypeDto(product.getProductCode(), product.getProductName(), feats);
                         }, Collectors.toList())
                 ));
     }
@@ -102,7 +102,7 @@ public class ProductService {
                                     product.getProductFeat2(),
                                     product.getProductFeat3()
                             );
-                            return new ProductCategoryDto(product.getProductName(), feats);
+                            return new ProductCategoryDto(product.getProductCode(), product.getProductName(), feats);
                         }, Collectors.toList())
                 ));
     }
