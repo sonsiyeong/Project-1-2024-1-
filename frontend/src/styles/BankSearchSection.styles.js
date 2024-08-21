@@ -13,7 +13,8 @@ export const BankSectionContainer = styled.div`
 export const BankLogo = styled.img`
   width: 210px;
   height: 35px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 `;
 
 export const ProductCategory = styled.div`
@@ -22,13 +23,13 @@ export const ProductCategory = styled.div`
   width: 100%;
   max-width: 1200px;
   margin-top: 20px;
-  gap: 5px;
+  gap: 10px;
 `;
 
 export const CategoryTitle = styled.h2`
   font-size: 20px;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: center;
 `;
 
@@ -38,39 +39,50 @@ export const CategoryColumn = styled.div`
   max-width: 260px;
   border: 2px solid green;
   border-radius: 15px;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
 `;
 
 export const ProductItem = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-align: center;
+  padding-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
-export const ProductImage = styled.div`
-  width: 100%;
-  height: 150px;
-  background-color: #e0e0e0;
-  margin-bottom: 10px;
+export const ProductSeparator = styled.div`
+  width: 100px;
+  height: 1.5px;
+  background-color: #186915;
+  margin: 10px auto;
+  margin-bottom: 30px;
 `;
 
 export const ProductName = styled.p`
   display: flex;
   align-items: center;
-  justify-content: center;
   font-weight: bold;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  font-size: 20px;
 `;
 
-export const ProductDescription = styled.p`
-  font-size: 14px;
+export const ProductDescription = styled.ul`
+  font-size: 15px;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
+  text-align: left;
+  list-style-type: disc;
+  padding-left: 20px;
 
-  & > span {
-    text-decoration: underline;
-    color: green;
+  & > li {
+    margin-bottom: 15px;
   }
 `;
 
@@ -79,7 +91,7 @@ export const BuyButton = styled(Link)`
   background-color: #549052;
   color: white;
   border: none;
-  padding: 7px 20px;
+  padding: 10px 20px; /* 버튼의 패딩을 더 넓게 설정 */
   border-radius: 20px;
   cursor: pointer;
 
@@ -92,7 +104,7 @@ export const BookmarkIcon = styled.div`
   cursor: pointer;
   font-size: 20px;
   color: #186915;
-  margin-right: 5px;
+  margin-right: 10px;
 `;
 
 export const Popup = styled.div`
