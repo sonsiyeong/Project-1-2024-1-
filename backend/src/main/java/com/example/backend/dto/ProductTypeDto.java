@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ProductTypeDto { // 상품 비교 페이지
 
+    private Long productCode;
     private String productName;
     private List<String> productFeat;
 
@@ -24,6 +25,7 @@ public class ProductTypeDto { // 상품 비교 페이지
                 product.getProductFeat3()
         );
         return new ProductTypeDto(
+                product.getProductCode(),
                 product.getProductName(),
                 feats
         );
