@@ -32,7 +32,7 @@ public class LoginApiController {
     private JwtUtil jwtUtil;
 
     @PostMapping("api/login")
-    public ResponseEntity<Map<String, String>> loginUser(@RequestBody LoginDto loginDto){
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody LoginDto loginDto){
         try{
             Optional<User> userOptional = userRepository.findByUserId(loginDto.getUserId());
             if(userOptional.isPresent()){
@@ -42,10 +42,11 @@ public class LoginApiController {
                     // 입력된 비밀번호와 데이터베이스에 저장된 비밀번호가 일치할 경우
                     String token = jwtUtil.generateToken(user.getUserId(), user.getUserRole());
 
-                    Map<String, String> response = new HashMap<>();
+                    Map<String, Object> response = new HashMap<>();
                     response.put("message", "Success");
                     response.put("token", token);
                     response.put("role", user.getUserRole());
+                    response.put("userCode", user.getUserCode());
 
                     return ResponseEntity.ok(response);
                 }else{
