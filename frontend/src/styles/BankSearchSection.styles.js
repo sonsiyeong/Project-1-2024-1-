@@ -11,8 +11,8 @@ export const BankSectionContainer = styled.div`
 `;
 
 export const BankLogo = styled.img`
-  width: 210px;
-  height: 35px;
+  width: 252px;
+  height: 42px;
   margin-bottom: 0px;
   margin-top: 0px;
 `;
@@ -22,14 +22,14 @@ export const ProductCategory = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: 1200px;
-  margin-top: 20px;
+  margin-top: 10px;
   gap: 10px;
 `;
 
 export const CategoryTitle = styled.h2`
   font-size: 20px;
   color: black;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
 `;
 
@@ -69,6 +69,7 @@ export const ProductName = styled.p`
   font-weight: bold;
   color: black;
   margin-bottom: 20px;
+  margin-top: 10px;
   justify-content: center;
   font-size: 20px;
 `;
@@ -76,13 +77,13 @@ export const ProductName = styled.p`
 export const ProductDescription = styled.ul`
   font-size: 15px;
   color: black;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: left;
   list-style-type: disc;
   padding-left: 20px;
 
   & > li {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -91,9 +92,11 @@ export const BuyButton = styled(Link)`
   background-color: #549052;
   color: white;
   border: none;
-  padding: 10px 20px; /* 버튼의 패딩을 더 넓게 설정 */
+  padding: 7px 20px;
   border-radius: 20px;
   cursor: pointer;
+  margin-bottom: -5px;
+  margin-top: 10px;
 
   &:hover {
     background-color: darkgreen;
@@ -140,5 +143,6 @@ export const Separator = styled.div`
   height: 1.5px;
   background-color: #186915;
   margin: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: -5px;
 `;
