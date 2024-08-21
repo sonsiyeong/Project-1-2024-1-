@@ -43,6 +43,7 @@ public class LoginApiController {
                     String token = jwtUtil.generateToken(user.getUserId(), user.getUserRole());
 
                     Map<String, String> response = new HashMap<>();
+                    response.put("message", "Success");
                     response.put("token", token);
                     response.put("role", user.getUserRole());
 
