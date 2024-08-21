@@ -9,10 +9,10 @@ import {
   Th,
   Td,
   Button,
-} from "./styles/Admin.styles.js"
+} from "../styles/Admin.styles"
 import { useNavigate } from 'react-router-dom';
 
-const Admin = () => {
+export const Admin = () => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -61,6 +61,4 @@ const Admin = () => {
     </Container>
   );
 };
-
-export default Admin;
 

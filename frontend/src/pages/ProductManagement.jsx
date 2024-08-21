@@ -14,10 +14,10 @@ import {
   FormTitle,
   ResetButton,
   FormBody,
-} from './ProductManagement.styled'; // 필요한 모든 styled component를 import
+} from '../styles/ProductManagement.styled' ; // 필요한 모든 styled component를 import
 import { useNavigate } from 'react-router-dom';
 
-const ProductManagement = () => {
+export const ProductManagement = () => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -72,4 +72,3 @@ const ProductManagement = () => {
   );
 };
 
-export default ProductManagement;
