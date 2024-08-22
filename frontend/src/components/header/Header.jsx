@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import * as S from "./header.style.js";
+import * as S from "./header.styles.js";
 
 export function Header() {
   const [bankName, setBankName] = useState("");
