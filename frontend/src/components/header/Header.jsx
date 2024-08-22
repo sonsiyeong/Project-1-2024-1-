@@ -8,11 +8,21 @@ export function Header({ isLogin }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
+  // banks 배열 추가
+  const banks = [
+    { name: "KB국민은행", path: "/kb-bank" },
+    { name: "NH농협은행", path: "/nh-bank" },
+    { name: "신한은행", path: "/shinhan-bank" },
+    { name: "우리은행", path: "/woori-bank" },
+    { name: "하나은행", path: "/hana-bank" },
+  ];
+
+  // useEffect 내의 setIsLogin 제거
   useEffect(() => {
-    // 세션 스토리지에서 토큰이 있으면 로그인 상태로 설정
     const token = window.sessionStorage.getItem("token");
     if (token) {
-      setIsLogin(true);
+      // 부모 컴포넌트에서 isLogin을 제어하므로 여기서 직접 setIsLogin을 호출하지 않음
+      // setIsLogin(true); 이 부분은 제거
     }
   }, []);
 
