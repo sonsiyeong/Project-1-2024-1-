@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import * as S from "./header.style.js";
+import * as S from "./header.styles.js";
 
 export function Header() {
   const [bankName, setBankName] = useState("");
   const [error, setError] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
-  // banks 배열 추가
   const banks = [
     { name: "KB국민은행", path: "/kb-bank" },
     { name: "NH농협은행", path: "/nh-bank" },
@@ -19,13 +17,10 @@ export function Header() {
 
   const isLogin = window.sessionStorage.getItem("token");
 
-  const handleBankNameChange = (event) => {
-    setBankName(event.target.value);
-    setError(false);
-  };
-
-  const handleSearch = () => {
-    const selectedBank = banks.find((bank) => bank.name === bankName);
+  const handleBankSelect = (event) => {
+    const selectedBankName = event.target.value;
+    setBankName(selectedBankName);
+    const selectedBank = banks.find((bank) => bank.name === selectedBankName);
     if (selectedBank) {
       navigate(selectedBank.path);
     } else {
@@ -33,14 +28,10 @@ export function Header() {
     }
   };
 
-  const handleBankSelect = (bank) => {
-    setBankName(bank.name);
-    setShowDropdown(false);
-    navigate(bank.path);
-  };
-
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
+  const handleLogout = () => {
+    window.sessionStorage.removeItem("token");
+    alert("로그아웃 되었습니다.");
+    navigate("/");
   };
 
   return (
@@ -53,29 +44,17 @@ export function Header() {
       <S.Divider />
       <S.Header>
         <S.SearchContainer>
-          <S.SearchInput
-            type="text"
-            placeholder="검색할 은행 선택"
-            value={bankName}
-            onFocus={toggleDropdown}
-            onChange={handleBankNameChange}
-          />
-          <S.SearchIcon onClick={handleSearch} />
-          {showDropdown && (
-            <S.Dropdown>
-              {banks.map((bank) => (
-                <S.DropdownItem
-                  key={bank.name}
-                  onClick={() => handleBankSelect(bank)}
-                >
-                  {bank.name}
-                </S.DropdownItem>
-              ))}
-            </S.Dropdown>
-          )}
-          {error && (
-            <S.ErrorMessage> 아래에서 은행을 선택해 주세요</S.ErrorMessage>
-          )}
+          <S.SearchSelect value={bankName} onChange={handleBankSelect}>
+            <option value="" disabled>
+              은행을 선택해주세요
+            </option>
+            {banks.map((bank) => (
+              <option key={bank.name} value={bank.name}>
+                {bank.name}
+              </option>
+            ))}
+          </S.SearchSelect>
+          {error && <S.ErrorMessage> 은행을 선택해 주세요.</S.ErrorMessage>}
         </S.SearchContainer>
         <S.Menu>
           <S.MenuItem exact to="/deposit">
@@ -92,12 +71,14 @@ export function Header() {
           </S.MenuItem>
         </S.Menu>
         {isLogin ? (
-          <>
+          <S.ButtonContainer>
             <S.MyPageButton as={Link} to="/mypage">
               MY PAGE
             </S.MyPageButton>
-            <S.LogoutLink href="/logout">로그아웃</S.LogoutLink>
-          </>
+            <S.LogoutLink as="button" onClick={handleLogout}>
+              로그아웃
+            </S.LogoutLink>
+          </S.ButtonContainer>
         ) : (
           <S.LoginButton as={Link} to="/login">
             LOGIN / SIGN UP

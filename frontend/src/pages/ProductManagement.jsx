@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Container,
   Sidebar,
@@ -14,14 +14,14 @@ import {
   FormTitle,
   ResetButton,
   FormBody,
-} from '../styles/ProductManagement.styled' ; // 필요한 모든 styled component를 import
-import { useNavigate } from 'react-router-dom';
+} from "../styles/ProductManagement.styles"; // 필요한 모든 styled component를 import
+import { useNavigate } from "react-router-dom";
 
 export const ProductManagement = () => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    navigate('/main'); // 로고 클릭 시 메인 페이지로 이동
+    navigate("/main"); // 로고 클릭 시 메인 페이지로 이동
   };
 
   const resetForm = () => {
@@ -32,9 +32,7 @@ export const ProductManagement = () => {
     <Container>
       <Sidebar>
         <Logo src="logo.png" alt="Ewha Logo" onClick={handleLogoClick} />
-        <SectionTitle style={{ cursor: 'pointer' }}>
-          Admin
-        </SectionTitle>
+        <SectionTitle style={{ cursor: "pointer" }}>Admin</SectionTitle>
       </Sidebar>
 
       <FormContainer>
@@ -71,4 +69,3 @@ export const ProductManagement = () => {
     </Container>
   );
 };
-

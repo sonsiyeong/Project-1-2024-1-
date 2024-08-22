@@ -1,8 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;  /* 사이드바와 폼을 수평으로 배치 */
+  display: flex; /* 사이드바와 폼을 수평으로 배치 */
 `;
 
 export const Sidebar = styled.div`
@@ -31,7 +30,7 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 40px;
-  flex: 1;  /* 남은 공간을 폼이 차지하도록 */
+  flex: 1; /* 남은 공간을 폼이 차지하도록 */
   background-color: #f9f9f9;
 `;
 

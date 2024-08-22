@@ -116,6 +116,11 @@ export const ErrorMessage = styled.div`
   margin-top: 11px;
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const MyPageButton = styled.a`
   text-decoration: none;
   background-color: #186915;
@@ -125,7 +130,7 @@ export const MyPageButton = styled.a`
   font-size: 15px;
   border-radius: 20px;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 15px; /* 여백 제거 */
 
   &:hover {
     text-decoration: underline;
@@ -134,8 +139,12 @@ export const MyPageButton = styled.a`
 
 export const LogoutLink = styled.a`
   text-decoration: none;
-  color: black;
-  font-size: 15px;
+  background-color: #186915; /* MyPageButton과 동일하게 설정 */
+  color: white; /* MyPageButton과 동일하게 설정 */
+  border: none; /* MyPageButton과 동일하게 설정 */
+  padding: 5px 15px; /* MyPageButton과 동일하게 설정 */
+  font-size: 15px; /* MyPageButton과 동일하게 설정 */
+  border-radius: 20px; /* MyPageButton과 동일하게 설정 */
   cursor: pointer;
 
   &:hover {
@@ -161,4 +170,15 @@ export const DropdownItem = styled.div`
   &:hover {
     background-color: #f0f0f0;
   }
+`;
+
+export const SearchSelect = styled.select`
+  width: 220px;
+  padding: 10px; /* 높이를 늘리기 위해 padding 조정 */
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 15px; /* 글씨 크기 조정 */
 `;

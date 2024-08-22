@@ -19,11 +19,11 @@ export const BankLogo = styled.img`
 
 export const ProductCategory = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 1200px;
   margin-top: 10px;
-  gap: 10px;
+  gap: 40px;
 `;
 
 export const CategoryTitle = styled.h2`
@@ -35,8 +35,8 @@ export const CategoryTitle = styled.h2`
 
 export const CategoryColumn = styled.div`
   flex: 1;
-  min-width: 220px;
-  max-width: 260px;
+  min-width: 280px;
+  max-width: 280px;
   border: 2px solid green;
   border-radius: 15px;
   padding: 20px;
