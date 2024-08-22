@@ -6,7 +6,6 @@ import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
-import { useParams } from "react-router-dom";
 
 const logoMap = {
   kb: kbLogo,
@@ -21,7 +20,6 @@ const BankSearchSection = ({ bank }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const logoPath = logoMap[bank.logokey];
-  const { productCode } = useParams();
 
   const handleBookmarkToggle = (category, productName) => {
     const key = `${category}-${productName}`;

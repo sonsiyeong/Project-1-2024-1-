@@ -34,11 +34,6 @@ export const ReviewForm = ({ bankName, productName }) => {
   };
 
   const handleSubmit = () => {
-    if (review.length < 20) {
-      setPopupMessage("20자 이상으로 작성해주세요");
-      setShowPopup(true);
-      return;
-    }
     navigate("/detailed", {
       state: {
         reviewData: { rating, review },
@@ -86,7 +81,7 @@ export const ReviewForm = ({ bankName, productName }) => {
         <S.ReviewTextArea
           value={review}
           onChange={handleReviewChange}
-          placeholder="자세하고 솔직한 리뷰 작성 부탁드립니다. (최소 20자 이상)"
+          placeholder="자세하고 솔직한 리뷰 작성 부탁드립니다."
         />
         <S.SubmitButton onClick={handleSubmit}>완료</S.SubmitButton>
       </S.ReviewFormContainer>
