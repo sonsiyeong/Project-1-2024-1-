@@ -18,6 +18,7 @@ const logoMap = {
 export const BankSection = ({ bank }) => {
   const logoPath = logoMap[bank.logoKey];
   const [bookmarkedProducts, setBookmarkedProducts] = useState({});
+  const [bankData, setBankData] = useState(null);
 
   const handleBookmarkToggle = (productId, index) => {
     setBookmarkedProducts((prev) => ({
@@ -28,6 +29,29 @@ export const BankSection = ({ bank }) => {
       },
     }));
   };
+
+  // TODO: API 데이터 '국민'말고 다 불러오는지 확인 필요
+  const productType = "예금";
+
+  const fetchBankData = async () => {
+    try {
+      const response = await fetch(
+        `http://43.202.58.11:8080/api/products/productType/${productType}`,
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch bank data");
+      }
+      const data = await response.json();
+
+      return data;
+    } catch (err) {
+      // setError("데이터를 불러오는데 실패했습니다.");
+    } finally {
+      // setLoading(false);
+    }
+  };
+  const data = fetchBankData();
+  console.log(data);
 
   return (
     <S.BankSectionContainer>

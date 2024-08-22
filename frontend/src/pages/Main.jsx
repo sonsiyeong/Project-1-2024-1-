@@ -1,12 +1,11 @@
-import { Header } from "../components";
+import { Container } from ".";
 import * as S from "../styles/Main.styles";
 
 export const Main = () => {
   return (
-    <S.Container>
-      <Header />
+    <Container>
       <S.MainContent />
-    </S.Container>
+    </Container>
   );
 };
 export default Main;
