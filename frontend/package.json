@@ -22,6 +22,7 @@
     "react-hook-form": "^7.52.2",
     "yup": "^1.4.0"
   },
+  "proxy": "http://43.202.58.11:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
