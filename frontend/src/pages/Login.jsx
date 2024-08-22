@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Header } from "../components/index.js";
+import { Header } from "../components/index.js"; // Header 컴포넌트 import
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
@@ -19,10 +19,9 @@ export const Login = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
-
-  // 세션 스토리지에서 로그인 상태 확인
+  // 로컬 스토리지에서 로그인 상태 확인
   useEffect(() => {
-    const token = window.sessionStorage.getItem("token");
+    const token = window.localStorage.getItem("token");
     if (token) {
       setIsLogin(true);
     }
@@ -42,8 +41,8 @@ export const Login = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === "Success") {
-          window.sessionStorage.setItem("token", result.token);
-          window.sessionStorage.setItem("role", result.role);
+          window.localStorage.setItem("token", result.token);
+          window.localStorage.setItem("role", result.role);
           setIsLogin(true);  // 로그인 상태로 설정
 
           if (data.userId === "admin" && data.password === "adminpassword") {
@@ -74,7 +73,7 @@ export const Login = () => {
 
   return (
     <S.LoginPage>
-      <Header isLogin={isLogin} />
+      <Header isLogin={isLogin} /> {/* Header 컴포넌트를 isLogin 상태와 함께 렌더링 */}
       <S.LoginBar>LOGIN</S.LoginBar>
       <S.LoginContainer>
         <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
@@ -84,7 +83,6 @@ export const Login = () => {
             {errors.userId && (
               <S.ErrorMessage>{errors.userId.message}</S.ErrorMessage>
             )}
-
           </S.LoginFormGroup>
           <S.LoginFormGroup>
             <S.Label>PASSWORD</S.Label>
@@ -92,8 +90,6 @@ export const Login = () => {
             {errors.password && (
               <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
             )}
-
-
           </S.LoginFormGroup>
           <S.LoginButtonGroup>
             <S.LoginButton type="submit">LOGIN</S.LoginButton>
