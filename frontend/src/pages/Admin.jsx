@@ -16,21 +16,22 @@ export const Admin = () => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    navigate('/main'); // 로고 클릭 시 메인 페이지로 이동
+    navigate('/'); // 로고 클릭 시 메인 페이지로 이동
   };
 
   const handleSectionTitleClick = () => {
-    navigate('/main'); // MY PAGE 클릭 시 메인 페이지로 이동
+    navigate('/'); // MY PAGE 클릭 시 메인 페이지로 이동
   };
 
   const handleEditClick = () => {
-    navigate('/product-management'); // 수정 버튼 클릭 시 상품 관리 페이지로 이동
+    navigate('/productmanagement'); // 수정 버튼 클릭 시 상품 관리 페이지로 이동
   };
 
   return (
     <Container>
       <Sidebar>
-        <Logo src="/path/to/logo.png" alt="Ewha Logo" onClick={handleLogoClick} />  {/* src 경로 확인 */}
+        <Logo src={`${process.env.PUBLIC_URL}/logo.dark.png`} 
+        alt="Ewha Logo" onClick={handleLogoClick} />  {/* src 경로 확인 */}
         <SectionTitle onClick={handleSectionTitleClick} style={{ cursor: 'pointer' }}>
           MY PAGE
         </SectionTitle>

@@ -21,7 +21,7 @@ export const ProductManagement = () => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    navigate("/main"); // 로고 클릭 시 메인 페이지로 이동
+    navigate("/"); // 로고 클릭 시 메인 페이지로 이동
   };
 
   const resetForm = () => {
@@ -31,7 +31,7 @@ export const ProductManagement = () => {
   return (
     <Container>
       <Sidebar>
-        <Logo src="logo.png" alt="Ewha Logo" onClick={handleLogoClick} />
+        <Logo src={`${process.env.PUBLIC_URL}/logo.dark.png`} alt="Ewha Logo" onClick={handleLogoClick} />
         <SectionTitle style={{ cursor: "pointer" }}>Admin</SectionTitle>
       </Sidebar>
 
