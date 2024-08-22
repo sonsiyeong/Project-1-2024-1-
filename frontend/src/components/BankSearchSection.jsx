@@ -6,6 +6,7 @@ import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 
 const logoMap = {
   kb: kbLogo,
@@ -20,6 +21,7 @@ const BankSearchSection = ({ bank }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const logoPath = logoMap[bank.logokey];
+  const { productCode } = useParams();
 
   const handleBookmarkToggle = (category, productName) => {
     const key = `${category}-${productName}`;
@@ -82,7 +84,9 @@ const BankSearchSection = ({ bank }) => {
                         <li key={i}>{feat}</li>
                       ))}
                     </S.ProductDescription>
-                    <S.BuyButton to="/detailed">자세히 보기</S.BuyButton>
+                    <S.BuyButton to={`/detailed/${product.productCode}`}>
+                      자세히 보기
+                    </S.BuyButton>
                   </S.ProductItem>
                   {idx < data[category].length - 1 && <S.ProductSeparator />}
                 </React.Fragment>

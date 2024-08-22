@@ -91,7 +91,6 @@ const Information = ({ bank, reviewData }) => {
       <S.DetailSection>
         <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
         <S.DetailDescription>상품 설명</S.DetailDescription>
-        <S.DetailImage>이미지</S.DetailImage>
       </S.DetailSection>
       <S.Divider />
       <S.CommentSection>
