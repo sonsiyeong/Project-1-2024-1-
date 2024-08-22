@@ -17,8 +17,8 @@ export const Sidebar = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 1000px; 
-  height: 1000px;
+  width: 100px; 
+  height: 100px;
   cursor: pointer;
   max-width: 100%; /* 부모 요소의 너비를 넘지 않도록 설정 */
 `;
