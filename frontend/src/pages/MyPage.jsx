@@ -20,7 +20,7 @@ export const MyPage = () => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    navigate("/main"); // Main 페이지로 이동
+    navigate("/"); // Main 페이지로 이동
   };
 
   // 스크랩된 상품의 링크 데이터 예시: 상품 상세 페이지 추가 필요
@@ -55,7 +55,7 @@ export const MyPage = () => {
     <MyPageContainer>
       <Sidebar>
         <img
-          src="./public/logo.dark.png" // 이미지 소스를 logo.dark.png로 변경
+          src={`${process.env.PUBLIC_URL}/logo.dark.png`} // 이미지 소스를 logo.dark.png로 변경
           alt="Ewha Logo"
           onClick={handleLogoClick} // 로고 클릭 시 메인 페이지로 이동
           style={{ cursor: "pointer", width: "100px" }} // 스타일을 인라인으로 추가
