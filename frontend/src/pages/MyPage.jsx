@@ -13,7 +13,7 @@ import {
   ScrapItem,
   ScrapItemIcon,
   ScrapItemText,
-} from "../styles/MyPage.styled";
+} from "../styles/MyPage.styles";
 import { useNavigate } from "react-router-dom";
 
 export const MyPage = () => {

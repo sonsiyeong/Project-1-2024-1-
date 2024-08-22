@@ -44,6 +44,8 @@ const BankSearchSection = ({ bank }) => {
 
   const { data } = bank.products;
 
+  const categoriesOrder = ["예금", "적금", "대출", "체크카드"];
+
   return (
     <S.BankSectionContainer>
       {showPopup && (
@@ -54,7 +56,7 @@ const BankSearchSection = ({ bank }) => {
       )}
       <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
       <S.ProductCategory>
-        {Object.keys(data).map((category, index) => (
+        {categoriesOrder.map((category, index) => (
           <div key={index}>
             <S.CategoryTitle>{category}</S.CategoryTitle>
             <S.CategoryColumn>
