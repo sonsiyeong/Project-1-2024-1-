@@ -55,10 +55,10 @@ export const MyPage = () => {
     <MyPageContainer>
       <Sidebar>
         <img
-          src="logo.png"
+          src="./public/logo.dark.png" // 이미지 소스를 logo.dark.png로 변경
           alt="Ewha Logo"
-          onClick={handleLogoClick}
-          style={{ cursor: "pointer" }}
+          onClick={handleLogoClick} // 로고 클릭 시 메인 페이지로 이동
+          style={{ cursor: "pointer", width: "100px" }} // 스타일을 인라인으로 추가
         />
         <SectionTitle>MY PAGE</SectionTitle>
       </Sidebar>
