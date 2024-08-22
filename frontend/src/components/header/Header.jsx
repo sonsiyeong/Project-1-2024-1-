@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./header.style.js";
 
-export function Header({ isLogin }) { // isLogin을 props로 받음
+export function Header({ isLogin }) {
   const [bankName, setBankName] = useState("");
   const [error, setError] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
+  // banks 배열 추가
   const banks = [
     { name: "KB국민은행", path: "/kb-bank" },
     { name: "NH농협은행", path: "/nh-bank" },
@@ -15,6 +16,15 @@ export function Header({ isLogin }) { // isLogin을 props로 받음
     { name: "우리은행", path: "/woori-bank" },
     { name: "하나은행", path: "/hana-bank" },
   ];
+
+  // useEffect 내의 setIsLogin 제거
+  useEffect(() => {
+    const token = window.sessionStorage.getItem("token");
+    if (token) {
+      // 부모 컴포넌트에서 isLogin을 제어하므로 여기서 직접 setIsLogin을 호출하지 않음
+      // setIsLogin(true); 이 부분은 제거
+    }
+  }, []);
 
   const handleBankNameChange = (event) => {
     setBankName(event.target.value);

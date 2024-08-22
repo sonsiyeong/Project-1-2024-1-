@@ -19,9 +19,9 @@ export const Login = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
-  // 로컬 스토리지에서 로그인 상태 확인
+  // 세션 스토리지에서 로그인 상태 확인
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
+    const token = window.sessionStorage.getItem("token");
     if (token) {
       setIsLogin(true);
     }
@@ -41,8 +41,8 @@ export const Login = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === "Success") {
-          window.localStorage.setItem("token", result.token);
-          window.localStorage.setItem("role", result.role);
+          window.sessionStorage.setItem("token", result.token);
+          window.sessionStorage.setItem("role", result.role);
           setIsLogin(true);  // 로그인 상태로 설정
 
           if (data.userId === "admin" && data.password === "adminpassword") {
