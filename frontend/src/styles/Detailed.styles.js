@@ -32,7 +32,7 @@ export const DetailTitle = styled.h2`
   margin-bottom: 20px;
 `;
 
-export const DetailLinkButton = styled.button`
+export const DetailLinkButton = styled.a`
   background-color: #aebdad;
   color: #ffffff;
   border: none;
@@ -40,6 +40,7 @@ export const DetailLinkButton = styled.button`
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
+  text-decoration: none;
 `;
 
 export const DetailSection = styled.section`

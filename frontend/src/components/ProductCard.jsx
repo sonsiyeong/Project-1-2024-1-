@@ -54,7 +54,9 @@ const ProductCard = ({ product, index }) => {
         {product.productFeat &&
           product.productFeat.map((feat, i) => <li key={i}>{feat}</li>)}
       </S.ProductDescription>
-      <S.ProductButton to="/detailed">자세히 보기</S.ProductButton>
+      <S.ProductButton to={`/detailed/${product.productCode}`}>
+        자세히 보기
+      </S.ProductButton>
       {index === 0 && <S.Separator />}
     </S.ProductCardWrapper>
   );

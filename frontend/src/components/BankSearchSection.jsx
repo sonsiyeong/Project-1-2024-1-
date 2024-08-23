@@ -84,7 +84,9 @@ const BankSearchSection = ({ bank }) => {
                         <li key={i}>{feat}</li>
                       ))}
                     </S.ProductDescription>
-                    <S.BuyButton to="/detailed">자세히 보기</S.BuyButton>
+                    <S.BuyButton to={`/detailed/${product.productCode}`}>
+                      자세히 보기
+                    </S.BuyButton>
                   </S.ProductItem>
                   {idx < data[category].length - 1 && <S.ProductSeparator />}
                 </React.Fragment>

@@ -2,22 +2,9 @@ import * as S from "../styles/Detailed.styles";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import kbLogo from "../assets/logos/kb.png";
-import nhLogo from "../assets/logos/nh.png";
-import shLogo from "../assets/logos/sh.png";
-import wooriLogo from "../assets/logos/woori.png";
-import hanaLogo from "../assets/logos/hana.png";
 
-const logoMap = {
-  kb: kbLogo,
-  nh: nhLogo,
-  sh: shLogo,
-  woori: wooriLogo,
-  hana: hanaLogo,
-};
-
-const Information = ({ bank, reviewData }) => {
-  const logoPath = logoMap[bank.logoKey];
+const Information = ({ bank, product, reviewData }) => {
+  const logoPath = bank.imageUrl;
   const [bookmarked, setBookmarked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
@@ -84,14 +71,31 @@ const Information = ({ bank, reviewData }) => {
         <S.BookmarkIcon onClick={handleBookmarkClick}>
           {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </S.BookmarkIcon>
-        <S.DetailTitle>상품명</S.DetailTitle>
-        <S.DetailLinkButton>상세 링크</S.DetailLinkButton>
+        <S.DetailTitle>{product.productName}</S.DetailTitle>
+        <S.DetailLinkButton href={product.productUrl} target="_blank">
+          상세 링크
+        </S.DetailLinkButton>
       </S.DetailTitleContainer>
       <S.Divider />
       <S.DetailSection>
         <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
-        <S.DetailDescription>상품 설명</S.DetailDescription>
-        <S.DetailImage>이미지</S.DetailImage>
+        <S.DetailDescription>{product.productDescription}</S.DetailDescription>
+        <S.DetailDescription>
+          금리: {product.productInterestRate}% -{" "}
+          {product.productInterestTopRate}%
+        </S.DetailDescription>
+        <S.DetailDescription>
+          가입 금액: {product.productAmount}
+        </S.DetailDescription>
+        <S.DetailDescription>
+          가입 연령: {product.productAge}
+        </S.DetailDescription>
+        <S.DetailDescription>
+          가입 기간: {product.productTerm}
+        </S.DetailDescription>
+        <S.DetailDescription>
+          상품 혜택: {product.productBenefit}
+        </S.DetailDescription>
       </S.DetailSection>
       <S.Divider />
       <S.CommentSection>
