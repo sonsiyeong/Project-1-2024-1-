@@ -43,6 +43,7 @@ export const Login = () => {
         if (result.message === "Success") {
           window.sessionStorage.setItem("token", result.token);
           window.sessionStorage.setItem("role", result.role);
+          window.sessionStorage.setItem("userId", result.userId);
           window.sessionStorage.setItem("userCode", result.userCode); // userCode 저장
           setIsLogin(true);  // 로그인 상태로 설정
 
@@ -116,3 +117,4 @@ export const Login = () => {
 };
 
 export default Login;
+
