@@ -6,6 +6,7 @@ import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const logoMap = {
   kb: kbLogo,
@@ -20,6 +21,7 @@ const BankSearchSection = ({ bank }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const logoPath = logoMap[bank.logokey];
+  const navigate = useNavigate();
 
   const userCode = window.sessionStorage.getItem("userCode");
 
@@ -59,6 +61,13 @@ const BankSearchSection = ({ bank }) => {
 
   const handleBookmarkToggle = async (productCode) => {
     const authToken = window.sessionStorage.getItem("token");
+
+    if (!authToken) {
+      setPopupMessage("로그인 후 사용 가능합니다.");
+      setShowPopup(true);
+      return;
+    }
+
     const item = bookmarkedItems[productCode];
 
     if (item && item.bookmarked) {
@@ -142,6 +151,9 @@ const BankSearchSection = ({ bank }) => {
 
   const handleConfirmClick = () => {
     setShowPopup(false);
+    if (popupMessage === "로그인 후 사용 가능합니다.") {
+      navigate("/login");
+    }
   };
 
   const { data } = bank.products;
@@ -158,12 +170,12 @@ const BankSearchSection = ({ bank }) => {
       )}
       <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
       <S.ProductCategory>
-        {categoriesOrder.map((category, index) => (
-          <div key={index}>
+        {categoriesOrder.map((category) => (
+          <div key={category}>
             <S.CategoryTitle>{category}</S.CategoryTitle>
             <S.CategoryColumn>
-              {data[category]?.map((product, idx) => (
-                <React.Fragment key={idx}>
+              {data[category]?.map((product, index) => (
+                <React.Fragment key={product.productCode}>
                   <S.ProductItem>
                     <S.ProductName>
                       <S.BookmarkIcon
@@ -188,7 +200,7 @@ const BankSearchSection = ({ bank }) => {
                       자세히 보기
                     </S.BuyButton>
                   </S.ProductItem>
-                  {idx < data[category].length - 1 && <S.ProductSeparator />}
+                  {index < data[category].length - 1 && <S.ProductSeparator />}
                 </React.Fragment>
               ))}
             </S.CategoryColumn>
