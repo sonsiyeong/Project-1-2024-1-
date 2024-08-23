@@ -37,6 +37,8 @@ export const CategoryColumn = styled.div`
   flex: 1;
   min-width: 280px;
   max-width: 280px;
+  max-height: 540px;
+  min-height: 540px;
   border: 2px solid green;
   border-radius: 15px;
   padding: 20px;
