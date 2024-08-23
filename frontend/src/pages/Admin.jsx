@@ -20,7 +20,7 @@ export const Admin = () => {
   };
 
   const handleSectionTitleClick = () => {
-    navigate('/'); // MY PAGE 클릭 시 메인 페이지로 이동
+    navigate('/'); 
   };
 
   const handleEditClick = () => {
@@ -33,7 +33,7 @@ export const Admin = () => {
         <Logo src={`${process.env.PUBLIC_URL}/logo.dark.png`} 
         alt="Ewha Logo" onClick={handleLogoClick} />  {/* src 경로 확인 */}
         <SectionTitle onClick={handleSectionTitleClick} style={{ cursor: 'pointer' }}>
-          MY PAGE
+          Admin
         </SectionTitle>
       </Sidebar>
       <TableContainer>
