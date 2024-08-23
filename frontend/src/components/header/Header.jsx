@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getMenuLink } from "../../utils";
+import { BANKS } from "./header.const.js";
 import * as S from "./header.styles.js";
 
 export function Header() {
@@ -7,20 +9,18 @@ export function Header() {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  const banks = [
-    { name: "KB국민은행", path: "/kb-bank" },
-    { name: "NH농협은행", path: "/nh-bank" },
-    { name: "신한은행", path: "/shinhan-bank" },
-    { name: "우리은행", path: "/woori-bank" },
-    { name: "하나은행", path: "/hana-bank" },
-  ];
-
   const isLogin = window.sessionStorage.getItem("token");
+
+  const handleProductMenu = (e) => {
+    const menuName = e.target.value;
+    const link = getMenuLink(menuName);
+    navigate(link);
+  };
 
   const handleBankSelect = (event) => {
     const selectedBankName = event.target.value;
     setBankName(selectedBankName);
-    const selectedBank = banks.find((bank) => bank.name === selectedBankName);
+    const selectedBank = BANKS.find((bank) => bank.name === selectedBankName);
     if (selectedBank) {
       navigate(selectedBank.path);
     } else {
@@ -48,7 +48,7 @@ export function Header() {
             <option value="" disabled>
               은행을 선택해주세요
             </option>
-            {banks.map((bank) => (
+            {BANKS.map((bank) => (
               <option key={bank.name} value={bank.name}>
                 {bank.name}
               </option>
@@ -57,16 +57,16 @@ export function Header() {
           {error && <S.ErrorMessage> 은행을 선택해 주세요.</S.ErrorMessage>}
         </S.SearchContainer>
         <S.Menu>
-          <S.MenuItem exact to="/deposit">
+          <S.MenuItem value="예금" onClick={handleProductMenu}>
             예금
           </S.MenuItem>
-          <S.MenuItem exact to="/saving">
+          <S.MenuItem value="적금" onClick={handleProductMenu}>
             적금
           </S.MenuItem>
-          <S.MenuItem exact to="/loan">
+          <S.MenuItem value="대출" onClick={handleProductMenu}>
             대출
           </S.MenuItem>
-          <S.MenuItem exact to="/checkcard">
+          <S.MenuItem value="체크카드" onClick={handleProductMenu}>
             체크카드
           </S.MenuItem>
         </S.Menu>

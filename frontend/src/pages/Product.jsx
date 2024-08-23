@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Header } from "../../components/index.js";
-import * as S from "../../styles/Product.styles.js";
-import BankSection from "../../components/BankSection.jsx";
+import { useState, useEffect } from "react";
+import { Header, BankSection } from "../components";
+import * as S from "../styles/Product.styles";
 
-export const Loan = () => {
+export const Product = ({ type }) => {
   const [bankData, setBankData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,9 +10,8 @@ export const Loan = () => {
   useEffect(() => {
     const fetchBankData = async () => {
       try {
-        const productType = "대출";
         const response = await fetch(
-          `http://43.202.58.11:8080/api/products/productType/${productType}`
+          `http://43.202.58.11:8080/api/products/productType/${type}`,
         );
         if (!response.ok) {
           throw new Error("Failed to fetch bank data");
@@ -39,7 +37,7 @@ export const Loan = () => {
     };
 
     fetchBankData();
-  }, []);
+  }, [type]);
 
   if (loading) return <p>로딩 중...</p>;
   if (error) return <p>{error}</p>;
