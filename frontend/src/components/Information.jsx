@@ -109,14 +109,16 @@ const Information = ({
       <S.Divider />
       <S.DetailSection>
         <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
-        <S.DetailDescription>{productDescription}</S.DetailDescription>
-        <S.DetailDescription>
-          금리: {productInterestRate}% - {productInterestTopRate}%
-        </S.DetailDescription>
-        <S.DetailDescription>가입 금액: {productAmount}</S.DetailDescription>
-        <S.DetailDescription>가입 연령: {productAge}</S.DetailDescription>
-        <S.DetailDescription>가입 기간: {productTerm}</S.DetailDescription>
-        <S.DetailDescription>상품 혜택: {productBenefit}</S.DetailDescription>
+        <S.DetailDescriptionWrap>
+          <S.DetailDescription>{productDescription}</S.DetailDescription>
+          <S.DetailDescription>
+            금리: {productInterestRate}% - {productInterestTopRate}%
+          </S.DetailDescription>
+          <S.DetailDescription>가입 금액: {productAmount}</S.DetailDescription>
+          <S.DetailDescription>가입 연령: {productAge}</S.DetailDescription>
+          <S.DetailDescription>가입 기간: {productTerm}</S.DetailDescription>
+          <S.DetailDescription>상품 혜택: {productBenefit}</S.DetailDescription>
+        </S.DetailDescriptionWrap>
       </S.DetailSection>
       <S.Divider />
       <S.CommentSection>
