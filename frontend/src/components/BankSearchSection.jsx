@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "../styles/BankSearchSection.styles.js";
 import kbLogo from "../assets/logos/kb.png";
 import nhLogo from "../assets/logos/nh.png";
@@ -6,6 +6,7 @@ import shLogo from "../assets/logos/sh.png";
 import wooriLogo from "../assets/logos/woori.png";
 import hanaLogo from "../assets/logos/hana.png";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const logoMap = {
   kb: kbLogo,
@@ -20,26 +21,139 @@ const BankSearchSection = ({ bank }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const logoPath = logoMap[bank.logokey];
+  const navigate = useNavigate();
 
-  const handleBookmarkToggle = (category, productName) => {
-    const key = `${category}-${productName}`;
-    setBookmarkedItems((prevBookmarks) => {
-      const isBookmarked = prevBookmarks[key];
-      setPopupMessage(
-        isBookmarked
-          ? "MY 스크랩에서 삭제되었습니다."
-          : "MY 스크랩에 저장되었습니다."
-      );
-      return {
-        ...prevBookmarks,
-        [key]: !isBookmarked,
+  const userCode = window.sessionStorage.getItem("userCode");
+
+  useEffect(() => {
+    const storedBookmarks = window.sessionStorage.getItem("bookmarkedItems");
+    if (storedBookmarks) {
+      setBookmarkedItems(JSON.parse(storedBookmarks));
+    } else {
+      const fetchScrapList = async () => {
+        try {
+          const response = await fetch(
+            `http://43.202.58.11:8080/api/users/${userCode}/scraps`
+          );
+          const result = await response.json();
+          if (result.data) {
+            const bookmarkState = {};
+            result.data.forEach((item) => {
+              bookmarkState[item.productCode] = {
+                scrapCode: item.scrapCode,
+                bookmarked: true,
+              };
+            });
+            setBookmarkedItems(bookmarkState);
+            window.sessionStorage.setItem(
+              "bookmarkedItems",
+              JSON.stringify(bookmarkState)
+            );
+          }
+        } catch (error) {
+          console.error("Error fetching scrap list:", error);
+        }
       };
-    });
+
+      fetchScrapList();
+    }
+  }, [userCode]);
+
+  const handleBookmarkToggle = async (productCode) => {
+    const authToken = window.sessionStorage.getItem("token");
+
+    if (!authToken) {
+      setPopupMessage("로그인 후 사용 가능합니다.");
+      setShowPopup(true);
+      return;
+    }
+
+    const item = bookmarkedItems[productCode];
+
+    if (item && item.bookmarked) {
+      const scrapCode = item.scrapCode;
+      const url = `http://43.202.58.11:8080/api/scraps/${scrapCode}`;
+
+      try {
+        const response = await fetch(url, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const updatedBookmarks = {
+            ...bookmarkedItems,
+            [productCode]: {
+              ...bookmarkedItems[productCode],
+              bookmarked: false,
+            },
+          };
+          setBookmarkedItems(updatedBookmarks);
+          window.sessionStorage.setItem(
+            "bookmarkedItems",
+            JSON.stringify(updatedBookmarks)
+          );
+          setPopupMessage("MY 스크랩에서 삭제되었습니다.");
+        } else {
+          const result = await response.json();
+          console.error("스크랩 삭제에 실패했습니다:", result.msg);
+        }
+      } catch (error) {
+        console.error("스크랩 삭제 요청 중 오류 발생:", error);
+      }
+    } else {
+      const url = `http://43.202.58.11:8080/api/users/${userCode}/scraps`;
+
+      const requestBody = {
+        productCode: productCode,
+        userCode: parseInt(userCode),
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          body: JSON.stringify(requestBody),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          const updatedBookmarks = {
+            ...bookmarkedItems,
+            [productCode]: {
+              scrapCode: result.data.scrapCode,
+              bookmarked: true,
+            },
+          };
+          setBookmarkedItems(updatedBookmarks);
+          window.sessionStorage.setItem(
+            "bookmarkedItems",
+            JSON.stringify(updatedBookmarks)
+          );
+          setPopupMessage("MY 스크랩에 저장되었습니다.");
+        } else {
+          console.error("스크랩 작업에 실패했습니다:", result.msg);
+        }
+      } catch (error) {
+        console.error("북마크 요청 중 오류 발생:", error);
+      }
+    }
+
     setShowPopup(true);
   };
 
   const handleConfirmClick = () => {
     setShowPopup(false);
+    if (popupMessage === "로그인 후 사용 가능합니다.") {
+      navigate("/login");
+    }
   };
 
   const { data } = bank.products;
@@ -56,22 +170,20 @@ const BankSearchSection = ({ bank }) => {
       )}
       <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
       <S.ProductCategory>
-        {categoriesOrder.map((category, index) => (
-          <div key={index}>
+        {categoriesOrder.map((category) => (
+          <div key={category}>
             <S.CategoryTitle>{category}</S.CategoryTitle>
             <S.CategoryColumn>
-              {data[category].map((product, idx) => (
-                <React.Fragment key={idx}>
+              {data[category]?.map((product, index) => (
+                <React.Fragment key={product.productCode}>
                   <S.ProductItem>
                     <S.ProductName>
                       <S.BookmarkIcon
                         onClick={() =>
-                          handleBookmarkToggle(category, product.productName)
+                          handleBookmarkToggle(product.productCode)
                         }
                       >
-                        {bookmarkedItems[
-                          `${category}-${product.productName}`
-                        ] ? (
+                        {bookmarkedItems[product.productCode]?.bookmarked ? (
                           <FaBookmark />
                         ) : (
                           <FaRegBookmark />
@@ -88,7 +200,7 @@ const BankSearchSection = ({ bank }) => {
                       자세히 보기
                     </S.BuyButton>
                   </S.ProductItem>
-                  {idx < data[category].length - 1 && <S.ProductSeparator />}
+                  {index < data[category].length - 1 && <S.ProductSeparator />}
                 </React.Fragment>
               ))}
             </S.CategoryColumn>
