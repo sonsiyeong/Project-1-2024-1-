@@ -9,6 +9,7 @@
   <img src="https://img.shields.io/badge/Springboot-%236DB33F?style=flat&logo=springboot&logoColor=white">
   <img src="https://img.shields.io/badge/AmazonWebServices-%23232F3E?style=flat&logo=AmazonWebServices&logoColor=white">
   <img src="https://img.shields.io/badge/Amazons3-%23569A31?style=flat&logo=AmazonS3&logoColor=white">
+  <img src="https://img.shields.io/badge/AmazonRDS-%23527FFF?style=flat&logo=AmazonRDS&logoColor=white">
 </p>
 
 
