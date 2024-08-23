@@ -10,6 +10,7 @@
   <img src="https://img.shields.io/badge/AmazonEC2-%23FF9900?style=flat&logo=AmazonEC2&logoColor=white">
   <img src="https://img.shields.io/badge/Amazons3-%23569A31?style=flat&logo=AmazonS3&logoColor=white">
   <img src="https://img.shields.io/badge/AmazonRDS-%23527FFF?style=flat&logo=AmazonRDS&logoColor=white">
+  <img src="https://img.shields.io/badge/Ubuntu-%23E95420?style=flat&logo=Ubuntu&logoColor=white">
 </p>
 
 
