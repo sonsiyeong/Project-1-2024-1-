@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/Javascript-%23F7DF1E?style=flat&logo=Javascript&logoColor=white">
   <img src="https://img.shields.io/badge/MySQL-%234479A1?style=flat&logo=MySQL&logoColor=white">
   <img src="https://img.shields.io/badge/Springboot-%236DB33F?style=flat&logo=springboot&logoColor=white">
-  <img src="https://img.shields.io/badge/AmazonWebService-%23232F3E?style=flat&logo=AmazonWebService&logoColor=white">
+  <img src="https://img.shields.io/badge/AmazonWebServices-%23232F3E?style=flat&logo=AmazonWebServices&logoColor=white">
 </p>
 
 
