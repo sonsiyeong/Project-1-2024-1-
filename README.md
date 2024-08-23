@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/MySQL-%234479A1?style=flat&logo=MySQL&logoColor=white">
   <img src="https://img.shields.io/badge/Springboot-%236DB33F?style=flat&logo=springboot&logoColor=white">
   <img src="https://img.shields.io/badge/AmazonWebServices-%23232F3E?style=flat&logo=AmazonWebServices&logoColor=white">
+  <img src="https://img.shields.io/badge/Amazons3-%23569A31?style=flat&logo=AmazonS3&logoColor=white">
 </p>
 
 
