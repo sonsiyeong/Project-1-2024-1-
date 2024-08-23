@@ -8,12 +8,9 @@ export const PageContainer = styled.div`
 `;
 
 export const BankLogo = styled.img`
-   {
-    max-width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px;
-  }
+  width: 400px;
+  display: block;
+  margin: 0 auto 40px;
 `;
 
 export const DetailContainer = styled.div`
@@ -82,7 +79,7 @@ export const CommentInput = styled.textarea`
   margin-bottom: 10px;
 `;
 
-export const CommentButton = styled(Link)`
+export const CommentButton = styled.button`
   background-color: #549052;
   color: white;
   border: none;

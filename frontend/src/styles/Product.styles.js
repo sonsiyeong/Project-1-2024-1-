@@ -25,10 +25,9 @@ export const BankSectionContainer = styled.div`
   border-radius: 15px;
   margin: 10px;
   width: 300px;
-  height: flex;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -38,7 +37,7 @@ export const BankLogo = styled.img`
 `;
 
 export const ProductCardWrapper = styled.div`
-  margin: 30px 0;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,8 +74,8 @@ export const CommentInput = styled.textarea`
 `;
 
 export const ProductDescription = styled.p`
-  font-size: 18px;
   margin: 15px;
+  text-align: left;
 `;
 
 export const ProductButton = styled(Link)`
