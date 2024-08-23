@@ -48,15 +48,25 @@ export const BankInfo = styled.div`
   margin-bottom: 20px;
 
   img {
-    max-width: 100px;
-    margin-right: 10px;
+    width: 200px;
+    margin: 0 auto 20px;
   }
 
   div {
+    margin: 0 auto;
+
     p {
-      margin: 0;
+      margin: 5px 10px;
       font-size: 1rem;
       color: #333;
+      display: flex;
+      align-items: center;
+
+      div {
+        padding-left: 10px;
+        display: inline-flex;
+        align-items: center;
+      }
     }
   }
 `;

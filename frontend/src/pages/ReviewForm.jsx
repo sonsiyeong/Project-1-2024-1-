@@ -17,7 +17,7 @@ export const ReviewForm = () => {
     const fetchProductDetails = async () => {
       try {
         const response = await fetch(
-          `http://43.202.58.11:8080/api/products/${productCode}`
+          `http://43.202.58.11:8080/api/products/${productCode}`,
         );
         if (!response.ok) {
           throw new Error("Failed to fetch product details");
@@ -96,18 +96,20 @@ export const ReviewForm = () => {
           <img src={bank.imageUrl} alt={`${bank.name} 로고`} />
           <div>
             <p>상품명: {product.productName}</p>
-            <p>별점 평가</p>
-            <S.StarRating>
-              {[...Array(5)].map((_, index) => (
-                <S.Star
-                  key={index}
-                  selected={index < rating}
-                  onClick={() => handleRatingChange(index + 1)}
-                >
-                  ★
-                </S.Star>
-              ))}
-            </S.StarRating>
+            <p>
+              별점 평가:
+              <S.StarRating>
+                {[...Array(5)].map((_, index) => (
+                  <S.Star
+                    key={index}
+                    selected={index < rating}
+                    onClick={() => handleRatingChange(index + 1)}
+                  >
+                    ★
+                  </S.Star>
+                ))}
+              </S.StarRating>
+            </p>
           </div>
         </S.BankInfo>
         <S.ReviewTextArea

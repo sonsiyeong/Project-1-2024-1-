@@ -4,14 +4,11 @@ import {
   SignUp,
   Main,
   Detailed,
-  CheckCard,
-  Deposit,
-  Saving,
-  Loan,
   ReviewForm,
   MyPage,
   BankPage,
   Admin,
+  Product,
   ProductManagement,
 } from "./pages";
 import { GlobalStyle } from "./styles/GlobalStyles";
@@ -25,10 +22,10 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/deposit" element={<Deposit />} />
-          <Route path="/saving" element={<Saving />} />
-          <Route path="/loan" element={<Loan />} />
-          <Route path="/checkcard" element={<CheckCard />} />
+          <Route path="/deposit" element={<Product type="예금" />} />
+          <Route path="/saving" element={<Product type="적금" />} />
+          <Route path="/loan" element={<Product type="대출" />} />
+          <Route path="/checkcard" element={<Product type="체크카드" />} />
           <Route path="/detailed/:productCode" element={<Detailed />} />
           <Route
             path="/detailed/:productCode/reviewform"

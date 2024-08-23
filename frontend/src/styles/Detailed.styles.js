@@ -8,12 +8,9 @@ export const PageContainer = styled.div`
 `;
 
 export const BankLogo = styled.img`
-   {
-    max-width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px;
-  }
+  width: 400px;
+  display: block;
+  margin: 0 auto 40px;
 `;
 
 export const DetailContainer = styled.div`
@@ -44,22 +41,23 @@ export const DetailLinkButton = styled.a`
 `;
 
 export const DetailSection = styled.section`
-  margin-bottom: 40px;
+  padding: 20px 0;
 `;
 
-export const DetailImage = styled.div`
-  width: 100%;
-  height: 300px;
-  background-color: #d3d3d3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+export const DetailDescriptionWrap = styled.div`
+  font-size: 18px;
+  width: 500px;
+  margin: 0 auto;
 `;
 
 export const DetailDescription = styled.div`
   font-size: 18px;
   margin-bottom: 20px;
+
+  &:first-of-type {
+    text-align: center;
+    font-weight: 700;
+  }
 `;
 
 export const CommentSection = styled.div`
@@ -82,7 +80,7 @@ export const CommentInput = styled.textarea`
   margin-bottom: 10px;
 `;
 
-export const CommentButton = styled(Link)`
+export const CommentButton = styled.button`
   background-color: #549052;
   color: white;
   border: none;
