@@ -2,8 +2,25 @@ import * as S from "../styles/Detailed.styles";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getMenuLink } from "../utils";
 
-const Information = ({ bank, product, reviewData }) => {
+const Information = ({
+  bank,
+  product: {
+    productCode,
+    productAge,
+    productAmount,
+    productBenefit,
+    productDescription,
+    productInterestRate,
+    productInterestTopRate,
+    productName,
+    productTerm,
+    productType,
+    productUrl,
+  },
+  reviewData,
+}) => {
   const logoPath = bank.imageUrl;
   const [bookmarked, setBookmarked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -11,9 +28,9 @@ const Information = ({ bank, product, reviewData }) => {
   const [reviews, setReviews] = useState(reviewData ? [reviewData] : []);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
+  const isLoggedIn = window.sessionStorage.getItem("token");
 
   const handleBookmarkClick = () => {
     if (bookmarked) {
@@ -31,7 +48,7 @@ const Information = ({ bank, product, reviewData }) => {
 
   const handleDeleteReview = () => {
     const updatedReviews = reviews.filter(
-      (review) => review !== reviewToDelete
+      (review) => review !== reviewToDelete,
     );
     setReviews(updatedReviews);
     setShowDeletePopup(false);
@@ -43,7 +60,7 @@ const Information = ({ bank, product, reviewData }) => {
   };
 
   const handleEditReview = (review) => {
-    navigate(`/detailed/${product.productCode}/reviewform`, {
+    navigate(`/detailed/${productCode}/reviewform`, {
       state: {
         rating: review.rating,
         review: review.review,
@@ -57,26 +74,11 @@ const Information = ({ bank, product, reviewData }) => {
       setPopupMessage("로그인 후에 작성 가능합니다.");
       setShowPopup(true);
     } else {
-      navigate(`/detailed/${product.productCode}/reviewform`);
+      navigate(`/detailed/${productCode}/reviewform`);
     }
   };
 
-  // Start of the modified part
-  const getBackButtonLink = () => {
-    switch (product.productType) {
-      case "예금":
-        return "/deposit";
-      case "적금":
-        return "/saving";
-      case "대출":
-        return "/loan";
-      case "체크카드":
-        return "/checkcard";
-      default:
-        return "/"; // Default to home if no matching product type
-    }
-  };
-  // End of the modified part
+  const backButtonLink = getMenuLink(productType);
 
   return (
     <S.DetailContainer>
@@ -99,31 +101,22 @@ const Information = ({ bank, product, reviewData }) => {
         <S.BookmarkIcon onClick={handleBookmarkClick}>
           {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </S.BookmarkIcon>
-        <S.DetailTitle>{product.productName}</S.DetailTitle>
-        <S.DetailLinkButton href={product.productUrl} target="_blank">
+        <S.DetailTitle>{productName}</S.DetailTitle>
+        <S.DetailLinkButton href={productUrl} target="_blank">
           상세 링크
         </S.DetailLinkButton>
       </S.DetailTitleContainer>
       <S.Divider />
       <S.DetailSection>
         <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
-        <S.DetailDescription>{product.productDescription}</S.DetailDescription>
+        <S.DetailDescription>{productDescription}</S.DetailDescription>
         <S.DetailDescription>
-          금리: {product.productInterestRate}% -{" "}
-          {product.productInterestTopRate}%
+          금리: {productInterestRate}% - {productInterestTopRate}%
         </S.DetailDescription>
-        <S.DetailDescription>
-          가입 금액: {product.productAmount}
-        </S.DetailDescription>
-        <S.DetailDescription>
-          가입 연령: {product.productAge}
-        </S.DetailDescription>
-        <S.DetailDescription>
-          가입 기간: {product.productTerm}
-        </S.DetailDescription>
-        <S.DetailDescription>
-          상품 혜택: {product.productBenefit}
-        </S.DetailDescription>
+        <S.DetailDescription>가입 금액: {productAmount}</S.DetailDescription>
+        <S.DetailDescription>가입 연령: {productAge}</S.DetailDescription>
+        <S.DetailDescription>가입 기간: {productTerm}</S.DetailDescription>
+        <S.DetailDescription>상품 혜택: {productBenefit}</S.DetailDescription>
       </S.DetailSection>
       <S.Divider />
       <S.CommentSection>
@@ -133,8 +126,8 @@ const Information = ({ bank, product, reviewData }) => {
         </S.ButtonContainer>
       </S.CommentSection>
       {reviews.length > 0 ? (
-        reviews.map((review, index) => (
-          <div key={index}>
+        reviews.map((review) => (
+          <div key={review.review}>
             <S.ProfileActions>
               <S.ProfileId>ID</S.ProfileId>
               <S.ActionLink onClick={() => handleEditReview(review)}>
@@ -163,7 +156,7 @@ const Information = ({ bank, product, reviewData }) => {
       )}
       <S.Divider />
       <S.ButtonContainer>
-        <S.BackButton to={getBackButtonLink()}>목록</S.BackButton>{" "}
+        <S.BackButton to={backButtonLink}>목록</S.BackButton>
       </S.ButtonContainer>
     </S.DetailContainer>
   );
