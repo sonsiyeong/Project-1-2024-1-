@@ -1,6 +1,7 @@
 package com.example.backend.apiController;
 
 import com.example.backend.dto.*;
+import com.example.backend.entity.Product;
 import com.example.backend.service.ReviewService;
 import com.example.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,19 @@ public class ProductApiController {
         try {
             Map<String, List<ProductTypeDto>> dtos = productService.productByType(productType);
             return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 조회하였습니다.", dtos));
+        } catch (Exception e) {
+            ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);
+        }
+    }
+
+    // 관리자 상품 조회
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/api/products/admin/{productType}")
+    public ResponseEntity<ResponseDto<?>> getAdminProductByProductType(@PathVariable String productType) {
+        try {
+            List<ProductAdminDto> productAdminDtos = productService.productNameByProductType(productType);
+            return ResponseEntity.ok(new ResponseDto<>("상품을 성공적으로 조회하였습니다.", productAdminDtos));
         } catch (Exception e) {
             ResponseDto<String> responseDto = new ResponseDto<>(e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDto);
