@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   MyPageContainer,
   Sidebar,
@@ -18,9 +18,12 @@ import { useNavigate } from "react-router-dom";
 
 export const MyPage = () => {
   const navigate = useNavigate();
-  const [userData, setUserData] = useState(null);
 
-  // 하드코딩된 스크랩 데이터
+  const handleLogoClick = () => {
+    navigate("/"); // Main 페이지로 이동
+  };
+
+  // 스크랩된 상품의 링크 데이터 예시: 상품 상세 페이지 추가 필요
   const scrapItems = [
     {
       bank: "은행명1",
@@ -44,54 +47,18 @@ export const MyPage = () => {
     },
   ];
 
-  useEffect(() => {
-    const token = window.sessionStorage.getItem("token");
-    const userCode = window.sessionStorage.getItem("userCode");
-
-    if (token && userCode) {
-      fetch(`http://43.202.58.11:8080/api/users/${userCode}`, { // 수정된 엔드포인트
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`, // 토큰을 Authorization 헤더에 추가
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setUserData(data.data); // 응답에서 사용자 데이터를 상태에 저장
-        })
-        .catch((error) => {
-          console.error("사용자 정보를 가져오는 중 오류 발생:", error);
-        });
-    } else {
-      console.warn("토큰이나 userCode가 세션에 없습니다.");
-    }
-  }, []);
- 
-  const handleLogoClick = () => {
-    navigate("/"); // Main 페이지로 이동
-  };
-
   const handleItemClick = (url) => {
     window.open(url, "_blank"); // 상품명 클릭 시 새 탭에서 상품 홈페이지로 이동
   };
-
-  if (!userData) {
-    return <div>Loading...</div>; // 데이터 로드 전 로딩 표시
-  }
 
   return (
     <MyPageContainer>
       <Sidebar>
         <img
-          src={`${process.env.PUBLIC_URL}/logo.dark.png`}
+          src={`${process.env.PUBLIC_URL}/logo.dark.png`} // 이미지 소스를 logo.dark.png로 변경
           alt="Ewha Logo"
-          onClick={handleLogoClick}
-          style={{ cursor: "pointer", width: "100px" }}
+          onClick={handleLogoClick} // 로고 클릭 시 메인 페이지로 이동
+          style={{ cursor: "pointer", width: "100px" }} // 스타일을 인라인으로 추가
         />
         <SectionTitle>MY PAGE</SectionTitle>
       </Sidebar>
@@ -100,15 +67,15 @@ export const MyPage = () => {
         <UserInfo>
           <UserInfoRow>
             <UserInfoLabel>NAME</UserInfoLabel>
-            <UserInfoValue>{userData.userName}</UserInfoValue>
+            <UserInfoValue>김이화</UserInfoValue>
           </UserInfoRow>
           <UserInfoRow>
             <UserInfoLabel>e-mail</UserInfoLabel>
-            <UserInfoValue>{userData.email}</UserInfoValue>
+            <UserInfoValue>myname@ewha.ac.kr</UserInfoValue>
           </UserInfoRow>
           <UserInfoRow>
             <UserInfoLabel>ID</UserInfoLabel>
-            <UserInfoValue>{userData.userId}</UserInfoValue>
+            <UserInfoValue>makemoney</UserInfoValue>
           </UserInfoRow>
         </UserInfo>
         <SectionTitle>MY 스크랩</SectionTitle>
@@ -132,5 +99,3 @@ export const MyPage = () => {
     </MyPageContainer>
   );
 };
-
-export default MyPage;
