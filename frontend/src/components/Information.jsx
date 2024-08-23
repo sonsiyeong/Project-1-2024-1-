@@ -41,7 +41,7 @@ const Information = ({ bank, product, reviewData }) => {
   };
 
   const handleEditReview = (review) => {
-    navigate("/reviewform", {
+    navigate(`/detailed/${product.productCode}/reviewform`, {
       state: {
         rating: review.rating,
         review: review.review,
@@ -101,7 +101,9 @@ const Information = ({ bank, product, reviewData }) => {
       <S.CommentSection>
         <h3>상품 리뷰</h3>
         <S.ButtonContainer>
-          <S.CommentButton to="/reviewform">작성</S.CommentButton>
+          <S.CommentButton to={`/detailed/${product.productCode}/reviewform`}>
+            작성
+          </S.CommentButton>
         </S.ButtonContainer>
       </S.CommentSection>
       {reviews.length > 0 ? (

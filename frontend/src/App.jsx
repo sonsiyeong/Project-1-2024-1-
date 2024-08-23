@@ -30,7 +30,10 @@ const App = () => {
           <Route path="/loan" element={<Loan />} />
           <Route path="/checkcard" element={<CheckCard />} />
           <Route path="/detailed/:productCode" element={<Detailed />} />
-          <Route path="/reviewform" element={<ReviewForm />} />
+          <Route
+            path="/detailed/:productCode/reviewform"
+            element={<ReviewForm />}
+          />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/:bankId" element={<BankPage />} />
           <Route path="/admin" element={<Admin />} />
