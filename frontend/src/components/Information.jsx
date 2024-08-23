@@ -11,6 +11,7 @@ const Information = ({ bank, product, reviewData }) => {
   const [reviews, setReviews] = useState(reviewData ? [reviewData] : []);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,6 +36,7 @@ const Information = ({ bank, product, reviewData }) => {
     setReviews(updatedReviews);
     setShowDeletePopup(false);
   };
+
   const confirmDeleteReview = (review) => {
     setReviewToDelete(review);
     setShowDeletePopup(true);
@@ -49,6 +51,32 @@ const Information = ({ bank, product, reviewData }) => {
       },
     });
   };
+
+  const handleWriteReview = () => {
+    if (!isLoggedIn) {
+      setPopupMessage("로그인 후에 작성 가능합니다.");
+      setShowPopup(true);
+    } else {
+      navigate(`/detailed/${product.productCode}/reviewform`);
+    }
+  };
+
+  // Start of the modified part
+  const getBackButtonLink = () => {
+    switch (product.productType) {
+      case "예금":
+        return "/deposit";
+      case "적금":
+        return "/saving";
+      case "대출":
+        return "/loan";
+      case "체크카드":
+        return "/checkcard";
+      default:
+        return "/"; // Default to home if no matching product type
+    }
+  };
+  // End of the modified part
 
   return (
     <S.DetailContainer>
@@ -101,9 +129,7 @@ const Information = ({ bank, product, reviewData }) => {
       <S.CommentSection>
         <h3>상품 리뷰</h3>
         <S.ButtonContainer>
-          <S.CommentButton to={`/detailed/${product.productCode}/reviewform`}>
-            작성
-          </S.CommentButton>
+          <S.CommentButton onClick={handleWriteReview}>작성</S.CommentButton>
         </S.ButtonContainer>
       </S.CommentSection>
       {reviews.length > 0 ? (
@@ -137,7 +163,7 @@ const Information = ({ bank, product, reviewData }) => {
       )}
       <S.Divider />
       <S.ButtonContainer>
-        <S.BackButton to="/deposit">목록</S.BackButton>
+        <S.BackButton to={getBackButtonLink()}>목록</S.BackButton>{" "}
       </S.ButtonContainer>
     </S.DetailContainer>
   );
