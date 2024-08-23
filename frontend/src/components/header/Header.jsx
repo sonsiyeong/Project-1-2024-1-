@@ -38,7 +38,7 @@ export function Header() {
     <>
       <S.LogoContainer>
         <Link to="/">
-          <img src="logo.png" alt="Ewha Logo" />
+          <img src="/logo.png" alt="Ewha Logo" />
         </Link>
       </S.LogoContainer>
       <S.Divider />
