@@ -8,62 +8,36 @@ import * as S from "../styles/Product.styles";
 import { useState } from "react";
 
 const logoMap = {
-  kb: kbLogo,
-  nh: nhLogo,
-  sh: shLogo,
-  woori: wooriLogo,
-  hana: hanaLogo,
+  국민은행: kbLogo,
+  농협은행: nhLogo,
+  신한은행: shLogo,
+  우리은행: wooriLogo,
+  하나은행: hanaLogo,
 };
 
 export const BankSection = ({ bank }) => {
-  const logoPath = logoMap[bank.logoKey];
+  const logoPath = logoMap[bank.name];
   const [bookmarkedProducts, setBookmarkedProducts] = useState({});
-  const [bankData, setBankData] = useState(null);
 
-  const handleBookmarkToggle = (productId, index) => {
-    setBookmarkedProducts((prev) => ({
-      ...prev,
-      [productId]: {
-        ...prev[productId],
-        [index]: !prev[productId]?.[index],
-      },
-    }));
+  const handleBookmarkToggle = (bookmarkKey) => {
+    setBookmarkedProducts((prevBookmarks) => {
+      return {
+        ...prevBookmarks,
+        [bookmarkKey]: !prevBookmarks[bookmarkKey],
+      };
+    });
   };
-
-  // TODO: API 데이터 '국민'말고 다 불러오는지 확인 필요
-  const productType = "예금";
-
-  const fetchBankData = async () => {
-    try {
-      const response = await fetch(
-        `http://43.202.58.11:8080/api/products/productType/${productType}`,
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch bank data");
-      }
-      const data = await response.json();
-
-      return data;
-    } catch (err) {
-      // setError("데이터를 불러오는데 실패했습니다.");
-    } finally {
-      // setLoading(false);
-    }
-  };
-  const data = fetchBankData();
-  console.log(data);
 
   return (
     <S.BankSectionContainer>
       <S.BankLogo src={logoPath} alt={`${bank.name} 로고`} />
-      {bank.products.map((product) => (
+      {bank.products.map((product, index) => (
         <ProductCard
-          key={product.id}
+          key={product.productCode}
           product={product}
-          bookmarked1={bookmarkedProducts[product.id]?.[0]}
-          bookmarked2={bookmarkedProducts[product.id]?.[1]}
-          onBookmarkToggle1={() => handleBookmarkToggle(product.id, 0)}
-          onBookmarkToggle2={() => handleBookmarkToggle(product.id, 1)}
+          index={index}
+          bookmarkedItems={bookmarkedProducts}
+          handleBookmarkToggle={handleBookmarkToggle}
         />
       ))}
     </S.BankSectionContainer>
