@@ -30,6 +30,9 @@ export function Header() {
 
   const handleLogout = () => {
     window.sessionStorage.removeItem("token");
+    window.sessionStorage.removeItem("role");
+    window.sessionStorage.removeItem("userId");
+    window.sessionStorage.removeItem("userCode");
     alert("로그아웃 되었습니다.");
     navigate("/");
   };
