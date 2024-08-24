@@ -10,9 +10,7 @@ import {
   Th,
   Td,
   Button,
-
-  Select,   // Select 스타일 추가
-
+  Select, // Select 스타일 추가
 } from "../styles/Admin.styles";
 import { useNavigate } from 'react-router-dom';
 
@@ -25,7 +23,7 @@ export const Admin = () => {
   };
 
   const handleSectionTitleClick = () => {
-    navigate('/'); 
+    navigate('/');
   };
 
   const handleEditClick = () => {
@@ -36,6 +34,20 @@ export const Admin = () => {
     setSelectedCategory(event.target.value); // 선택한 카테고리로 상태 업데이트
   };
 
+  // 상품명 배열
+  const productNames = [
+    "KBStar정기예금",
+    "KB국민UP정기예금",
+    "HeyYoung머니박스",
+    "신한주거래저축예금",
+    "WON플러스예금",
+    "우리첫거래우대정기예금",
+    "영하나플러스통장",
+    "하나취업이룸통장",
+    "정기예금",
+    "NH 1934 우대통장"
+  ];
+
   return (
     <Container>
       <Sidebar>
@@ -43,8 +55,7 @@ export const Admin = () => {
           src={`${process.env.PUBLIC_URL}/logo.dark.png`} 
           alt="Ewha Logo" 
           onClick={handleLogoClick} 
-        />  {/* src 경로 확인 */}
-
+        />
         <SectionTitle onClick={handleSectionTitleClick} style={{ cursor: 'pointer' }}>
           Admin
         </SectionTitle>
@@ -52,9 +63,7 @@ export const Admin = () => {
       <TableContainer>
         <h1>상품 목록</h1>
 
-
         <Select value={selectedCategory} onChange={handleCategoryChange}> {/* 드롭다운 추가 */}
-
           <option value="예금">예금</option>
           <option value="적금">적금</option>
           <option value="대출">대출</option>
@@ -70,10 +79,10 @@ export const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            {[...Array(10)].map((_, index) => (
+            {productNames.map((productName, index) => (
               <tr key={`product-${index}`}>
                 <Td>{index + 1}</Td>
-                <Td>{selectedCategory} 상품명 {index + 1}</Td> {/* 선택한 카테고리 표시 */}
+                <Td>{productName}</Td> {/* 상품명 표시 */}
                 <Td>
                   <Button onClick={handleEditClick}>수정</Button>
                 </Td>
@@ -85,3 +94,5 @@ export const Admin = () => {
     </Container>
   );
 };
+
+export default Admin;
