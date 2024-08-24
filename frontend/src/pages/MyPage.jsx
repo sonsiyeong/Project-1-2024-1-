@@ -19,40 +19,20 @@ import { useNavigate } from "react-router-dom";
 export const MyPage = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
-
-  // 하드코딩된 스크랩 데이터
-  const scrapItems = [
-    {
-      bank: "은행명1",
-      product: "상품명1",
-      url: "https://example.com/product1",
-    },
-    {
-      bank: "은행명2",
-      product: "상품명2",
-      url: "https://example.com/product2",
-    },
-    {
-      bank: "은행명3",
-      product: "상품명3",
-      url: "https://example.com/product3",
-    },
-    {
-      bank: "은행명4",
-      product: "상품명4",
-      url: "https://example.com/product4",
-    },
-  ];
+  const [scrapItems, setScrapItems] = useState([]); // 스크랩 데이터를 저장할 상태
+  const [loading, setLoading] = useState(true); // 로딩 상태 관리
+  const [error, setError] = useState(null); // 에러 상태 관리
 
   useEffect(() => {
     const token = window.sessionStorage.getItem("token");
     const userCode = window.sessionStorage.getItem("userCode");
 
     if (token && userCode) {
-      fetch(`http://43.202.58.11:8080/api/users/${userCode}`, { // 수정된 엔드포인트
+      // 사용자 정보 가져오기
+      fetch(`http://43.202.58.11:8080/api/users/${userCode}`, {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${token}`, // 토큰을 Authorization 헤더에 추가
+          "Authorization": `Bearer ${token}`,
         },
       })
         .then((response) => {
@@ -62,26 +42,59 @@ export const MyPage = () => {
           return response.json();
         })
         .then((data) => {
-          setUserData(data.data); // 응답에서 사용자 데이터를 상태에 저장
+          setUserData(data.data); // 사용자 데이터를 상태에 저장
         })
         .catch((error) => {
           console.error("사용자 정보를 가져오는 중 오류 발생:", error);
         });
+
+      // 스크랩 목록 가져오기
+      fetch(`http://43.202.58.11:8080/api/users/${userCode}/scraps`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setScrapItems(data.data); // 스크랩 데이터를 상태에 저장
+        })
+        .catch((error) => {
+          console.error("스크랩 목록을 가져오는 중 오류 발생:", error);
+          setError("스크랩 목록을 가져오는 중 오류가 발생했습니다.");
+        })
+        .finally(() => {
+          setLoading(false); // 로딩 상태 해제
+        });
     } else {
       console.warn("토큰이나 userCode가 세션에 없습니다.");
+      setLoading(false);
     }
   }, []);
- 
+
   const handleLogoClick = () => {
-    navigate("/"); // Main 페이지로 이동
+    navigate("/"); // 메인 페이지로 이동
   };
 
   const handleItemClick = (url) => {
     window.open(url, "_blank"); // 상품명 클릭 시 새 탭에서 상품 홈페이지로 이동
   };
 
-  if (!userData) {
+  if (loading) {
     return <div>Loading...</div>; // 데이터 로드 전 로딩 표시
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>; // 에러 발생 시 표시할 내용
+  }
+
+  if (!userData) {
+    return <div>Loading...</div>; // 사용자 데이터 로드 전 로딩 표시
   }
 
   return (
@@ -117,13 +130,11 @@ export const MyPage = () => {
             {scrapItems.map((item, index) => (
               <ScrapItem
                 key={index}
-                onClick={() => handleItemClick(item.url)}
+                onClick={() => handleItemClick(`https://example.com/product/${item.productCode}`)}
                 style={{ cursor: "pointer" }}
               >
                 <ScrapItemIcon />
-                <ScrapItemText>
-                  {item.bank} {item.product}
-                </ScrapItemText>
+                <ScrapItemText>{item.scrapMemo}</ScrapItemText>
               </ScrapItem>
             ))}
           </ScrapItems>
