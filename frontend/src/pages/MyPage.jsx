@@ -59,7 +59,7 @@ export const MyPage = () => {
   };
 
   const loadScrapItems = (token, userCode) => {
-    fetch(`http://43.202.58.11:8080/api/scraps/${userCode}`, {
+    fetch(`http://43.202.58.11:8080/api/users/${userCode}/scraps`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`, // 인증 키 추가
@@ -92,7 +92,7 @@ export const MyPage = () => {
 
   const handleItemClick = (productCode) => {
     // 상품 상세 페이지로 이동
-    navigate(`/product/${productCode}`);
+    navigate(`/products/${productCode}`);
   };
 
   if (loading) {
@@ -138,9 +138,9 @@ export const MyPage = () => {
         <ScrapSection>
           {scrapItems.length > 0 ? (
             <ScrapItems>
-              {scrapItems.map((item, index) => (
+              {scrapItems.map((item) => (
                 <ScrapItem
-                  key={item.scrapCode}
+                  key={item.scrapCode} // 고유한 scrapCode 사용
                   onClick={() => handleItemClick(item.productCode)} // 상세 페이지로 이동
                   style={{ cursor: "pointer" }}
                 >
