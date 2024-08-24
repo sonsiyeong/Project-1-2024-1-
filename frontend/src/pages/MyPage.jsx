@@ -162,18 +162,20 @@ export const MyPage = () => {
           {scrapItems.length > 0 ? (
             <ScrapItems>
               {scrapItems.map((item, index) => (
-                <ScrapItem
-                  key={index}
-                  onClick={() =>
-                    handleItemClick(`https://example.com/product/${item.productCode}`)
-                  }
-                  style={{ cursor: "pointer" }}
-                >
-                  <ScrapItemIcon />
-                  <ScrapItemText>{item.scrapMemo}</ScrapItemText>
-                </ScrapItem>
-              ))}
-            </ScrapItems>
+                <ScrapItems>
+                  {scrapList.map((item, index) => (
+                    <ScrapItem
+                      key={index}
+                      onClick={() => 
+                        handleItemClick(`http://43.202.58.11:8080/api/products/${productCode}`) // 상세 페이지로 이동
+                      }
+                      style={{ cursor: "pointer" }}
+                    >
+      <ScrapItemIcon />
+      <ScrapItemText>{item.scrapMemo}</ScrapItemText>
+    </ScrapItem>
+  ))}
+</ScrapItems>
           ) : (
             <div>스크랩한 항목이 없습니다.</div> // 스크랩 목록이 없을 때 보여줄 내용
           )}
