@@ -40,7 +40,7 @@ export const MyPage = () => {
     fetch(`http://43.202.58.11:8080/api/users/${userCode}`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
@@ -64,10 +64,12 @@ export const MyPage = () => {
     const storedScrapCodes = Object.keys(storedScrapItems);
 
     if (storedScrapCodes.length > 0) {
-      const scrapItemsFromStorage = storedScrapCodes.map(code => ({
+      const scrapItemsFromStorage = storedScrapCodes.map((code) => ({
         productCode: parseInt(code, 10),
         scrapCode: storedScrapItems[code].scrapCode,
-        scrapMemo: "", // 필요 시 추가적인 정보를 불러올 수 있음
+        bank: storedScrapItems[code].bank, // 은행명 추가
+        product: storedScrapItems[code].product, // 상품명 추가
+        url: `https://example.com/product/${code}`, // URL 예시
       }));
       setScrapItems(scrapItemsFromStorage);
       setLoading(false);
@@ -80,7 +82,7 @@ export const MyPage = () => {
     fetch(`http://43.202.58.11:8080/api/users/${userCode}/scraps`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
@@ -90,13 +92,23 @@ export const MyPage = () => {
         return response.json();
       })
       .then((data) => {
-        setScrapItems(data.data); // 스크랩 데이터를 상태에 저장
+        const formattedScrapItems = data.data.map((item) => ({
+          productCode: item.productCode,
+          scrapCode: item.scrapCode,
+          bank: item.bank, // API에서 은행명 받아오기
+          product: item.product, // API에서 상품명 받아오기
+          url: `https://example.com/product/${item.productCode}`, // URL 예시
+        }));
+        setScrapItems(formattedScrapItems); // 스크랩 데이터를 상태에 저장
+
         // 세션 스토리지에 스크랩 상태 저장
         const storedBookmarks = {};
-        data.data.forEach((item) => {
+        formattedScrapItems.forEach((item) => {
           storedBookmarks[item.productCode] = {
             scrapCode: item.scrapCode,
             bookmarked: true,
+            bank: item.bank,
+            product: item.product,
           };
         });
         window.sessionStorage.setItem("bookmarkedItems", JSON.stringify(storedBookmarks));
@@ -162,20 +174,16 @@ export const MyPage = () => {
           {scrapItems.length > 0 ? (
             <ScrapItems>
               {scrapItems.map((item, index) => (
-                <ScrapItems>
-                  {scrapList.map((item, index) => (
-                    <ScrapItem
-                      key={index}
-                      onClick={() => 
-                        handleItemClick(`http://43.202.58.11:8080/api/products/${productCode}`) // 상세 페이지로 이동
-                      }
-                      style={{ cursor: "pointer" }}
-                    >
-      <ScrapItemIcon />
-      <ScrapItemText>{item.scrapMemo}</ScrapItemText>
-    </ScrapItem>
-  ))}
-</ScrapItems>
+                <ScrapItem
+                  key={index}
+                  onClick={() => handleItemClick(item.url)} // URL로 이동
+                  style={{ cursor: "pointer" }}
+                >
+                  <ScrapItemIcon />
+                  <ScrapItemText>{`${item.bank} - ${item.product}`}</ScrapItemText> {/* 은행명과 상품명 표시 */}
+                </ScrapItem>
+              ))}
+            </ScrapItems>
           ) : (
             <div>스크랩한 항목이 없습니다.</div> // 스크랩 목록이 없을 때 보여줄 내용
           )}
