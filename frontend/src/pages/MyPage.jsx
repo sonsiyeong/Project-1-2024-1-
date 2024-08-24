@@ -29,7 +29,7 @@ export const MyPage = () => {
 
     if (token && userCode) {
       fetchUserData(token, userCode);
-      loadScrapItems();
+      loadScrapItems(token, userCode); // 스크랩 항목을 API로부터 불러옴
     } else {
       console.warn("토큰이나 userCode가 세션에 없습니다.");
       setLoading(false);
@@ -40,7 +40,7 @@ export const MyPage = () => {
     fetch(`http://43.202.58.11:8080/api/users/${userCode}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // 인증 키 추가
       },
     })
       .then((response) => {
@@ -58,23 +58,41 @@ export const MyPage = () => {
       });
   };
 
-  const loadScrapItems = () => {
-    const storedScrapItems = JSON.parse(window.sessionStorage.getItem("bookmarkedItems")) || {};
-    const formattedScrapItems = Object.keys(storedScrapItems).map((code) => ({
-      productCode: parseInt(code, 10),
-      bank: storedScrapItems[code].bank, // 은행명 추가
-      product: storedScrapItems[code].product, // 상품명 추가
-    }));
-    setScrapItems(formattedScrapItems);
-    setLoading(false);
+  const loadScrapItems = (token, userCode) => {
+    fetch(`http://43.202.58.11:8080/api/scraps/${userCode}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`, // 인증 키 추가
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const formattedScrapItems = data.data.map((item) => ({
+          scrapCode: item.scrapCode,
+          scrapTime: item.scrapTime, // 스크랩 시각 추가
+          scrapMemo: item.scrapMemo, // 스크랩 메모 추가
+          productCode: item.productCode,
+          bank: item.bank, // 은행명 추가
+          product: item.product, // 상품명 추가
+        }));
+        setScrapItems(formattedScrapItems);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("스크랩 항목을 가져오는 중 오류 발생:", error);
+        setError("스크랩 항목을 가져오는 중 오류가 발생했습니다.");
+        setLoading(false);
+      });
   };
 
   const handleItemClick = (productCode) => {
     // 상품 상세 페이지로 이동
-    navigate(`/deposit/${productCode}`);
-    navigate(`/saving/${productCode}`);
-    navigate(`/loan/${productCode}`);
-    navigate(`/checkcard/${productCode}`);
+    navigate(`/product/${productCode}`);
   };
 
   if (loading) {
@@ -122,12 +140,14 @@ export const MyPage = () => {
             <ScrapItems>
               {scrapItems.map((item, index) => (
                 <ScrapItem
-                  key={index}
+                  key={item.scrapCode}
                   onClick={() => handleItemClick(item.productCode)} // 상세 페이지로 이동
                   style={{ cursor: "pointer" }}
                 >
                   <ScrapItemIcon />
                   <ScrapItemText>{`${item.bank} - ${item.product}`}</ScrapItemText> {/* 은행명과 상품명 표시 */}
+                  <div>스크랩 시간: {item.scrapTime}</div> {/* 스크랩 시각 표시 */}
+                  <div>메모: {item.scrapMemo}</div> {/* 스크랩 메모 표시 */}
                 </ScrapItem>
               ))}
             </ScrapItems>
@@ -141,4 +161,3 @@ export const MyPage = () => {
 };
 
 export default MyPage;
-
