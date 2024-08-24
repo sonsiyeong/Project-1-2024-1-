@@ -29,7 +29,7 @@ export const MyPage = () => {
 
     if (token && userCode) {
       fetchUserData(token, userCode);
-      loadScrapItems(token, userCode);
+      loadScrapItems();
     } else {
       console.warn("토큰이나 userCode가 세션에 없습니다.");
       setLoading(false);
@@ -58,76 +58,20 @@ export const MyPage = () => {
       });
   };
 
-  const loadScrapItems = (token, userCode) => {
-    // 세션 스토리지에서 스크랩 상태 불러오기
+  const loadScrapItems = () => {
     const storedScrapItems = JSON.parse(window.sessionStorage.getItem("bookmarkedItems")) || {};
-    const storedScrapCodes = Object.keys(storedScrapItems);
-
-    if (storedScrapCodes.length > 0) {
-      const scrapItemsFromStorage = storedScrapCodes.map((code) => ({
-        productCode: parseInt(code, 10),
-        scrapCode: storedScrapItems[code].scrapCode,
-        bank: storedScrapItems[code].bank, // 은행명 추가
-        product: storedScrapItems[code].product, // 상품명 추가
-        url: `https://example.com/product/${code}`, // URL 예시
-      }));
-      setScrapItems(scrapItemsFromStorage);
-      setLoading(false);
-    } else {
-      fetchScrapItems(token, userCode);
-    }
+    const formattedScrapItems = Object.keys(storedScrapItems).map((code) => ({
+      productCode: parseInt(code, 10),
+      bank: storedScrapItems[code].bank, // 은행명 추가
+      product: storedScrapItems[code].product, // 상품명 추가
+    }));
+    setScrapItems(formattedScrapItems);
+    setLoading(false);
   };
 
-  const fetchScrapItems = (token, userCode) => {
-    fetch(`http://43.202.58.11:8080/api/users/${userCode}/scraps`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const formattedScrapItems = data.data.map((item) => ({
-          productCode: item.productCode,
-          scrapCode: item.scrapCode,
-          bank: item.bank, // API에서 은행명 받아오기
-          product: item.product, // API에서 상품명 받아오기
-          url: `https://example.com/product/${item.productCode}`, // URL 예시
-        }));
-        setScrapItems(formattedScrapItems); // 스크랩 데이터를 상태에 저장
-
-        // 세션 스토리지에 스크랩 상태 저장
-        const storedBookmarks = {};
-        formattedScrapItems.forEach((item) => {
-          storedBookmarks[item.productCode] = {
-            scrapCode: item.scrapCode,
-            bookmarked: true,
-            bank: item.bank,
-            product: item.product,
-          };
-        });
-        window.sessionStorage.setItem("bookmarkedItems", JSON.stringify(storedBookmarks));
-      })
-      .catch((error) => {
-        console.error("스크랩 목록을 가져오는 중 오류 발생:", error);
-        setError("스크랩 목록을 가져오는 중 오류가 발생했습니다.");
-      })
-      .finally(() => {
-        setLoading(false); // 로딩 상태 해제
-      });
-  };
-
-  const handleLogoClick = () => {
-    navigate("/"); // 메인 페이지로 이동
-  };
-
-  const handleItemClick = (url) => {
-    window.open(url, "_blank"); // 상품명 클릭 시 새 탭에서 상품 홈페이지로 이동
+  const handleItemClick = (productCode) => {
+    // 상품 상세 페이지로 이동
+    navigate(`/products/${productCode}`);
   };
 
   if (loading) {
@@ -148,7 +92,7 @@ export const MyPage = () => {
         <img
           src={`${process.env.PUBLIC_URL}/logo.dark.png`}
           alt="Ewha Logo"
-          onClick={handleLogoClick}
+          onClick={() => navigate("/")}
           style={{ cursor: "pointer", width: "100px" }}
         />
         <SectionTitle>MY PAGE</SectionTitle>
@@ -176,7 +120,7 @@ export const MyPage = () => {
               {scrapItems.map((item, index) => (
                 <ScrapItem
                   key={index}
-                  onClick={() => handleItemClick(item.url)} // URL로 이동
+                  onClick={() => handleItemClick(item.productCode)} // 상세 페이지로 이동
                   style={{ cursor: "pointer" }}
                 >
                   <ScrapItemIcon />
@@ -185,7 +129,7 @@ export const MyPage = () => {
               ))}
             </ScrapItems>
           ) : (
-            <div>스크랩한 항목이 없습니다.</div> // 스크랩 목록이 없을 때 보여줄 내용
+            <div>스크랩한 항목이 없습니다.</div>
           )}
         </ScrapSection>
       </Content>
@@ -194,3 +138,4 @@ export const MyPage = () => {
 };
 
 export default MyPage;
+
