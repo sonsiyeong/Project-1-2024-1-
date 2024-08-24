@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Container,
   Sidebar,
@@ -9,7 +10,9 @@ import {
   Th,
   Td,
   Button,
+
   Select,   // Select 스타일 추가
+
 } from "../styles/Admin.styles";
 import { useNavigate } from 'react-router-dom';
 
@@ -41,13 +44,17 @@ export const Admin = () => {
           alt="Ewha Logo" 
           onClick={handleLogoClick} 
         />  {/* src 경로 확인 */}
+
         <SectionTitle onClick={handleSectionTitleClick} style={{ cursor: 'pointer' }}>
           Admin
         </SectionTitle>
       </Sidebar>
       <TableContainer>
         <h1>상품 목록</h1>
+
+
         <Select value={selectedCategory} onChange={handleCategoryChange}> {/* 드롭다운 추가 */}
+
           <option value="예금">예금</option>
           <option value="적금">적금</option>
           <option value="대출">대출</option>
@@ -57,6 +64,7 @@ export const Admin = () => {
           <thead>
             <tr>
               <Th>번호</Th>
+              <Th>상품 코드</Th> {/* 상품 코드 컬럼 추가 */}
               <Th>상품명</Th>
               <Th></Th>
             </tr>

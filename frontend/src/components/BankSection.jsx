@@ -17,14 +17,28 @@ const logoMap = {
 
 export const BankSection = ({ bank }) => {
   const logoPath = logoMap[bank.name];
-  const [bookmarkedProducts, setBookmarkedProducts] = useState({});
+  const [bookmarkedProducts, setBookmarkedProducts] = useState(() => {
+    const storedBookmarks = JSON.parse(window.sessionStorage.getItem('bookmarkedItems')) || {};
+    return storedBookmarks;
+  });
 
-  const handleBookmarkToggle = (bookmarkKey) => {
+  const handleBookmarkToggle = (bookmarkKey, productInfo) => {
     setBookmarkedProducts((prevBookmarks) => {
-      return {
+      const updatedBookmarks = {
         ...prevBookmarks,
         [bookmarkKey]: !prevBookmarks[bookmarkKey],
       };
+
+      // 세션 스토리지에 저장
+      const sessionData = JSON.parse(window.sessionStorage.getItem('bookmarkedItems')) || {};
+      if (updatedBookmarks[bookmarkKey]) {
+        sessionData[bookmarkKey] = productInfo;
+      } else {
+        delete sessionData[bookmarkKey];
+      }
+      window.sessionStorage.setItem('bookmarkedItems', JSON.stringify(sessionData));
+
+      return updatedBookmarks;
     });
   };
 
