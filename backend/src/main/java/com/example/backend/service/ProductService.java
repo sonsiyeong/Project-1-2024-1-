@@ -1,9 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.ProductCategoryDto;
-import com.example.backend.dto.ProductDetailDto;
-import com.example.backend.dto.ProductDto;
-import com.example.backend.dto.ProductTypeDto;
+import com.example.backend.dto.*;
 import com.example.backend.entity.Product;
 import com.example.backend.repository.ReviewRepository;
 import com.example.backend.repository.ProductRepository;
@@ -50,6 +47,14 @@ public class ProductService {
                             return new ProductTypeDto(product.getProductCode(), product.getProductName(), feats);
                         }, Collectors.toList())
                 ));
+    }
+
+    // 관리자용 상품 이름 조회
+    public List<ProductAdminDto> productNameByProductType(String productType){
+        List<Product> products = productRepository.findByProductType(productType);
+        return products.stream()
+                .map(ProductAdminDto::createProductAdminDto)
+                .collect(Collectors.toList());
     }
 
     // 상품 생성
