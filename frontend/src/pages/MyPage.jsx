@@ -74,11 +74,9 @@ export const MyPage = () => {
       .then((data) => {
         const formattedScrapItems = data.data.map((item) => ({
           scrapCode: item.scrapCode,
-          scrapTime: item.scrapTime, // 스크랩 시각 추가
-          scrapMemo: item.scrapMemo, // 스크랩 메모 추가
           productCode: item.productCode,
-          bank: item.bank, // 은행명 추가
-          product: item.product, // 상품명 추가
+          productBank: item.productBank, // productBank를 은행명으로 사용
+          productName: item.productName, // productName을 상품명으로 사용
         }));
         setScrapItems(formattedScrapItems);
         setLoading(false);
@@ -145,9 +143,7 @@ export const MyPage = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <ScrapItemIcon />
-                  <ScrapItemText>{`${item.bank} - ${item.product}`}</ScrapItemText> {/* 은행명과 상품명 표시 */}
-                  <div>스크랩 시간: {item.scrapTime}</div> {/* 스크랩 시각 표시 */}
-                  <div>메모: {item.scrapMemo}</div> {/* 스크랩 메모 표시 */}
+                  <ScrapItemText>{`${item.productBank} - ${item.productName}`}</ScrapItemText> {/* 은행명과 상품명 표시 */}
                 </ScrapItem>
               ))}
             </ScrapItems>
