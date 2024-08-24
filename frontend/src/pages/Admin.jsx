@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
 import {
   Container,
   Sidebar,
@@ -9,38 +10,15 @@ import {
   Th,
   Td,
   Button,
-  Select,
+
+  Select,   // Select 스타일 추가
+
 } from "../styles/Admin.styles";
 import { useNavigate } from 'react-router-dom';
 
 export const Admin = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('예금'); // 기본값을 '예금'으로 설정
-  const [msg, setMsg] = useState(''); // 응답 메시지 상태
-  const [products, setProducts] = useState([]); // 상품 목록을 저장할 상태
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('/api/products'); // API 엔드포인트에 맞게 수정
-        const result = await response.json();
-        if (response.ok) {
-          setMsg(result.msg); // 응답 메시지 저장
-          const productData = result.data.map(product => ({
-            productCode: product.productCode,
-            productName: product.productName,
-          }));
-          setProducts(productData); // 상품 데이터를 상태에 저장
-        } else {
-          console.error('상품을 불러오는데 실패했습니다.');
-        }
-      } catch (error) {
-        console.error('API 요청 중 오류가 발생했습니다:', error);
-      }
-    };
-
-    fetchProducts();
-  }, [selectedCategory]); // 선택된 카테고리가 변경될 때마다 데이터를 불러옴
 
   const handleLogoClick = () => {
     navigate('/'); // 로고 클릭 시 메인 페이지로 이동
@@ -65,15 +43,18 @@ export const Admin = () => {
           src={`${process.env.PUBLIC_URL}/logo.dark.png`} 
           alt="Ewha Logo" 
           onClick={handleLogoClick} 
-        />
+        />  {/* src 경로 확인 */}
+
         <SectionTitle onClick={handleSectionTitleClick} style={{ cursor: 'pointer' }}>
           Admin
         </SectionTitle>
       </Sidebar>
       <TableContainer>
         <h1>상품 목록</h1>
-        {msg && <p>{msg}</p>} {/* 응답 메시지를 화면에 표시 */}
-        <Select value={selectedCategory} onChange={handleCategoryChange}>
+
+
+        <Select value={selectedCategory} onChange={handleCategoryChange}> {/* 드롭다운 추가 */}
+
           <option value="예금">예금</option>
           <option value="적금">적금</option>
           <option value="대출">대출</option>
@@ -89,11 +70,10 @@ export const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
+            {[...Array(10)].map((_, index) => (
               <tr key={`product-${index}`}>
                 <Td>{index + 1}</Td>
-                <Td>{product.productCode}</Td> {/* 상품 코드 표시 */}
-                <Td>{product.productName}</Td>
+                <Td>{selectedCategory} 상품명 {index + 1}</Td> {/* 선택한 카테고리 표시 */}
                 <Td>
                   <Button onClick={handleEditClick}>수정</Button>
                 </Td>
@@ -105,4 +85,3 @@ export const Admin = () => {
     </Container>
   );
 };
-

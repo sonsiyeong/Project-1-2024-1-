@@ -17,13 +17,17 @@ public class ScrapDto {
     private LocalDate scrapTime;
     private Long productCode;
     private Long userCode;
+    private String bankName;
+    private String productName;
 
     public static ScrapDto createScrapDto(Scrap scrap){
         return new ScrapDto(
                 scrap.getScrapCode(),
                 scrap.getScrapTime(),
                 scrap.getProduct().getProductCode(),
-                scrap.getUser().getUserCode()
+                scrap.getUser().getUserCode(),
+                scrap.getProduct().getProductBank(),
+                scrap.getProduct().getProductName()
         );
     }
 }

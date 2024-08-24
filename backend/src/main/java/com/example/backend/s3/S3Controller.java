@@ -14,7 +14,6 @@ public class S3Controller {
 
     @GetMapping("image/{fileName}")
     public String getImageUrl(@PathVariable String fileName){
-        System.out.println("Requested file name : " + fileName);
         return s3Service.getFileUrl(fileName);
     }
 }

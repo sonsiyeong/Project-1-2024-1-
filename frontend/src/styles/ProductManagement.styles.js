@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex; /* 사이드바와 폼을 수평으로 배치 */
+  height: 100vh;
 `;
 
 export const Sidebar = styled.div`
