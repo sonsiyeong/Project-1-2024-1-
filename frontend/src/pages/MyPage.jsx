@@ -28,54 +28,87 @@ export const MyPage = () => {
     const userCode = window.sessionStorage.getItem("userCode");
 
     if (token && userCode) {
-      // 사용자 정보 가져오기
-      fetch(`http://43.202.58.11:8080/api/users/${userCode}`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setUserData(data.data); // 사용자 데이터를 상태에 저장
-        })
-        .catch((error) => {
-          console.error("사용자 정보를 가져오는 중 오류 발생:", error);
-        });
-
-      // 스크랩 목록 가져오기
-      fetch(`http://43.202.58.11:8080/api/users/${userCode}/scraps`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setScrapItems(data.data); // 스크랩 데이터를 상태에 저장
-        })
-        .catch((error) => {
-          console.error("스크랩 목록을 가져오는 중 오류 발생:", error);
-          setError("스크랩 목록을 가져오는 중 오류가 발생했습니다.");
-        })
-        .finally(() => {
-          setLoading(false); // 로딩 상태 해제
-        });
+      fetchUserData(token, userCode);
+      loadScrapItems(token, userCode);
     } else {
       console.warn("토큰이나 userCode가 세션에 없습니다.");
       setLoading(false);
     }
   }, []);
+
+  const fetchUserData = (token, userCode) => {
+    fetch(`http://43.202.58.11:8080/api/users/${userCode}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserData(data.data); // 사용자 데이터를 상태에 저장
+      })
+      .catch((error) => {
+        console.error("사용자 정보를 가져오는 중 오류 발생:", error);
+        setError("사용자 정보를 가져오는 중 오류가 발생했습니다.");
+      });
+  };
+
+  const loadScrapItems = (token, userCode) => {
+    // 세션 스토리지에서 스크랩 상태 불러오기
+    const storedScrapItems = JSON.parse(window.sessionStorage.getItem("bookmarkedItems")) || {};
+    const storedScrapCodes = Object.keys(storedScrapItems);
+
+    if (storedScrapCodes.length > 0) {
+      const scrapItemsFromStorage = storedScrapCodes.map(code => ({
+        productCode: parseInt(code, 10),
+        scrapCode: storedScrapItems[code].scrapCode,
+        scrapMemo: "", // 필요 시 추가적인 정보를 불러올 수 있음
+      }));
+      setScrapItems(scrapItemsFromStorage);
+      setLoading(false);
+    } else {
+      fetchScrapItems(token, userCode);
+    }
+  };
+
+  const fetchScrapItems = (token, userCode) => {
+    fetch(`http://43.202.58.11:8080/api/users/${userCode}/scraps`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setScrapItems(data.data); // 스크랩 데이터를 상태에 저장
+        // 세션 스토리지에 스크랩 상태 저장
+        const storedBookmarks = {};
+        data.data.forEach((item) => {
+          storedBookmarks[item.productCode] = {
+            scrapCode: item.scrapCode,
+            bookmarked: true,
+          };
+        });
+        window.sessionStorage.setItem("bookmarkedItems", JSON.stringify(storedBookmarks));
+      })
+      .catch((error) => {
+        console.error("스크랩 목록을 가져오는 중 오류 발생:", error);
+        setError("스크랩 목록을 가져오는 중 오류가 발생했습니다.");
+      })
+      .finally(() => {
+        setLoading(false); // 로딩 상태 해제
+      });
+  };
 
   const handleLogoClick = () => {
     navigate("/"); // 메인 페이지로 이동
@@ -126,18 +159,24 @@ export const MyPage = () => {
         </UserInfo>
         <SectionTitle>MY 스크랩</SectionTitle>
         <ScrapSection>
-          <ScrapItems>
-            {scrapItems.map((item, index) => (
-              <ScrapItem
-                key={index}
-                onClick={() => handleItemClick(`https://example.com/product/${item.productCode}`)}
-                style={{ cursor: "pointer" }}
-              >
-                <ScrapItemIcon />
-                <ScrapItemText>{item.scrapMemo}</ScrapItemText>
-              </ScrapItem>
-            ))}
-          </ScrapItems>
+          {scrapItems.length > 0 ? (
+            <ScrapItems>
+              {scrapItems.map((item, index) => (
+                <ScrapItem
+                  key={index}
+                  onClick={() =>
+                    handleItemClick(`https://example.com/product/${item.productCode}`)
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  <ScrapItemIcon />
+                  <ScrapItemText>{item.scrapMemo}</ScrapItemText>
+                </ScrapItem>
+              ))}
+            </ScrapItems>
+          ) : (
+            <div>스크랩한 항목이 없습니다.</div> // 스크랩 목록이 없을 때 보여줄 내용
+          )}
         </ScrapSection>
       </Content>
     </MyPageContainer>
