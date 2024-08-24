@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FaBookmark } from 'react-icons/fa';
 
 export const Container = styled.div`
   display: flex;
@@ -17,7 +16,7 @@ export const Sidebar = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 100px;
+  width: 180px;
   cursor: pointer;
 `;
 
@@ -28,7 +27,7 @@ export const SectionTitle = styled.h2`
 `;
 
 export const TableContainer = styled.div`
-  flex-grow: 1;  // 이 부분이 메인 콘텐츠를 사이드바 옆으로 확장합니다.
+  flex-grow: 1;  // 메인 콘텐츠를 사이드바 옆으로 확장
   padding-left: 20px;
 `;
 
@@ -56,9 +55,23 @@ export const Button = styled.button`
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  
-    &:hover {
+
+  &:hover {
     background-color: #5fa446;
     color: white;
+  }
+`;
+
+export const Select = styled.select`
+  margin-bottom: 20px;  // 드롭다운 아래 여백 추가
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #5fa446;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: #186915;  // 포커스 시 색상 변경
   }
 `;
