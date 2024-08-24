@@ -71,7 +71,10 @@ export const MyPage = () => {
 
   const handleItemClick = (productCode) => {
     // 상품 상세 페이지로 이동
-    navigate(`/products/${productCode}`);
+    navigate(`/deposit/${productCode}`);
+    navigate(`/saving/${productCode}`);
+    navigate(`/loan/${productCode}`);
+    navigate(`/checkcard/${productCode}`);
   };
 
   if (loading) {
