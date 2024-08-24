@@ -15,7 +15,7 @@ export const Sidebar = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 100px;
+  width: 180px;
   cursor: pointer;
 `;
 
