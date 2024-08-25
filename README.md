@@ -23,3 +23,7 @@
 <br>
 
 ## 📌 프로젝트 소개
+<p align = "center">
+![image](https://github.com/user-attachments/assets/686e480a-5c7c-47a6-846b-fee25ab41e25)
+![image](https://github.com/user-attachments/assets/e10d1d0a-4117-40d1-9d98-dcfa59f739cf)
+
