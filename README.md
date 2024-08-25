@@ -1,7 +1,6 @@
 # <p align="center">대학생 전용 금융 상품 비교 서비스, <br>EWHA INVESTIGATION </p>
 
-
-<br> 
+<br>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Figma-%23F24E1E?style=flat&logo=Figma&logoColor=white">
@@ -19,8 +18,16 @@
   <img src="https://img.shields.io/badge/Ubuntu-%23E95420?style=flat&logo=Ubuntu&logoColor=white">
 </p>
 
-
 <br>
 
 ## 📌 프로젝트 소개
 
+<p align = "center">
+  <img src="images\팀원소개.png" alt="팀원소개">
+  <img src="images\프로젝트 소개.png" alt="프로젝트 소개">
+  <img src="images\로그인 및 회원가입.png" alt="로그인 및 회원가입">
+  <img src="images\상품화면.png" alt="상품화면">
+  <img src="images\리뷰화면.png" alt="리뷰화면">
+  <img src="images\마이페이지.png" alt="마이페이지">
+  <img src="images\관리자페이지.png" alt="관리자페이지">
+</p>
