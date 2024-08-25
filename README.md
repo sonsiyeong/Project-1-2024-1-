@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/GitHub-%23181717?style=flat&logo=GitHub&logoColor=white"><br>
   <img src="https://img.shields.io/badge/HTML-%23E34F26?style=flat&logo=HTML5&logoColor=white">
   <img src="https://img.shields.io/badge/CSS-%231572B6?style=flat&logo=CSS3&logoColor=white">
+  <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white">
   <img src="https://img.shields.io/badge/React-%2361DAFB?style=flat&logo=React&logoColor=white">
   <img src="https://img.shields.io/badge/Javascript-%23F7DF1E?style=flat&logo=Javascript&logoColor=white"><br>
   <img src="https://img.shields.io/badge/MySQL-%234479A1?style=flat&logo=MySQL&logoColor=white">
