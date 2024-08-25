@@ -20,10 +20,13 @@
 
 <br>
 
-## 📌 프로젝트 소개
-
+## 📌 팀원 소개
 <p align = "center">
   <img src="images\팀원소개.png" alt="팀원소개">
+</p>
+
+## 📌 프로젝트 소개
+<p align = "center">
   <img src="images\프로젝트 소개.png" alt="프로젝트 소개">
   <img src="images\로그인 및 회원가입.png" alt="로그인 및 회원가입">
   <img src="images\상품화면.png" alt="상품화면">
