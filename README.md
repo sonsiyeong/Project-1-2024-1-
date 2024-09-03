@@ -27,6 +27,7 @@
          <a href=https://www.notion.so/1430116fa9fe4cfca0f5edc7090d0f96> <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white&link=https://www.notion.so/1430116fa9fe4cfca0f5edc7090d0f96"> </a>
           </div>  
 
+## 📌 프로젝트 경험
  
  # <p align="center">대학생 전용 금융 상품 비교 서비스, <br>EWHA INVESTIGATION </p>
 <br>
