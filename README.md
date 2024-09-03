@@ -25,14 +25,7 @@
     <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🧑‍💻 Contact me </h2> <br> 
     <div style="text-align: left;"> <a href=mailto:syeong_04@ewahin.net> <img src="https://img.shields.io/badge/Gmail-EA4335?style=flat-square&logo=Gmail&logoColor=white&link=mailto:syeong_04@ewahin.net"> </a>
          <a href=https://www.notion.so/1430116fa9fe4cfca0f5edc7090d0f96> <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white&link=https://www.notion.so/1430116fa9fe4cfca0f5edc7090d0f96"> </a>
-          </div>  <br> 
-    <div style="text-align: left;">  </div> 
-    </div>
-    <div style="text-align: left;"> 
-    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🏅 Stats </h2> <div style="text-align: left;"> <img src="https://github-readme-stats.vercel.app/api?username=sonsiyeong&bg_color=180,000000,&title_color=000000&text_color=000000"
-         /> <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sonsiyeong&layout=compact&bg_color=180,000000,&title_color=000000&text_color=000000"
-           /> </div> 
-    </div>
+          </div>  
 
  
  # <p align="center">대학생 전용 금융 상품 비교 서비스, <br>EWHA INVESTIGATION </p>
