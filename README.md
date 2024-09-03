@@ -57,11 +57,6 @@
 
 <br>
 
-## 📌 팀원 소개
-<p align = "center">
-  <img src="images\팀원소개.png" alt="팀원소개">
-</p>
-
 ## 📌 프로젝트 소개
 <p align = "center">
   <img src="images\프로젝트 소개.png" alt="프로젝트 소개">
